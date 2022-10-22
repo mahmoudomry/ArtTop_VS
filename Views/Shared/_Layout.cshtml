@@ -1,50 +1,250 @@
-﻿<!DOCTYPE html>
+﻿<!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - ArtTop</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/ArtTop.styles.css" asp-append-version="true" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Arttop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+        crossorigin="anonymous">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+    <link rel="stylesheet" href="~/assets/css/style.css" />
 </head>
+
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ArtTop</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
-                </div>
+    <div id="myOverlay" class="overlay">
+        <span class="closebtn" onclick="closeSearch()" title="Close Overlay">x</span>
+        <div class="overlay-content">
+            <form action="#">
+                <input type="text" placeholder="Search.." name="search">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+    </div>
+    <div class="layout position-relative">
+        <header class="inner top-0 ps-4 pe-4 w-100">
+            <div class="container">
+                <nav class="ps-5 pe-5 me-auto d-flex align-items-center justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <div class="logo">
+                            <a href="#">
+                                <img src="~/assets/images/logo.svg" alt="Art top" />
+                            </a>
+                        </div>
+                        <ul class="nav_bar d-flex align-items-center mt-auto mb-auto">
+                            <li class="position-relative overflow-hidden">
+                                <a href="#" class="nav_link active">Home</a>
+                            </li>
+                            <li class="position-relative overflow-hidden">
+                                <a href="#" class="nav_link">About</a>
+                            </li>
+                            <li class="position-relative overflow-hidden">
+                                <a href="#" class="nav_link">Services</a>
+                            </li>
+                            <li class="position-relative overflow-hidden">
+                                <a href="#" class="nav_link">Projects</a>
+                            </li>
+                            <li class="position-relative overflow-hidden">
+                                <a href="#" class="nav_link">Contact us</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="nav_action d-flex align-items-center">
+                        <a href="javascript:;" class="search_btn d-block" onclick="openSearch()">
+                            <svg width="17" height="15" viewBox="0 0 17 15" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M16.0544 13.4824L12.9381 10.5995C13.8825 9.45576 14.4005 8.06846 14.4007 6.60455C14.4007 4.84039 13.658 3.18171 12.3093 1.93427C10.9608 0.686842 9.16799 -0.000244141 7.26069 -0.000244141C5.35362 -0.000244141 3.56057 0.686842 2.21209 1.93427C-0.571674 4.50965 -0.571674 8.69988 2.21209 11.2748C3.56057 12.5225 5.35362 13.2096 7.26069 13.2096C8.84318 13.2094 10.3429 12.7302 11.5793 11.8565L14.6956 14.7393C14.8831 14.9129 15.1292 14.9998 15.375 14.9998C15.6209 14.9998 15.867 14.9129 16.0544 14.7393C16.4298 14.3923 16.4298 13.8294 16.0544 13.4824ZM3.5709 10.0178C1.53644 8.13584 1.53668 5.07347 3.5709 3.19125C4.55645 2.27977 5.86693 1.77759 7.26069 1.77759C8.65468 1.77759 9.96492 2.27977 10.9505 3.19125C11.936 4.10296 12.4789 5.31523 12.4789 6.60455C12.4789 7.89408 11.936 9.10614 10.9505 10.0178C9.96492 10.9295 8.65468 11.4317 7.26069 11.4317C5.86693 11.4317 4.55645 10.9295 3.5709 10.0178Z"
+                                    fill="white" />
+                            </svg>
+                        </a>
+                        <a href="" class="get-in-touch-btn d-block  pt-2 pb-2 text-white">
+                            <span>Get </span>In Touch
+                        </a>
+                    </div>
+                </nav>
+                @RenderSection("HeaderTitle", required: false)
+                <section class="main-slider">
+                </section>
             </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
+
+        </header>
+        <main>
             @RenderBody()
         </main>
+        <footer>
+            <section class="footer-top">
+                <div class="container">
+                    <div class="row">
+                        <div class="footer-section col-md-3">
+                            <h3>
+                                Services
+                            </h3>
+                            <ul class="list-unstyled">
+                                <li><a href="#">Construction Services</a></li>
+                                <li><a href="#">Medical Services</a></li>
+                                <li><a href="#">Consultation Services</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-section col-md-3">
+                            <h3>
+                                Quick Links
+                            </h3>
+                            <ul class="list-unstyled">
+                                <li><a href="#">Term of Conditions</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">FAQ</a></li>
+                            </ul>
+                        </div>
+                        <div class="footer-section newsletter col-md-3">
+                            <form action="">
+                                <h3>
+                                    Newsletter
+                                </h3>
+                                <p>
+                                    Get our news and updates
+                                </p>
+                                <input type="email" class="newsletter-email" placeholder="Your email">
+                                <div class="button-container d-flex justify-content-end">
+                                    <button class="btn btn-green" type="button">
+                                        Get Started
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="footer-section contact-info col-md-3">
+                            <h3>
+                                Contact us
+                            </h3>
+                            <div>
+                                <div class="d-flex contact-info-item">
+                                    <div class="icon">
+                                        <img src="~/assets/images/marker.svg" alt="address">
+                                    </div>
+                                    <div class="text">
+                                        Kingdome of Saudi Arabia Short Address RHOA7835
+                                    </div>
+                                </div>
+                                <div class="d-flex contact-info-item">
+                                    <div class="icon">
+                                        <img src="~/assets/images/mail.svg" alt="mail">
+                                    </div>
+                                    <div class="text">
+                                        <a href="mailto:info@arttopgroup.com">info@arttopgroup.com</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </section>
+            <section class="footer-bottom">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-4">
+                            <div class="logos">
+                                <img src="~/assets/images/footer-logo-1.png" alt="logo 1">
+                                <img src="~/assets/images/footer-logo-2.png" alt="logo 2">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="copyright text-center align-items-center">
+                                All Rights are Reserved @@ 2022
+                            </div>
+                        </div>
+                        <div class="col-md-4 text-left">
+                            <div class="social-links ">
+                                <ul class="list-unstyled list-group list-group-horizontal justify-content-end">
+                                    <li>
+                                        <a href="#" class="tiktok">
+                                            <i class="fa-brands fa-tiktok"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="linkedin">
+                                            <i class="fa-brands fa-linkedin"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="snapchat">
+                                            <i class="fa-brands fa-snapchat"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="instagram">
+                                            <i class="fa-brands fa-instagram"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="twitter">
+                                            <i class="fa-brands fa-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="facebook">
+                                            <i class="fa-brands fa-facebook"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </footer>
+        @* <footer class="border-top footer text-muted">
+            <div class="container">
+            &copy; 2022 - ArtTop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            </div>
+            </footer> *@
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2022 - ArtTop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script src ="https://cdn.jsdelivr.net/gh/KodingKhurram/animate.css-dynamic@main/animate.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <script src="~/assets/js/inlineSVG.min.js"></script>
+    <script src="~/assets/js/main.js"></script>
+    <script>
+        $(document).ready(function () {
+            /* Client */
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 40,
+                responsiveClass: true,
+                responsive: {
+                    0: {
+                        items: 3,
+                        nav: true
+                    },
+                    600: {
+                        items: 3,
+                        nav: false
+                    },
+                    1000: {
+                        items: 6,
+                        nav: true,
+                        loop: false
+                    }
+                }
+            });
+        });
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
+
 </html>

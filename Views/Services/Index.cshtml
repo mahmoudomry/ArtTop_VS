@@ -2,6 +2,196 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
-       ViewData["Title"] = "Services";
-      Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Services";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
+<section class="services">
+    <div class="container">
+        <div class="row">
+            <h5>
+                Book Appointment
+            </h5>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <h2>
+                    We Provide a High Quality Services
+                </h2>
+            </div>
+            <div class="col-md-4 offset-md-1">
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry.
+                </p>
+            </div>
+            <div class="col-md-2 offset-md-1">
+                <a href="#" class="btn btn-green">
+                    Discover All
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="service-item" style="background-image: url('/assets/images/service-01.jpg');">
+                    <a href="#">
+                        <div class="service-item-overlay"></div>
+                        <div class="content">
+                            <div class="icon">
+                                <img src="~/assets/images/service-01-icon.svg" alt="">
+                            </div>
+                            <div class="text">
+                                <h3>
+                                    Construction Services
+                                </h3>
+                                <p>
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                    Ipsum has been the industry.
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-item" style="background-image: url('/assets/images/service-02.jpg');">
+                    <a href="#">
+                        <div class="service-item-overlay"></div>
+                        <div class="content">
+                            <div class="icon">
+                                <img src="~/assets/images/service-02-icon.svg" alt="">
+                            </div>
+                            <div class="text">
+                                <h3>
+                                    Medical Services
+                                </h3>
+                                <p>
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                    Ipsum has been the industry.
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-item" style="background-image: url('/assets/images/service-03.jpg');">
+                    <a href="#">
+                        <div class="service-item-overlay"></div>
+                        <div class="content">
+                            <div class="icon">
+                                <img src="~/assets/images/service-03-icon.svg" alt="">
+                            </div>
+                            <div class="text">
+                                <h3>
+                                    Consultation Services
+                                </h3>
+                                <p>
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                    Ipsum has been the industry.
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="book-appointment">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h5>
+                    Book Appointment
+                </h5>
+                <h2>
+                    Contact us Today and Book an Appointment
+                </h2>
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum
+                    has been the
+                    industry.
+                </p>
+            </div>
+            <div class="col-md-6 offset-md-2 book-appointment-form-container">
+                <form action="" class="book-appointment-form">
+                    <div class="corner-top"></div>
+                    <div class="service-choices">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1"
+                                value="option1">
+                            <label class="form-check-label d-flex" for="inlineRadio1">
+                                <div class="icon">
+                                    <img src="~/assets/images/construction.svg" alt="">
+                                </div>
+                                <h6>
+                                    Construction Services
+                                </h6>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2"
+                                value="option2">
+                            <label class="form-check-label d-flex" for="inlineRadio2">
+                                <div class="icon">
+                                    <img src="~/assets/images/medical.svg" alt="">
+                                </div>
+                                <h6>
+                                    Medical Services
+                                </h6>
+                            </label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3"
+                                value="option3">
+                            <label class="form-check-label d-flex" for="inlineRadio3">
+                                <div class="icon">
+                                    <img src="~/assets/images/consult.svg" alt="">
+                                </div>
+                                <h6>
+                                    Consultation Services
+                                </h6>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-inputs">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="persons" class="form-label">Persons</label>
+                                    <input type="text" class="form-control" id="persons" value="2 Adults, 1 Child">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="doctor" class="form-label">Doctor</label>
+                                    <select id="doctor" class="form-select">
+                                        <option value="1">Dr. Ahmed Ali</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="date" class="form-label">Date</label>
+                                    <input type="date" class="form-control" id="date" value="12 Sep, 2022">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="time" class="form-label">Time</label>
+                                    <input type="time" class="form-control" id="time" value="3:00 pm - 3:30 pm">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-green" type="button">
+                        Get Started
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

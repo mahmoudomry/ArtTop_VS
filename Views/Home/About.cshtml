@@ -1,7 +1,204 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
     ViewData["Title"] = "About us";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@section HeaderTitle{
+<div class="top-title row">
+    <div class="col-md-8 offset-md-2">
+        <h1>
+            About us
+        </h1>
+        <ul class="breadcrumb">
+            <li><a href="index.html">Home</a></li>
+            <li>About</li>
+        </ul>
+    </div>
+</div>
+}
+<section class="to-know-us">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <img src="~/assets/images/to-know-01.jpg" alt="">
+            </div>
+            <div class="col-md-9">
+                <h5 class="green">
+                    To Know us
+                </h5>
+                <h2>
+                    We are Investment Company
+                </h2>
+            </div>
+        </div>
+        <div class="row to-know-2">
+            <div class="col-md-6">
+                <img src="~/assets/images/to-know-02.jpg" alt="">
+            </div>
+            <div class="col-md-6">
+                <p class="mt40">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                    the industry's standard dummy text ever since the
+                </p>
+                <div class="row vision-mission">
+                    <div class="col-md-6">
+                        <img src="~/assets/images/vision.svg" alt="Vision">
+                        <h6>
+                            Our Vision
+                        </h6>
+                        <p>
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="~/assets/images/mission.svg" alt="Vision">
+                        <h6>
+                            Our Mission
+                        </h6>
+                        <p>
+                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="work-features">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+                <div class="d-flex aign-items-center justify-content-center">
+                    <div class="work-feature text-center">
+                        <div class="icon">
+                            <img src="~/assets/images/work-feature-icon-01.svg" alt="">
+                        </div>
+                        <h3>Flexibility</h3>
+                    </div>
+                    <div class="work-feature text-center">
+                        <div class="icon">
+                            <img src="~/assets/images/work-feature-icon-02.svg" alt="">
+                        </div>
+                        <h3>Transparency</h3>
+                    </div>
+                    <div class="work-feature text-center">
+                        <div class="icon">
+                            <img src="~/assets/images/work-feature-icon-03.svg" alt="">
+                        </div>
+                        <h3>Quality</h3>
+                    </div>
+                    <div class="work-feature text-center">
+                        <div class="icon">
+                            <img src="~/assets/images/work-feature-icon-04.svg" alt="">
+                        </div>
+                        <h3>Credibility</h3>
+                    </div>
+                    <div class="work-feature text-center">
+                        <div class="icon">
+                            <img src="~/assets/images/work-feature-icon-05.svg" alt="">
+                        </div>
+                        <h3>Perfection</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="our-goals">
+    <div class="container">
+
+        <h5 class="text-center">
+            Our Goals
+        </h5>
+        <h2 class="text-center">
+            What we Aim to Achieve?
+        </h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="goal-item">
+                    <div class="num">
+                        <img src="~/assets/images/goal-01.svg" alt="">
+                        <div>01</div>
+                    </div>
+                    <h6>
+                        Collaboration on a large and wide scale with our clients
+                    </h6>
+                </div>
+                <div class="separator"></div>
+                <div class="goal-item">
+                    <div class="num">
+                        <img src="~/assets/images/goal-02.svg" alt="">
+                        <div>03</div>
+                    </div>
+                    <h6>
+                        Investing in our human staff
+                    </h6>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <img src="~/assets/images/our-goals-img.jpg" alt="Our Goals">
+            </div>
+            <div class="col-md-4">
+                <div class="goal-item">
+                    <div class="num">
+                        <img src="~/assets/images/goal-03.svg" alt="">
+                        <div>02</div>
+                    </div>
+                    <h6>
+                        Building a dynamic work environment with our clients
+                    </h6>
+                </div>
+                <div class="separator"></div>
+                <div class="goal-item">
+                    <div class="num">
+                        <img src="~/assets/images/goal-04.svg" alt="">
+                        <div>04</div>
+                    </div>
+                    <h6>
+                        Increase customer enlightenment
+                    </h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="our-fatures-inner">
+    <div class="container">
+        <h5>
+            Our Features
+        </h5>
+        <h2 class="white">
+            What Sets us Apart?
+        </h2>
+        <div class="row our-fatures-items">
+            <div class="d-flex aign-items-center justify-content-center">
+                <div class="our-fature">
+                    <div class="icon">
+                        <img class="svg-inline" src="~/assets/images/features-inner-01.svg" alt="">
+                    </div>
+                    <h6>Team work of local and international experts</h6>
+                </div>
+                <div class="our-fature">
+                    <div class="icon">
+                        <img class="svg-inline" src="~/assets/images/features-inner-02.svg" alt="">
+                    </div>
+                    <h6>Consistent approach & ideology to development </h6>
+                </div>
+                <div class="our-fature">
+                    <div class="icon">
+                        <img class="svg-inline" src="~/assets/images/features-inner-03.svg" alt="">
+                    </div>
+                    <h6>High priority of client as success growth partners</h6>
+                </div>
+                <div class="our-fature">
+                    <div class="icon">
+                        <img class="svg-inline" src="~/assets/images/features-inner-04.svg" alt="">
+                    </div>
+                    <h6>Trust and long-lasting relationships</h6>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="empty">
+</section>

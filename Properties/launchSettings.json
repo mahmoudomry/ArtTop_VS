@@ -8,14 +8,15 @@
     }
   },
   "profiles": {
-    "ArtTop": {
-      "commandName": "Project",
-      "dotnetRunMessages": true,
-      "launchBrowser": true,
-      "applicationUrl": "https://localhost:7231;http://localhost:5231",
-      "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
-      }
+      "hotreloadprofile": {
+        "commandName": "Project",
+        "launchBrowser": true,
+        "environmentVariables": {
+            "ASPNETCORE_ENVIRONMENT": "Development",
+            "Key": "Value"
+        },
+        "applicationUrl": "https://localhost:5001;http://localhost:5000",
+        "hotReloadProfile": "aspnetcore"
     },
     "IIS Express": {
       "commandName": "IISExpress",
