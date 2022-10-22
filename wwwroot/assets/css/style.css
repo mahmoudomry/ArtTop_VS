@@ -143,6 +143,26 @@ section h3{
 .dark{
     color: var(--white);
 }
+
+header.white{
+    padding-top: 30px;
+    background-image:none;
+    background-size: cover;
+    min-height: auto;
+    height: 90px;
+    border-bottom: 1px solid #D9D9D9;
+}
+
+header.white nav a,
+header.white a.get-in-touch-btn{
+    color: #3E3E3E !important;
+}
+header.white a.search_btn path{
+    fill: #7D7D7D;
+}
+header.white a.get-in-touch-btn span{
+    color: var(--white) !important;
+}
 /* main slider start */
 .main-slider{
 }
@@ -960,6 +980,68 @@ section.empty{
     height: 200px;
 }
 /* our-fatures-inner end */
+/* project details start */
+section.project-details{
+    padding: 60px 0;
+}
+section.project-details p{
+    font-weight: 500;
+    font-size: 15px;
+    color: #7D7D7D;
+    margin-top: 30px;
+}
+section.project-details label{
+    font-weight: 600;
+    font-size: 16px;
+    color: #7D7D7D;
+}
+section.project-details h3{
+    font-weight: 700;
+    font-size: 18px;
+    color: #3E3E3E;
+    margin-bottom: 20px;
+}
+section.project-details ul.items li{
+    list-style-image: url(../images/check.svg);
+    font-weight: 500;
+    font-size: 15px;
+    color: #7D7D7D;
+    margin-bottom: 10px;
+}
+section.project-details .client-info{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+section.project-details .client-name{
+    font-weight: 700;
+    font-size: 16px;
+    color: #3E3E3E;
+}
+section.project-details .separator{
+    width: 100%;
+    height: 1px;
+    margin: 30px 0;
+    background-color: #D9D9D9;
+}
+section.project-details .project-footer{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+section.project-details .project-footer .project-date{
+    margin-right: 70px;
+}
+section.project-details .project-footer .project-date div{
+    font-weight: 700;
+    font-size: 16px;
+    color: #3E3E3E;
+}
+section.project-details .project-footer .social-links a{
+    margin-right: 16px;
+    color: #BBBBBB
+}
+/* project details end */
 .mt40{
     margin-top: 40px;
 }
