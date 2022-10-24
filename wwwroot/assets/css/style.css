@@ -365,6 +365,7 @@ section.clients a{
 section.book-appointment{
     background-color: #F9F9F9;
     padding: 90px 0;
+    overflow: hidden;
 }
 section.book-appointment h5{
     color: #40C782;
@@ -1135,6 +1136,50 @@ section.sub-services-items .service-item .text p {
     margin-top: 30px;
 }
 /* sub-services end */
+/* our-clinics start */
+section.our-clinics{
+    padding: 30px 0 120px;
+}
+section.our-clinics .doctor-item{
+    position: relative;
+    background-size: cover;
+    height: 420px;
+    width: 970px;
+    border-radius: 10px;
+    justify-content: center;
+}
+section.our-clinics .doctor-item .overlay-green{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(2, 83, 59, 0.25);
+    border-radius: 10px;
+    z-index: 0;
+}
+section.our-clinics .doctor-item .info{
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    height: 420px;
+    color: var(--white);
+    z-index: 1;
+}
+section.our-clinics .doctor-item .info .position{
+    font-weight: 600;
+    font-size: 18px;
+    color: #F2ECD2;
+}
+section.our-clinics .doctor-item .info h2{
+    margin: 30px 0;
+}
+section.our-clinics .doctor-item .info p{
+    font-weight: 500;
+    font-size: 15px;
+    margin-bottom: 0;
+}
+/* our-clinics end */
 .mt40{
     margin-top: 40px;
 }

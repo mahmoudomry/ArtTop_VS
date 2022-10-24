@@ -137,6 +137,112 @@
         </div>
     </div>
 </section>
+
+<section class="our-clinics">
+    <div class="container">
+        <div class="row">
+            <h5 class="text-center">
+                Our clinics
+            </h5>
+            <h2 class="text-center">
+                Meet Our Expert Doctors
+            </h2>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div
+                class="owl-carousel-line animation-dramatic-content animate-dramatic ani_fadeIn aniUtil_dramatic aniUtil_active animate__animated animate__fadeIn">
+                <div class="owl-carousel">
+                    <div class="doctor-item" style="background-image: url('/assets/images/clinic-slider-01.jpg')">
+                        <div class="overlay-green"></div>
+                        <div class="row">
+                            <div class="col-md-4 offset-md-7 info">
+                                <div class="position">
+                                    Dermatology treatment
+                                </div>
+                                <h2>
+                                    Al Jamal Clinic
+                                </h2>
+                                <p>
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                </p>
+                                <button class="btn btn-green">
+                                    Make appointment
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="doctor-item" style="background-image: url('/assets/images/clinic-slider-02.jpg')">
+                        <div class="overlay-green"></div>
+                        <div class="row">
+                            <div class="col-md-4 offset-md-7 info">
+                                <div class="position">
+                                    Dermatology treatment
+                                </div>
+                                <h2>
+                                    Al Jamal Clinic
+                                </h2>
+                                <p>
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                </p>
+                                <button class="btn btn-green">
+                                    Make appointment
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="doctor-item" style="background-image: url('/assets/images/clinic-slider-03.jpg')">
+                        <div class="overlay-green"></div>
+                        <div class="row">
+                            <div class="col-md-4 offset-md-7 info">
+                                <div class="position">
+                                    Dermatology treatment
+                                </div>
+                                <h2>
+                                    Al Jamal Clinic
+                                </h2>
+                                <p>
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                </p>
+                                <button class="btn btn-green">
+                                    Make appointment
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- owl-carousel-line -->
+        </div>
+    </div>
+</section>
 @section Scripts{
 
+<script>
+    $(document).ready(function () {
+        /* Client */
+        $('.owl-carousel').owlCarousel({
+            loop: true,
+            margin: 30,
+            responsiveClass: true,
+            nav: true,
+            navText: ["<img src='myprevimage.png'>", "<img src='mynextimage.png'>"],
+            autoWidth: true,
+            center: true,
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: true
+                },
+                600: {
+                    items: 3,
+                    nav: false
+                },
+            }
+            @* loop: true,
+                margin: 30,
+                responsiveClass: true, *@
+        });
+    });
+</script>
 }

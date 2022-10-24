@@ -220,31 +220,6 @@
         crossorigin="anonymous"></script>
     <script src="~/assets/js/inlineSVG.min.js"></script>
     <script src="~/assets/js/main.js"></script>
-    <script>
-        $(document).ready(function () {
-            /* Client */
-            $('.owl-carousel').owlCarousel({
-                loop: true,
-                margin: 40,
-                responsiveClass: true,
-                responsive: {
-                    0: {
-                        items: 3,
-                        nav: true
-                    },
-                    600: {
-                        items: 3,
-                        nav: false
-                    },
-                    1000: {
-                        items: 6,
-                        nav: true,
-                        loop: false
-                    }
-                }
-            });
-        });
-    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 
