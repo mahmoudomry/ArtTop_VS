@@ -1179,6 +1179,21 @@ section.our-clinics .doctor-item .info p{
     font-size: 15px;
     margin-bottom: 0;
 }
+section.our-clinics .owl-nav{
+    display: block !important;
+}
+section.our-clinics .owl-nav .owl-prev{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 50px;
+}
+section.our-clinics .owl-nav .owl-next{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 50px;
+}
 /* our-clinics end */
 .mt40{
     margin-top: 40px;
