@@ -1,8 +1,308 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Profile";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout_white.cshtml";
 }
 
-<h1>Profile</h1>
-
+<section class="service-slider">
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active" data-bs-interval="10000">
+                <img src="~/assets/images/slide-01.jpg" alt="">
+            </div>
+            <div class="carousel-item active" data-bs-interval="10000">
+                <img src="~/assets/images/slide-02.jpg" alt="">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</section>
+<section class="about-clinic">
+    <div class="container">
+        <div class="row about">
+            <div class="col-md-5 details">
+                <h5>
+                    About Clinic
+                </h5>
+                <h2>
+                    Clinc Name Here
+                </h2>
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                    the
+                    industry's standard dummy text ever since the Lorem Ipsum is simply dummy text of the printing
+                    and
+                    typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the
+                </p>
+                <a href="#" class="btn btn-green">
+                    Get Started
+                </a>
+            </div>
+            <div class="col-md-6 offset-md-1 image">
+                <img src="~/assets/images/about-clinic-img.png" alt="About Clinic">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="service-item">
+                    <a href="#">
+                        <div class="content">
+                            <span class="icon">
+                                <img src="~/assets/images/subservice-icon-01.svg" alt="">
+                            </span>
+                            <div class="text">
+                                <h3>
+                                    Dermatology treatment
+                                </h3>
+                                <p>
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                    Ipsum is simply
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-item">
+                    <a href="#">
+                        <div class="content">
+                            <div class="icon">
+                                <img src="~/assets/images/subservice-icon-02.svg" alt="">
+                            </div>
+                            <div class="text">
+                                <h3>
+                                    Plastic surgery and laser
+                                </h3>
+                                <p>
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                    Ipsum is simply
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="service-item">
+                    <a href="#">
+                        <div class="content">
+                            <div class="icon">
+                                <img src="~/assets/images/subservice-icon-03.svg" alt="">
+                            </div>
+                            <div class="text">
+                                <h3>
+                                    Obstetrics and Gynecology
+                                </h3>
+                                <p>
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                    Ipsum is simply
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="get-in-touch">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 get-in-touch-detials">
+                <h5>
+                    Get In Touch
+                </h5>
+                <h2>
+                    Delivering World Class Cardiology Care
+                </h2>
+                <p>
+                    We will be happy to reach us
+                </p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="icon">
+                            <img src="~/assets/images/marker.svg" alt="Location">
+                        </div>
+                        <div class="title">
+                            Clinic Location
+                        </div>
+                        <div class="address">
+                            Kingdome of Saudi Arabia
+                            <br>
+                            Short Address RHOA7835
+                        </div>
+                        <div class="title">
+                            Make appointment
+                        </div>
+                        <div class="mobile">
+                            +960 4011271009
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="icon">
+                            <img src="~/assets/images/time.svg" alt="Location">
+                        </div>
+                        <div class="title">
+                            Working Hours
+                        </div>
+                        <div class="address">
+                            Sat-Thu: 8am – 7pm
+                            <br>
+                            Friday: Closed
+                        </div>
+                        <div class="title">
+                            Social Accounts
+                        </div>
+                        <div class="social-links ">
+                            <ul class="list-unstyled list-group list-group-horizontal">
+                                <li>
+                                    <a href="#" class="tiktok">
+                                        <i class="fa-brands fa-tiktok"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="linkedin">
+                                        <i class="fa-brands fa-linkedin"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="snapchat">
+                                        <i class="fa-brands fa-snapchat"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="instagram">
+                                        <i class="fa-brands fa-instagram"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="twitter">
+                                        <i class="fa-brands fa-twitter"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="facebook">
+                                        <i class="fa-brands fa-facebook"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 book-appointment-form-container">
+                <form action="" class="book-appointment-form">
+                    <h2>
+                        Make Appointment
+                    </h2>
+                    <div class="form-inputs">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">Name</label>
+                                    <input type="text" class="form-control" id="name" value="Your Name">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" value="Enter Email">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="persons" class="form-label">Persons</label>
+                                    <input type="text" class="form-control" id="persons" value="2 Adults, 1 Child">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="doctor" class="form-label">Doctor</label>
+                                    <select id="doctor" class="form-select">
+                                        <option value="1">Dr. Ahmed Ali</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="date" class="form-label">Date</label>
+                                    <input type="date" class="form-control" id="date" value="12 Sep, 2022">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="time" class="form-label">Time</label>
+                                    <input type="time" class="form-control" id="time" value="3:00 pm - 3:30 pm">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-green" type="button">
+                        Book Now
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="statistics">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="d-flex aign-items-center justify-content-center">
+                    <div class="statistics-item">
+                        <h2>
+                            120
+                        </h2>
+                        <h3>
+                            Surgery
+                        </h3>
+                    </div>
+                    <div class="statistics-item">
+                        <h2>
+                            501
+                        </h2>
+                        <h3>
+                            Patients
+                        </h3>
+                    </div>
+                    <div class="statistics-item">
+                        <h2>
+                            32
+                        </h2>
+                        <h3>
+                            Doturs
+                        </h3>
+                    </div>
+                    <div class="statistics-item">
+                        <h2>
+                            25+
+                        </h2>
+                        <h3>
+                            years Experience
+                        </h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="map-full">
+    <iframe
+        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d48859.137189179666!2d46.236827087772106!3d24.468920858988426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1664682324182!5m2!1sen!2s"
+        width="100%" height="560" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+</section>
