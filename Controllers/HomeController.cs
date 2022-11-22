@@ -1,5 +1,7 @@
 ﻿using ArtTop.Models;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using System.Diagnostics;
 
 namespace ArtTop.Controllers
@@ -7,14 +9,16 @@ namespace ArtTop.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly IStringLocalizer<HomeController> _localizer;
+        public HomeController(ILogger<HomeController> logger,IStringLocalizer<HomeController> localizer)
         {
             _logger = logger;
+            _localizer = localizer;
         }
         //home
         public IActionResult Index()
         {
+            ViewBag.Home = _localizer["home"];
             return View();
         }
         public IActionResult Privacy()
@@ -35,6 +39,17 @@ namespace ArtTop.Controllers
         public IActionResult Contact()
         {
             return View();
+        }
+        [HttpPost]
+        public IActionResult SetLanguage(string culture, string returnUrl)
+        {
+            Response.Cookies.Append(
+                CookieRequestCultureProvider.DefaultCookieName,
+                CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
+                new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
+                );
+
+            return LocalRedirect(returnUrl);
         }
 
     }
