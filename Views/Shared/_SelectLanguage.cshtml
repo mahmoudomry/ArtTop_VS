@@ -9,7 +9,7 @@
 @inject IViewLocalizer localizer
 @inject IOptions<RequestLocalizationOptions> options
 
-    @{
+@{
     var requestCulture = Context.Features.Get<IRequestCultureFeature>();
     var cultures = options.Value.SupportedUICultures.Select(c => new SelectListItem { Value = c.Name, Text = c.NativeName }).ToList();
     var returnUrl = string.IsNullOrEmpty(Context.Request.Path) ? "~/" : $"~{Context.Request.Path.Value}";

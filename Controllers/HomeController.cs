@@ -48,7 +48,12 @@ namespace ArtTop.Controllers
                 CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
                 new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
                 );
+            returnUrl= returnUrl.Replace("ar-EG", culture).Replace("en-Us", culture);
 
+            if (!returnUrl.Contains(culture))
+                returnUrl=returnUrl.Replace($"~/", $"~/{culture}/");
+            //returnUrl["culture"] = culture;
+            //   string url = ("~/" + returnUrl["culture"] + "/" + (returnUrl["controller"]!= null ? "/" + returnUrl["controller"] : "")+(returnUrl["action"] != null ?  "/" + returnUrl["action"]:"") +( returnUrl["id"] != null ? "/" + returnUrl["id"] : ""));
             return LocalRedirect(returnUrl);
         }
 

@@ -9,6 +9,8 @@ using Microsoft.Extensions.Localization;
 using System.Globalization;
 using Microsoft.EntityFrameworkCore;
 using ArtTop.Data;
+using Microsoft.AspNetCore.Localization.Routing;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -45,8 +47,10 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
     options.DefaultRequestCulture = new RequestCulture(culture: supportedCultuers[0], uiCulture: supportedCultuers[0]);
     options.SupportedCultures= supportedCultuers;
     options.SupportedUICultures= supportedCultuers;
+    options.RequestCultureProviders.Insert(0, new RouteDataRequestCultureProvider());
     
 });
+
 
 var app = builder.Build();
 
@@ -77,6 +81,14 @@ app.UseRequestLocalization(localizationOptions);
 
 app.UseAuthentication();
 app.UseAuthorization();
+var isRTL = CultureInfo.CurrentCulture.Name.StartsWith("ar");
+app.MapControllerRoute(
+    name: "Administrative",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name: "culture-route",
+    pattern: "{culture" + (isRTL ? "ar-EG" : "en-US") + "}/{controller=Home}/{action=Index}/{id?}");
 
 app.MapControllerRoute(
     name: "default",
