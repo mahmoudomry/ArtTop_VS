@@ -28,11 +28,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Administrative\Controllers\" />
     <Folder Include="Areas\Administrative\Data\" />
     <Folder Include="Areas\Administrative\Models\" />
-    <Folder Include="Areas\Administrative\Views\" />
     <Folder Include="Data\Migrations\" />
+    <Folder Include="wwwroot\Admin\assets\plugins\general\ion-rangeslider\img\" />
     <Folder Include="wwwroot\assets\images\" />
     <Folder Include="wwwroot\assets\js\" />
   </ItemGroup>
