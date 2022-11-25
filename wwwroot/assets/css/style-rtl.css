@@ -8,8 +8,7 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-
+    font-family: 'Cairo', sans-serif;
 }
 /* search start */
 .overlay {
@@ -667,8 +666,8 @@ section.contact-us .contact-us-form textarea:focus-visible{
     color: #40C782;
 }
 .main-slider .carousel-indicators{
-    left: auto;
-    right: -30px;
+    right: auto;
+    left: -30px;
     bottom: auto;
     top: 50%;
     flex-direction: column;
