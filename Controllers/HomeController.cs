@@ -48,7 +48,7 @@ namespace ArtTop.Controllers
                 CookieRequestCultureProvider.MakeCookieValue(new RequestCulture(culture)),
                 new CookieOptions { Expires = DateTimeOffset.UtcNow.AddYears(1) }
                 );
-            returnUrl= returnUrl.Replace("ar-EG", culture).Replace("en-Us", culture);
+            returnUrl= returnUrl.Replace("ar-EG", culture).Replace("en-US", culture);
 
             if (!returnUrl.Contains(culture))
                 returnUrl=returnUrl.Replace($"~/", $"~/{culture}/");

@@ -30,5 +30,8 @@ namespace ArtTop.Models
         [Display(Name = "Order")]
         [Required(ErrorMessage = "Required *")]
         public int Order { get; set; }
+        [Display(Name = "Link")]
+        [Required(ErrorMessage = "Required *")]
+        public string Link { get; set; }
     }
 }

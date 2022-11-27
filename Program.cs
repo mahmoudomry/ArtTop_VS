@@ -8,13 +8,20 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 using System.Globalization;
 using Microsoft.EntityFrameworkCore;
-using ArtTop.Data;
 using Microsoft.AspNetCore.Localization.Routing;
+using ArtTop.Data;
+using ArtTop.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("ApplicationDBContextConnection") ?? throw new InvalidOperationException("Connection string 'ApplicationDBContextConnection' not found.");
+
+//builder.Services.AddDbContext<ArtTopContext>(options =>
+//    options.UseSqlServer(connectionString));
+
+//builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
+//    .AddEntityFrameworkStores<ArtTopContext>();
 builder.Services.AddDbContext<ArtTopContext>(options =>
     options.UseMySql(connectionString, new MySqlServerVersion(new Version(8, 0, 30))));
 
@@ -23,7 +30,7 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.R
     .AddEntityFrameworkStores<ArtTopContext>();
 
 
-//builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddControllersWithViews();
 builder.Services.AddLocalization();

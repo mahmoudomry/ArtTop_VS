@@ -23,7 +23,12 @@ namespace ArtTop.Areas.Administrative.Controllers
         public ActionResult SiteSetting()
         {
             SiteSetting Setting = _context.SiteSettings.FirstOrDefault();
-            return View(Setting);
+            return View();
+        }
+        public ActionResult About()
+        {
+           
+            return View();
         }
     }
 }

@@ -74,7 +74,7 @@ namespace ArtTop
                 return result;
             }
 
-            return string.Empty;
+            return key;
         }
         private string GetValueFromJSON(string propertyName,string filePath)
         {
@@ -94,7 +94,7 @@ namespace ArtTop
                     return _serializer.Deserialize<string>(reader);
                 }
             }
-            return string.Empty;
+            return propertyName;
         }
     }
 }

@@ -1,0 +1,97 @@
+﻿@model ArtTop.Models.Slider
+
+@{
+    ViewData["ActionTitle"] = (Model != null && Model.Id != 0 ? "Edit" : "Create");
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        	<div class="kt-portlet">
+										<div class="kt-portlet__head">
+											<div class="kt-portlet__head-label">
+												<h3 class="kt-portlet__head-title">
+													@ViewData["ActionTitle"]
+												</h3>
+											</div>
+										</div>
+        <form asp-action="@ViewData["ActionTitle"]" enctype="multipart/form-data" method="post" asp-area="Administrative" asp-controller="Sliders" class="kt-form">
+             @Html.AntiForgeryToken()	
+            <div class="kt-portlet__body">
+          @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+             <input type="hidden" name="Id" value="@(Model is null?0:Model.Id)" />
+               @Html.HiddenFor(model => model.CoverImage)
+            <div class="form-group">
+                  @Html.LabelFor(m => m.ArabicTitle, new { @class = "col-md-2 control-label" })
+               @Html.TextAreaFor(m => m.ArabicTitle, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.ArabicTitle, "", new { @class = "text-danger" })
+            </div>
+             <div class="form-group">
+                  @Html.LabelFor(m => m.EnglishTitle, new { @class = "col-md-2 control-label" })
+               @Html.TextAreaFor(m => m.EnglishTitle, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.EnglishTitle, "", new { @class = "text-danger" })
+            </div>
+            <div class="form-group">
+                            @Html.LabelFor(m => m.ArabicDetails, new { @class = "col-md-2 control-label" })
+               @Html.TextAreaFor(m => m.ArabicDetails, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.ArabicDetails, "", new { @class = "text-danger" })
+               
+            </div>
+            <div class="form-group">
+                            @Html.LabelFor(m => m.EnglishDetails, new { @class = "col-md-2 control-label" })
+               @Html.TextAreaFor(m => m.EnglishDetails, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.EnglishDetails, "", new { @class = "text-danger" })
+               
+            </div>
+            <div class="form-group">
+
+                @if(Model!=null&&Model.CoverImage!=null)
+                        {
+                    <img src="~/assets/images/@Model.CoverImage" width="100px" />        
+                        }
+                        @Html.LabelFor(m => m.CoverImage, new { @class = "col-md-2 control-label" })
+              <input  name="CoverImage" type="file" class="form-control" />
+                        @Html.ValidationMessageFor(m => m.CoverImage, "", new { @class = "text-danger" })
+              
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+
+                    @Html.CheckBoxFor(model=>model.IsActive)
+                    @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(m => m.Order, new { @class = "col-md-2 control-label" })
+               @Html.TextBoxFor(m => m.Order, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Order, "", new { @class = "text-danger" })
+               
+            </div>
+               <div class="form-group">
+                @Html.LabelFor(m => m.Link, new { @class = "col-md-2 control-label" })
+               @Html.TextBoxFor(m => m.Link, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Link, "", new { @class = "text-danger" })
+               
+            </div>
+            <div class="form-group">
+                <input type="submit" value="@ViewData["ActionTitle"]" class="btn btn-primary" />
+            </div>
+
+            </div>
+        </form>
+       
+    <div>
+    <a href="@Url.Action("Index","sliders",new{area="Administrative"})">Back to List</a>
+
+</div> 
+
+</div>
+</div>
+</div>
+
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
