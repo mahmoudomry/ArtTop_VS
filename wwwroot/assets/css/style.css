@@ -352,7 +352,7 @@ section.our-projects .content .text{
 /* our projects end */
 /* clients start */
 section.clients{
-    background-color: var(--light_green);
+  /*  background-color: var(--light_green);*/
 }
 section.clients a{
     height: 300px;
