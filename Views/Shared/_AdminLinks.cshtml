@@ -21,10 +21,10 @@
 									<h4 class="kt-menu__section-text">Site Setting</h4>
 									<i class="kt-menu__section-icon flaticon-more-v2"></i>
 								</li>
-					<li class="kt-menu__item @(current_controller=="Home" && current_action=="SiteSetting"?" kt-menu__item--active":"")" aria-haspopup="true">
-						<a asp-area="Administrative" asp-controller="Home" asp-action="SiteSetting"  class="kt-menu__link ">
+					<li class="kt-menu__item @(current_controller=="SiteSettings" && current_action=="Create"?" kt-menu__item--active":"")" aria-haspopup="true">
+						<a asp-area="Administrative" asp-controller="SiteSettings" asp-action="Create"  class="kt-menu__link ">
 							<i class="kt-menu__link-icon flaticon-home"></i>
-							<span class="kt-menu__link-text">Site Setting</span></a>
+							<span class="kt-menu__link-text">Edit</span></a>
 						</li>
 								
 								<li class="kt-menu__section ">
@@ -40,20 +40,20 @@
 									<div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
 										<ul class="kt-menu__subnav">
 										
-											<li class="kt-menu__item @(current_controller=="Home" && current_action=="About" ?" kt-menu__item--active":"")">
-												<a  id="IndexSlider"  asp-area="Administrative" asp-controller="Home" asp-action="About"  class="kt-menu__link">
+											<li class="kt-menu__item @(current_controller=="Abouts" && current_action=="Create" ?" kt-menu__item--active":"")">
+												<a  id="IndexSlider"  asp-area="Administrative" asp-controller="Abouts" asp-action="Create"  class="kt-menu__link">
 													<i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">About</span>
 													</a>
 													</li>
 																
-											<li class="kt-menu__item @(current_controller=="Home" && current_action=="OurValues"?" kt-menu__item--active":"")">
-												<a  id="IndexSlider"  asp-area="Administrative" asp-controller="Home" asp-action="OurValues"  class="kt-menu__link">
+											<li class="kt-menu__item @(current_controller=="OurValues" && current_action=="Index"?" kt-menu__item--active":"")">
+												<a  id="IndexSlider"  asp-area="Administrative" asp-controller="OurValues" asp-action="Index"  class="kt-menu__link">
 													<i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">OurValues</span>
 													</a>
 													</li>
-											<li class="kt-menu__item @(current_controller=="Members" && current_action=="Index"?" kt-menu__item--active":"")">
-												<a  id="IndexSlider"  asp-area="Administrative" asp-controller="Members" asp-action="Index"  class="kt-menu__link">
-													<i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">Members</span>
+											<li class="kt-menu__item @(current_controller=="OurGoles" && current_action=="Index"?" kt-menu__item--active":"")">
+												<a  id="IndexSlider"  asp-area="Administrative" asp-controller="OurGoles" asp-action="Index"  class="kt-menu__link">
+													<i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">OurGoles</span>
 													</a>
 													</li>
 											
@@ -81,27 +81,113 @@
 								</li>
 
 
-									<li class="kt-menu__item  kt-menu__item--submenu @(current_controller=="Solutions" ?" kt-menu__item--open":"") " aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
-										<a href="javascript:;" class="kt-menu__link kt-menu__toggle">
-											<i class="kt-menu__link-icon flaticon-web"></i>
-											<span class="kt-menu__link-text">Solutions</span>
-											<i class="kt-menu__ver-arrow la la-angle-right"></i></a>
+								<li class="kt-menu__item  kt-menu__item--submenu @(current_controller=="Services" ?" kt-menu__item--open":"")" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+									<a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-icon flaticon-web"></i>
+										<span class="kt-menu__link-text">Services</span><i class="kt-menu__ver-arrow la la-angle-right"></i>
+										</a>
 									<div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
 										<ul class="kt-menu__subnav">
 										
-											<li class="kt-menu__item @(current_controller=="Solutions" && current_action=="Index"?" kt-menu__item--active":"")">
-												<a  id="IndexSlider"  asp-area="Administrative" asp-controller="Solutions" asp-action="Index"  class="kt-menu__link">
+											<li class="kt-menu__item @(current_controller=="Services" && current_action=="Index"?" kt-menu__item--active":"")">
+												<a  id="IndexSlider"  asp-area="Administrative" asp-controller="Services" asp-action="Index"  class="kt-menu__link">
 													<i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">List</span>
 													</a>
 													</li>
-											<li class="kt-menu__item @(current_controller=="Solutions" && current_action=="Create"?" kt-menu__item--active":"")">
-												<a   asp-area="Administrative" asp-controller="Solutions" asp-action="Create" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">Create</span></a></li>
+											<li class="kt-menu__item @(current_controller=="Services" && current_action=="Create"?" kt-menu__item--active":"")">
+												<a   asp-area="Administrative" asp-controller="Services" asp-action="Create" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">Create</span></a></li>
+										</ul>
+									</div>
+								</li>
+									<li class="kt-menu__item  kt-menu__item--submenu @(current_controller=="Features" ?" kt-menu__item--open":"")" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+									<a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-icon flaticon-web"></i>
+										<span class="kt-menu__link-text">Features</span><i class="kt-menu__ver-arrow la la-angle-right"></i>
+										</a>
+									<div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
+										<ul class="kt-menu__subnav">
+										
+											<li class="kt-menu__item @(current_controller=="Features" && current_action=="Index"?" kt-menu__item--active":"")">
+												<a  id="IndexSlider"  asp-area="Administrative" asp-controller="Features" asp-action="Index"  class="kt-menu__link">
+													<i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">List</span>
+													</a>
+													</li>
+											<li class="kt-menu__item @(current_controller=="Features" && current_action=="Create"?" kt-menu__item--active":"")">
+												<a   asp-area="Administrative" asp-controller="Features" asp-action="Create" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">Create</span></a></li>
 										</ul>
 									</div>
 								</li>
 
-		
-								
+										<li class="kt-menu__item  kt-menu__item--submenu @(current_controller=="Projects" ?" kt-menu__item--open":"")" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+									<a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-icon flaticon-web"></i>
+										<span class="kt-menu__link-text">Projects</span><i class="kt-menu__ver-arrow la la-angle-right"></i>
+										</a>
+									<div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
+										<ul class="kt-menu__subnav">
+										
+											<li class="kt-menu__item @(current_controller=="Projects" && current_action=="Index"?" kt-menu__item--active":"")">
+												<a  id="IndexSlider"  asp-area="Administrative" asp-controller="Projects" asp-action="Index"  class="kt-menu__link">
+													<i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">List</span>
+													</a>
+													</li>
+											<li class="kt-menu__item @(current_controller=="Projects" && current_action=="Create"?" kt-menu__item--active":"")">
+												<a   asp-area="Administrative" asp-controller="Projects" asp-action="Create" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">Create</span></a></li>
+										</ul>
+									</div>
+								</li>
+
+
+								<li class="kt-menu__item  kt-menu__item--submenu @(current_controller=="Clients" ?" kt-menu__item--open":"")" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+									<a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-icon flaticon-web"></i>
+										<span class="kt-menu__link-text">Clients</span><i class="kt-menu__ver-arrow la la-angle-right"></i>
+										</a>
+									<div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
+										<ul class="kt-menu__subnav">
+										
+											<li class="kt-menu__item @(current_controller=="Clients" && current_action=="Index"?" kt-menu__item--active":"")">
+												<a  id="IndexSlider"  asp-area="Administrative" asp-controller="Clients" asp-action="Index"  class="kt-menu__link">
+													<i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">List</span>
+													</a>
+													</li>
+											<li class="kt-menu__item @(current_controller=="Clients" && current_action=="Create"?" kt-menu__item--active":"")">
+												<a   asp-area="Administrative" asp-controller="Clients" asp-action="Create" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">Create</span></a></li>
+										</ul>
+									</div>
+								</li>
+
+										<li class="kt-menu__item  kt-menu__item--submenu @(current_controller=="ContactItems" ?" kt-menu__item--open":"")" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+									<a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-icon flaticon-web"></i>
+										<span class="kt-menu__link-text">ContactItems</span><i class="kt-menu__ver-arrow la la-angle-right"></i>
+										</a>
+									<div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
+										<ul class="kt-menu__subnav">
+										
+											<li class="kt-menu__item @(current_controller=="ContactItems" && current_action=="Index"?" kt-menu__item--active":"")">
+												<a  id="IndexSlider"  asp-area="Administrative" asp-controller="ContactItems" asp-action="Index"  class="kt-menu__link">
+													<i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">List</span>
+													</a>
+													</li>
+											<li class="kt-menu__item @(current_controller=="ContactItems" && current_action=="Create"?" kt-menu__item--active":"")">
+												<a   asp-area="Administrative" asp-controller="ContactItems" asp-action="Create" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">Create</span></a></li>
+										</ul>
+									</div>
+								</li>
+
+										<li class="kt-menu__item  kt-menu__item--submenu @(current_controller=="SocialMedias" ?" kt-menu__item--open":"")" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+									<a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-icon flaticon-web"></i>
+										<span class="kt-menu__link-text">SocialMedias</span><i class="kt-menu__ver-arrow la la-angle-right"></i>
+										</a>
+									<div class="kt-menu__submenu "><span class="kt-menu__arrow"></span>
+										<ul class="kt-menu__subnav">
+										
+											<li class="kt-menu__item @(current_controller=="SocialMedias" && current_action=="Index"?" kt-menu__item--active":"")">
+												<a  id="IndexSlider"  asp-area="Administrative" asp-controller="SocialMedias" asp-action="Index"  class="kt-menu__link">
+													<i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">List</span>
+													</a>
+													</li>
+											<li class="kt-menu__item @(current_controller=="SocialMedias" && current_action=="Create"?" kt-menu__item--active":"")">
+												<a   asp-area="Administrative" asp-controller="SocialMedias" asp-action="Create" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">Create</span></a></li>
+										</ul>
+									</div>
+								</li>
 							</ul>
 						</div>
 					</div>

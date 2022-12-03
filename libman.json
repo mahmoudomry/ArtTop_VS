@@ -2,8 +2,10 @@
   "version": "1.0",
   "defaultProvider": "cdnjs",
   "libraries": [
+
+
     {
-      "library": "ckeditor@4.20.0",
+      "library": "ckeditor@4.20.1",
       "destination": "wwwroot/lib/ckeditor/"
     }
   ]

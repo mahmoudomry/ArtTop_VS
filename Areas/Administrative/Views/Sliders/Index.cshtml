@@ -1,15 +1,28 @@
 ﻿@model IEnumerable<ArtTop.Models.Slider>
 
-@{
-    ViewData["Title"] = "Index";
+@{  	
+    ViewData["ActionTitle"]="List";
+    ViewData["Title"] = "Sliders";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Index</h1>
+   
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<div class="row">
+    <div class="col-md-12 ">
+        	<div class="kt-portlet">
+										<div class="kt-portlet__head">
+											<div class="kt-portlet__head-label">
+												<h3 class="kt-portlet__head-title pull-left">
+													@ViewData["ActionTitle"]
+												</h3>
+                                             
+											</div>
+
+                                               <a  class="btn btn-primary pull-right create-btn" href="@Url.Action("Create","Sliders",new{area="Administrative"})" >Create New</a>
+                                                
+										</div>
+                                        <div class="kt-portlet__body">
 <table class="table">
     <thead>
         <tr>
@@ -19,15 +32,8 @@
             <th>
                 @Html.DisplayNameFor(model => model.EnglishTitle)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ArabicDetails)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.EnglishDetails)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.CoverImage)
-            </th>
+           
+           
             <th>
                 @Html.DisplayNameFor(model => model.IsActive)
             </th>
@@ -41,20 +47,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.ArabicTitle)
+                @Html.Raw(item.ArabicTitle)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.EnglishTitle)
+                  @Html.Raw(item.EnglishTitle)
+               
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ArabicDetails)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EnglishDetails)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CoverImage)
-            </td>
+           
             <td>
                 @Html.DisplayFor(modelItem => item.IsActive)
             </td>
@@ -62,11 +61,18 @@
                 @Html.DisplayFor(modelItem => item.Order)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                 <td>
+                <a  class="btn btn-outline-success"  href="@Url.Action("Edit","Sliders",new{area="Administrative",Id=item.Id})" ><i class="fa fa-edit  "></i> Edit </a> 
+                <a  class="btn btn-outline-brand"  href="@Url.Action("Details","Sliders",new{area="Administrative",Id=item.Id})" ><i class="fa fa-edit  "></i> Details </a> 
+                <a class="btn btn-outline-danger"  href="@Url.Action("Delete","Sliders",new{area="Administrative",Id=item.Id})" onclick="return confirm('Are you sure From Deleted?')" > <i class="fa fa-trash "></i> Delete</a>
+
             </td>
+          
         </tr>
 }
     </tbody>
 </table>
+</div>
+</div>
+</div>
+</div>

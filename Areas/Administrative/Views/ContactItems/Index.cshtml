@@ -1,0 +1,76 @@
+﻿@model IEnumerable<ArtTop.Models.ContactItem>
+
+@{
+     ViewData["ActionTitle"]="List";
+    ViewData["Title"] = "ContactItems";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+   
+
+<div class="row">
+    <div class="col-md-12 ">
+        	<div class="kt-portlet">
+										<div class="kt-portlet__head">
+											<div class="kt-portlet__head-label">
+												<h3 class="kt-portlet__head-title pull-left">
+													@ViewData["ActionTitle"]
+												</h3>
+                                             
+											</div>
+
+                                               <a  class="btn btn-primary pull-right create-btn" href="@Url.Action("Create","ContactItems",new{area="Administrative"})" >Create New</a>
+                                                
+										</div>
+                                        <div class="kt-portlet__body">
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.EnglishValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArabicValue)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Icon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Order)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShowInHome)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnglishValue)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArabicValue)
+            </td>
+            <td>
+                <img src="~/assets/images/@item.Icon" width="50px"/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Order)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShowInHome)
+            </td>
+            <td>
+               <a  class="btn btn-outline-success"  href="@Url.Action("Edit","ContactItems",new{area="Administrative",Id=item.Id})" ><i class="fa fa-edit  "></i> Edit </a> 
+                <a class="btn btn-outline-danger"  href="@Url.Action("Delete","ContactItems",new{area="Administrative",Id=item.Id})" onclick="return confirm('Are you sure From Deleted?')" > <i class="fa fa-trash "></i> Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>

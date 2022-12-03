@@ -86,6 +86,95 @@ namespace ArtTop.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("ArtTop.Models.About", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("ArabicTitle")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("EnglishTitle")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("GolesArabicTitle")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("GolesEnglishTitle")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("MissionDescArabic")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("MissionDescEnglish")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("MissionIcon")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("MissionTitleArabic")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("MissionTitleEnglish")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("VisionDescEnglish")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("VisionDesceArabic")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("VisionIcon")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("VisionTitleArabic")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("VisionTitleEnglish")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("knowus_DescArabic")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("knowus_DescEnglish")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("knowus_TitleArabic")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("knowus_TitleEnglish")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("knowus_img1")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("knowus_img2")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("About", (string)null);
+                });
+
             modelBuilder.Entity("ArtTop.Models.Client", b =>
                 {
                     b.Property<int>("Id")
@@ -109,6 +198,34 @@ namespace ArtTop.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Client", (string)null);
+                });
+
+            modelBuilder.Entity("ArtTop.Models.ContactItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("ArabicValue")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("EnglishValue")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Icon")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("ShowInHome")
+                        .HasColumnType("tinyint(1)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ContactItem", (string)null);
                 });
 
             modelBuilder.Entity("ArtTop.Models.Feature", b =>
@@ -146,6 +263,53 @@ namespace ArtTop.Migrations
                     b.ToTable("NewsLetter", (string)null);
                 });
 
+            modelBuilder.Entity("ArtTop.Models.OurGoles", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("ArabicTitle")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("EnglishTitle")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Icon")
+                        .HasColumnType("longtext");
+
+                    b.Property<int?>("Order")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OurGoles", (string)null);
+                });
+
+            modelBuilder.Entity("ArtTop.Models.OurValues", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("ArabicTitle")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("EnglishTitle")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Icon")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OurValues", (string)null);
+                });
+
             modelBuilder.Entity("ArtTop.Models.Project", b =>
                 {
                     b.Property<int>("Id")
@@ -160,8 +324,17 @@ namespace ArtTop.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("Client")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ClientLogo")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("CoverImage")
                         .HasColumnType("longtext");
+
+                    b.Property<DateTime?>("DeliveryDate")
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("EnglishDetails")
                         .IsRequired()
@@ -249,11 +422,9 @@ namespace ArtTop.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("FeatureImg1")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("FeatureImg2")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("FeatureTitleAr")
@@ -265,7 +436,6 @@ namespace ArtTop.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("HeaderLogo")
-                        .IsRequired()
                         .HasColumnType("longtext");
 
                     b.Property<string>("Maarooflogo")
@@ -276,6 +446,10 @@ namespace ArtTop.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("ProjectTitleEn")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Queryphone")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -345,12 +519,44 @@ namespace ArtTop.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("tinyint(1)");
 
+                    b.Property<string>("Link")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.Property<int>("Order")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.ToTable("Slider", (string)null);
+                });
+
+            modelBuilder.Entity("ArtTop.Models.SocialMedia", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("ArabicTitle")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("EnglishTitle")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Icon")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Link")
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SocialMedia", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

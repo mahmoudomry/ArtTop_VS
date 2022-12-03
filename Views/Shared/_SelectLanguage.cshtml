@@ -4,21 +4,24 @@
 @using Microsoft.AspNetCore.Mvc.Localization;
 @using Microsoft.AspNetCore.Mvc.Localization;
 @using Microsoft.Extensions.Options;
-
+@using System.Globalization
 
 @inject IViewLocalizer localizer
 @inject IOptions<RequestLocalizationOptions> options
 
 @{
+    var isRTL = CultureInfo.CurrentCulture.Name.StartsWith("ar");
     var requestCulture = Context.Features.Get<IRequestCultureFeature>();
-    var cultures = options.Value.SupportedUICultures.Select(c => new SelectListItem { Value = c.Name, Text = c.NativeName }).ToList();
+    var cultures = options.Value.SupportedUICultures.Select(c => new SelectListItem { Value = c.Name, Text = c.Parent.NativeName }).ToList();
     var returnUrl = string.IsNullOrEmpty(Context.Request.Path) ? "~/" : $"~{Context.Request.Path.Value}";
 }
 <div>
     <form method="post" asp-controller="Home" asp-action="SetLanguage" asp-route-returnUrl="@returnUrl">
-
-        <select name="culture" asp-for="@(requestCulture.RequestCulture.UICulture.Name)"
+        
+@*      <select style="visibility:hidden" name="culture" asp-for="@(requestCulture.RequestCulture.UICulture.Name)"
         asp-items="@cultures" 
-        onchange="this.form.submit();"></select>
+        onchange="this.form.submit();"></select> *@
+        <input type="hidden"  name="culture" asp-for="@(requestCulture.RequestCulture.UICulture.Name)" value="@(isRTL?"en-US":"ar-EG")" />
+        <button class="pt-2 pb-2 get-in-touch-btn d-block btn-lang  text-white" onclick="this.form.submit();"><span>  @(isRTL?"English":"العربية")<i class="fa fa-globe"></i> </span> </button>
     </form>
 </div>

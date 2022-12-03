@@ -30,5 +30,12 @@ namespace ArtTop.Models
         [Display(Name = "Service")]
         [ForeignKey("ServiceId")]
         public Service? Service { get; set; }
+
+        [Display(Name = "Client Logo")]
+        public string? ClientLogo { get; set; }
+        [Display(Name = "Client")]
+        public string? Client { get; set; }
+        [Display(Name = "Delivery Date")]
+        public DateTime? DeliveryDate { get; set; }
     }
 }

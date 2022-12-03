@@ -55,8 +55,10 @@ namespace ArtTop.Areas.Administrative.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,ArabicTitle,EnglishTitle,ArabicDetails,EnglishDetails,CoverImage,IsActive,Order")] Slider slider)
+        public IActionResult Create([Bind("Id,ArabicTitle,EnglishTitle,ArabicDetails,EnglishDetails,CoverImage,IsActive,Order,Link")] Slider slider,IFormFile ?CoverImage)
         {
+            if(CoverImage!=null)
+            UploadImage(slider, CoverImage);
             if (ModelState.IsValid)
             {
                 _context.Add(slider);
@@ -79,7 +81,7 @@ namespace ArtTop.Areas.Administrative.Controllers
             {
                 return NotFound();
             }
-            return View(slider);
+            return View("Create",slider);
         }
 
         // POST: Administrative/Sliders/Edit/5
@@ -87,13 +89,14 @@ namespace ArtTop.Areas.Administrative.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ArabicTitle,EnglishTitle,ArabicDetails,EnglishDetails,CoverImage,IsActive,Order")] Slider slider)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ArabicTitle,EnglishTitle,ArabicDetails,EnglishDetails,CoverImage,IsActive,Order,Link")] Slider slider,IFormFile? CoverImage)
         {
             if (id != slider.Id)
             {
                 return NotFound();
             }
-
+            if(CoverImage!=null)
+                UploadImage(slider, CoverImage);
             if (ModelState.IsValid)
             {
                 try
@@ -118,26 +121,26 @@ namespace ArtTop.Areas.Administrative.Controllers
         }
 
         // GET: Administrative/Sliders/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.Sliders == null)
-            {
-                return NotFound();
-            }
+        //public async Task<IActionResult> Delete(int? id)
+        //{
+        //    if (id == null || _context.Sliders == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            var slider = await _context.Sliders
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (slider == null)
-            {
-                return NotFound();
-            }
+        //    var slider = await _context.Sliders
+        //        .FirstOrDefaultAsync(m => m.Id == id);
+        //    if (slider == null)
+        //    {
+        //        return NotFound();
+        //    }
 
-            return View(slider);
-        }
+        //    return View(slider);
+        //}
 
         // POST: Administrative/Sliders/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
+        [ActionName("Delete")]
+     
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             if (_context.Sliders == null)
@@ -157,6 +160,26 @@ namespace ArtTop.Areas.Administrative.Controllers
         private bool SliderExists(int id)
         {
           return _context.Sliders.Any(e => e.Id == id);
+        }
+
+        private void UploadImage(Slider slider,IFormFile CoverImage)
+        {
+            var file = CoverImage;
+            if (file!=null)
+            {
+                string ImageName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                var filestream = new FileStream(Path.Combine(@"wwwroot/", "assets", "images", ImageName), FileMode.Create);
+                file.CopyTo(filestream);
+                slider.CoverImage = ImageName;
+            }
+            else if (slider.CoverImage == null && slider.Id == null)
+            {
+                slider.CoverImage = "main-slider-bg.jpg";
+            }
+            else
+            {
+                slider.CoverImage = slider.CoverImage;
+            }
         }
     }
 }

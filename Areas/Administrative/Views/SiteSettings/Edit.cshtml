@@ -1,0 +1,147 @@
+﻿@model ArtTop.Models.SiteSetting
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>SiteSetting</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="HeaderLogo" class="control-label"></label>
+                <input asp-for="HeaderLogo" class="form-control" />
+                <span asp-validation-for="HeaderLogo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SiteTitleEn" class="control-label"></label>
+                <input asp-for="SiteTitleEn" class="form-control" />
+                <span asp-validation-for="SiteTitleEn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SiteTitleAr" class="control-label"></label>
+                <input asp-for="SiteTitleAr" class="form-control" />
+                <span asp-validation-for="SiteTitleAr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SiteDescEn" class="control-label"></label>
+                <input asp-for="SiteDescEn" class="form-control" />
+                <span asp-validation-for="SiteDescEn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SiteDescAr" class="control-label"></label>
+                <input asp-for="SiteDescAr" class="form-control" />
+                <span asp-validation-for="SiteDescAr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ServiceTitleEn" class="control-label"></label>
+                <input asp-for="ServiceTitleEn" class="form-control" />
+                <span asp-validation-for="ServiceTitleEn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ServiceTitleAr" class="control-label"></label>
+                <input asp-for="ServiceTitleAr" class="form-control" />
+                <span asp-validation-for="ServiceTitleAr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ServiceDescEn" class="control-label"></label>
+                <input asp-for="ServiceDescEn" class="form-control" />
+                <span asp-validation-for="ServiceDescEn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ServiceDescAr" class="control-label"></label>
+                <input asp-for="ServiceDescAr" class="form-control" />
+                <span asp-validation-for="ServiceDescAr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FeatureTitleEn" class="control-label"></label>
+                <input asp-for="FeatureTitleEn" class="form-control" />
+                <span asp-validation-for="FeatureTitleEn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FeatureTitleAr" class="control-label"></label>
+                <input asp-for="FeatureTitleAr" class="form-control" />
+                <span asp-validation-for="FeatureTitleAr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FeatureDescEn" class="control-label"></label>
+                <input asp-for="FeatureDescEn" class="form-control" />
+                <span asp-validation-for="FeatureDescEn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FeatureDescAr" class="control-label"></label>
+                <input asp-for="FeatureDescAr" class="form-control" />
+                <span asp-validation-for="FeatureDescAr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FeatureImg1" class="control-label"></label>
+                <input asp-for="FeatureImg1" class="form-control" />
+                <span asp-validation-for="FeatureImg1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FeatureImg2" class="control-label"></label>
+                <input asp-for="FeatureImg2" class="form-control" />
+                <span asp-validation-for="FeatureImg2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectTitleEn" class="control-label"></label>
+                <input asp-for="ProjectTitleEn" class="form-control" />
+                <span asp-validation-for="ProjectTitleEn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjectTitleAr" class="control-label"></label>
+                <input asp-for="ProjectTitleAr" class="form-control" />
+                <span asp-validation-for="ProjectTitleAr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookingTitleEn" class="control-label"></label>
+                <input asp-for="BookingTitleEn" class="form-control" />
+                <span asp-validation-for="BookingTitleEn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookingTitleAr" class="control-label"></label>
+                <input asp-for="BookingTitleAr" class="form-control" />
+                <span asp-validation-for="BookingTitleAr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookingDescEn" class="control-label"></label>
+                <input asp-for="BookingDescEn" class="form-control" />
+                <span asp-validation-for="BookingDescEn" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="BookingDescAr" class="control-label"></label>
+                <input asp-for="BookingDescAr" class="form-control" />
+                <span asp-validation-for="BookingDescAr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Maarooflogo" class="control-label"></label>
+                <input asp-for="Maarooflogo" class="form-control" />
+                <span asp-validation-for="Maarooflogo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VATlogo" class="control-label"></label>
+                <input asp-for="VATlogo" class="form-control" />
+                <span asp-validation-for="VATlogo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CopyRight" class="control-label"></label>
+                <input asp-for="CopyRight" class="form-control" />
+                <span asp-validation-for="CopyRight" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

@@ -1,4 +1,5 @@
-﻿using ArtTop.Models;
+﻿using ArtTop.Data;
+using ArtTop.Models;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
@@ -10,15 +11,25 @@ namespace ArtTop.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly IStringLocalizer<HomeController> _localizer;
-        public HomeController(ILogger<HomeController> logger,IStringLocalizer<HomeController> localizer)
+        private readonly ArtTopContext _context;
+        public HomeController(ILogger<HomeController> logger,IStringLocalizer<HomeController> localizer,ArtTopContext context)
         {
             _logger = logger;
             _localizer = localizer;
+            _context = context;
         }
         //home
         public IActionResult Index()
         {
             ViewBag.Home = _localizer["home"];
+            ViewBag.Sliders=_context.Sliders.ToList();
+            ViewBag.SiteSetting = _context.SiteSettings.FirstOrDefault();
+            ViewBag.Services= _context.Services.ToList();
+            ViewBag.Features=_context.Features.ToList();
+            ViewBag.Projects= _context.Projects.ToList();
+            ViewBag.Clients= _context.Clients.ToList();
+           ViewBag.ContactItems=_context.ContactItem.Where(x=>x.ShowInHome==true).ToList();
+            ViewBag.SocialMedia=_context.SocialMedia.ToList();
             return View();
         }
         public IActionResult Privacy()
@@ -34,6 +45,15 @@ namespace ArtTop.Controllers
         //About
         public IActionResult About()
         {
+
+            ViewBag.SiteSetting = _context.SiteSettings.FirstOrDefault();
+            ViewBag.Features = _context.Features.ToList();
+            ViewBag.ContactItems = _context.ContactItem.Where(x => x.ShowInHome == true).ToList();
+            ViewBag.SocialMedia = _context.SocialMedia.ToList();
+            ViewBag.About = _context.Abouts.FirstOrDefault();
+            ViewBag.OurValues=_context.OurValues.ToList();
+            ViewBag.OurGoles=_context.OurGoles.ToList();
+            ViewBag.Services = _context.Services.ToList();
             return View();
         }
         public IActionResult Contact()

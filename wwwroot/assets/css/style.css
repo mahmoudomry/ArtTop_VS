@@ -1376,3 +1376,14 @@ section.statistics .statistics-item h3{
 .mt40{
     margin-top: 40px;
 }
+
+.btn-lang {
+    padding: 0 !important;
+    background: none !important;
+    
+    border: none !important;
+}
+    .btn-lang i {
+        margin-right: 5px;
+        margin-left: 5px;
+    }

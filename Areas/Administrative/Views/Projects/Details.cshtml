@@ -1,0 +1,87 @@
+﻿@model ArtTop.Models.Project
+
+@{
+    ViewData["ActionTitle"] = "Details";
+    ViewData["Title"] = "Projects";
+   
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        	<div class="kt-portlet">
+										<div class="kt-portlet__head">
+											<div class="kt-portlet__head-label">
+												<h3 class="kt-portlet__head-title">
+													@ViewData["ActionTitle"]
+												</h3>
+											</div>
+										</div>
+
+                <div class="kt-portlet__body">
+                    <div class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ArabicTitle)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ArabicTitle)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EnglishTitle)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EnglishTitle)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ArabicDetails)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.Raw(Model.ArabicDetails)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EnglishDetails)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.Raw(Model.EnglishDetails)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CoverImage)
+        </dt>
+        <dd class = "col-sm-10">
+          <img src="~/assets/images/@Model.CoverImage" width="200px"/>
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Service)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Service.EnglishTitle)
+        </dd>
+          <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Client)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Client)
+        </dd>
+          <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ClientLogo)
+        </dt>
+        <dd class = "col-sm-10">
+            <img src="~/assets/images/@Model.ClientLogo" width="100px"/>
+        </dd>
+          <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.DeliveryDate)
+        </dt>
+        <dd class = "col-sm-10">
+           @if(Model.DeliveryDate!=null)
+              @Model.DeliveryDate.Value.ToString("MM/dd/yyyy")
+        </dd>
+
+    </dl></div>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+</div>
+</div>
+</div>

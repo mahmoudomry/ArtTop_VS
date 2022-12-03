@@ -5,41 +5,59 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h1>Details</h1>
+<div class="row">
+    <div class="col-md-12 ">
+        	<div class="kt-portlet">
+										<div class="kt-portlet__head">
+											<div class="kt-portlet__head-label">
+												<h3 class="kt-portlet__head-title pull-left">
+													@ViewData["Title"]
+												</h3>
+                                             
+											</div>
 
-<div>
-    <h4>Slider</h4>
+                                              
+                                                
+										</div>
+                                             <div class="kt-portlet__body">
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.ArabicTitle)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ArabicTitle)
+            @Html.Raw(Model.ArabicTitle)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.EnglishTitle)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EnglishTitle)
+              @Html.Raw(Model.EnglishTitle)
+          
         </dd>
         <dt class = "col-sm-2">
+
             @Html.DisplayNameFor(model => model.ArabicDetails)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.ArabicDetails)
+              @Html.Raw(Model.ArabicDetails)
+           
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.EnglishDetails)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.EnglishDetails)
+              @Html.Raw(Model.EnglishDetails)
+           
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.CoverImage)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.CoverImage)
+                        @if (Model.CoverImage != null)
+                        {
+                            <img src="~/assets/images/@Model.CoverImage" alt="" class="img-thumbnail" width="200px;" />
+                        }
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.IsActive)
@@ -58,4 +76,6 @@
 <div>
     <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
     <a asp-action="Index">Back to List</a>
+</div>
+</div>
 </div>

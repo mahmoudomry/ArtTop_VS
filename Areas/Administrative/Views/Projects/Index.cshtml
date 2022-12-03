@@ -1,0 +1,93 @@
+﻿@model IEnumerable<ArtTop.Models.Project>
+
+@{
+      ViewData["ActionTitle"]="List";
+    ViewData["Title"] = "Projects";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+   
+
+<div class="row">
+    <div class="col-md-12 ">
+        	<div class="kt-portlet">
+										<div class="kt-portlet__head">
+											<div class="kt-portlet__head-label">
+												<h3 class="kt-portlet__head-title pull-left">
+													@ViewData["ActionTitle"]
+												</h3>
+                                             
+											</div>
+
+                                               <a  class="btn btn-primary pull-right create-btn" href="@Url.Action("Create","Projects",new{area="Administrative"})" >Create New</a>
+                                                
+										</div>
+                                        <div class="kt-portlet__body">
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ArabicTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EnglishTitle)
+            </th>
+          
+            <th>
+                @Html.DisplayNameFor(model => model.CoverImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Service)
+            </th>
+              <th>
+                @Html.DisplayNameFor(model => model.Client)
+            </th>
+              <th>
+                @Html.DisplayNameFor(model => model.ClientLogo)
+            </th>
+              <th>
+                @Html.DisplayNameFor(model => model.DeliveryDate)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArabicTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnglishTitle)
+            </td>
+          
+            <td>
+            <img src="~/assets/images/@item.CoverImage" width="200px"/>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Service.EnglishTitle)
+            </td>
+             <th>
+              @Html.DisplayFor(modelItem => item.Client)
+            </th>
+              <th>
+              <img src="~/assets/images/@item.ClientLogo" width="100px"/>
+            </th>
+              <th>
+                  @if(item.DeliveryDate!=null)
+              @item.DeliveryDate.Value.ToString("MM/dd/yyyy")
+            </th>
+            <td>
+                 <a  class="btn btn-outline-success"  href="@Url.Action("Edit","Projects",new{area="Administrative",Id=item.Id})" ><i class="fa fa-edit  "></i> Edit </a> 
+                <a  class="btn btn-outline-brand"  href="@Url.Action("Details","Projects",new{area="Administrative",Id=item.Id})" ><i class="fa fa-edit  "></i> Details </a> 
+                <a class="btn btn-outline-danger"  href="@Url.Action("Delete","Projects",new{area="Administrative",Id=item.Id})" onclick="return confirm('Are you sure From Deleted?')" > <i class="fa fa-trash "></i> Delete</a>
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>

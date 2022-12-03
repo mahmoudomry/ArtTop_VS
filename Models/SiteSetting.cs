@@ -9,8 +9,8 @@ namespace ArtTop.Models
         [Key]
         public int Id { get; set; }
 
-        [Required, Display(Name = "Header Logo")]
-        public string HeaderLogo { get; set; }
+        [Display(Name = "Header Logo")]
+        public string? HeaderLogo { get; set; } = "";
         [Required, Display(Name = "Site Title meta English")]
         public string SiteTitleEn { get; set; }
         [Required, Display(Name = "Site Title meta Arabic")]
@@ -44,10 +44,10 @@ namespace ArtTop.Models
         public string FeatureDescEn { get; set; }
         [Required, Display(Name = "Feature Title Ar")]
         public string FeatureDescAr { get; set; }
-        [Required, Display(Name = "Feature img1 ")]
-        public string? FeatureImg1 { get; set; }
-        [Required, Display(Name = "Feature img2 ")]
-        public string ?FeatureImg2 { get; set; }
+        [Display(Name = "Feature img1 ")]
+        public string? FeatureImg1 { get; set; } = "";
+        [Display(Name = "Feature img2 ")]
+        public string? FeatureImg2 { get; set; } = "";
 
 
 
@@ -71,15 +71,19 @@ namespace ArtTop.Models
         [Required, Display(Name = "Booking Desc Ar")]
         public string BookingDescAr { get; set; }
 
-        [ Display(Name = "Maaroof logo ")]
-        public string? Maarooflogo { get; set; }
+        [Display(Name = "Maaroof logo ")]
+        public string? Maarooflogo { get; set; } = "";
 
         [Display(Name = "vat logo ")]
-        public string? VATlogo { get; set; }
+        public string? VATlogo { get; set; } = "";
 
 
-        [Required, Display(Name = "CopyRight Text")]
+        [Required, Display(Name = "CopyRight")]
         public string CopyRight { get; set; }
+        [Required, Display(Name = "Query phone")]
+        public string Queryphone { get; set; }
+
+
 
     }
 }

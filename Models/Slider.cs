@@ -23,7 +23,7 @@ namespace ArtTop.Models
         [Required(ErrorMessage = "Required *")]
         public string EnglishDetails { get; set; } = "";
         [Display(Name = "Cover Image")]
-        public string ? CoverImage { get; set; } 
+        public string? CoverImage { get; set; } = "";
         [Display(Name = "IsActive")]
         [Required(ErrorMessage = "Required *")]
         public bool IsActive { get; set; } = false;

@@ -27,6 +27,11 @@ public class ArtTopContext : IdentityDbContext<ApplicationUser>
         builder.Entity<Slider>().ToTable("Slider");
         builder.Entity<SiteSetting>().ToTable("SiteSetting");
         builder.Entity<Service>().ToTable("Service");
+        builder.Entity<ContactItem>().ToTable("ContactItem");
+        builder.Entity<SocialMedia>().ToTable("SocialMedia");
+        builder.Entity<About>().ToTable("About");
+        builder.Entity<OurGoles>().ToTable("OurGoles");
+        builder.Entity<OurValues>().ToTable("OurValues");
     }
     public DbSet<Client> Clients { get; set; }
     public DbSet<Feature> Features { get; set; }
@@ -36,6 +41,13 @@ public class ArtTopContext : IdentityDbContext<ApplicationUser>
     public DbSet<Slider> Sliders { get; set; }
     public DbSet<SiteSetting> SiteSettings { get; set; }
     public DbSet<Service> Services { get; set; }
+    public DbSet<ContactItem> ContactItem { get; set; }
+    public DbSet<SocialMedia> SocialMedia { get; set; }
+    public DbSet<About> Abouts { get; set; }
+    public DbSet<OurGoles> OurGoles { get; set; }
+    public DbSet<OurValues> OurValues { get; set; }
+
+
 }
 internal class ApplicationUserEntityConfiguration : IEntityTypeConfiguration<ApplicationUser>
 {

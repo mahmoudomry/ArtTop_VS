@@ -1,0 +1,143 @@
+﻿@model ArtTop.Models.About
+
+@{
+    ViewData["Title"] = "ContactItems";
+    ViewData["ActionTitle"]= Model==null||Model.Id==0? "Create":"Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        	<div class="kt-portlet">
+										<div class="kt-portlet__head">
+											<div class="kt-portlet__head-label">
+												<h3 class="kt-portlet__head-title">
+													@ViewData["ActionTitle"]
+												</h3>
+											</div>
+										</div>
+<div class="kt-portlet__body">
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="ArabicTitle" class="control-label"></label>
+                <input asp-for="ArabicTitle" class="form-control" />
+                <span asp-validation-for="ArabicTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EnglishTitle" class="control-label"></label>
+                <input asp-for="EnglishTitle" class="form-control" />
+                <span asp-validation-for="EnglishTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="knowus_TitleArabic" class="control-label"></label>
+                <input asp-for="knowus_TitleArabic" class="form-control" />
+                <span asp-validation-for="knowus_TitleArabic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="knowus_TitleEnglish" class="control-label"></label>
+                <input asp-for="knowus_TitleEnglish" class="form-control" />
+                <span asp-validation-for="knowus_TitleEnglish" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="knowus_DescArabic" class="control-label"></label>
+                <input asp-for="knowus_DescArabic" class="form-control" />
+                <span asp-validation-for="knowus_DescArabic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="knowus_DescEnglish" class="control-label"></label>
+                <input asp-for="knowus_DescEnglish" class="form-control" />
+                <span asp-validation-for="knowus_DescEnglish" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="knowus_img1" class="control-label"></label>
+                 <img src="~/assets/images/@Model.knowus_img1" width="50px"/>
+                <input type="hidden" asp-for="knowus_img1" />
+                <input type="file" name="knowus_img1File" class="form-control" />
+                <span asp-validation-for="knowus_img1" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="knowus_img2" class="control-label"></label>
+                 <img src="~/assets/images/@Model.knowus_img2" width="50px"/>
+                <input type="hidden" asp-for="knowus_img2" />
+                <input type="file" name="knowus_img2File" class="form-control" />
+                <span asp-validation-for="knowus_img2" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VisionIcon" class="control-label"></label>
+                   <img src="~/assets/images/@Model.VisionIcon" width="50px"/>
+                <input type="hidden" asp-for="VisionIcon" />
+                <input type="file" name="VisionIconFile" class="form-control" />
+                <span asp-validation-for="VisionIcon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VisionTitleArabic" class="control-label"></label>
+                <input asp-for="VisionTitleArabic" class="form-control" />
+                <span asp-validation-for="VisionTitleArabic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VisionTitleEnglish" class="control-label"></label>
+                <input asp-for="VisionTitleEnglish" class="form-control" />
+                <span asp-validation-for="VisionTitleEnglish" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VisionDesceArabic" class="control-label"></label>
+                <input asp-for="VisionDesceArabic" class="form-control" />
+                <span asp-validation-for="VisionDesceArabic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VisionDescEnglish" class="control-label"></label>
+                <input asp-for="VisionDescEnglish" class="form-control" />
+                <span asp-validation-for="VisionDescEnglish" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MissionIcon" class="control-label"></label>
+                  <img src="~/assets/images/@Model.MissionIcon" width="50px"/>
+                <input type="hidden" asp-for="MissionIcon" />
+                <input type="file" name="MissionIconFile" class="form-control" />
+                <span asp-validation-for="MissionIcon" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MissionTitleArabic" class="control-label"></label>
+                <input asp-for="MissionTitleArabic" class="form-control" />
+                <span asp-validation-for="MissionTitleArabic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MissionTitleEnglish" class="control-label"></label>
+                <input asp-for="MissionTitleEnglish" class="form-control" />
+                <span asp-validation-for="MissionTitleEnglish" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MissionDescArabic" class="control-label"></label>
+                <input asp-for="MissionDescArabic" class="form-control" />
+                <span asp-validation-for="MissionDescArabic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MissionDescEnglish" class="control-label"></label>
+                <input asp-for="MissionDescEnglish" class="form-control" />
+                <span asp-validation-for="MissionDescEnglish" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GolesEnglishTitle" class="control-label"></label>
+                <input asp-for="GolesEnglishTitle" class="form-control" />
+                <span asp-validation-for="GolesEnglishTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="GolesArabicTitle" class="control-label"></label>
+                <input asp-for="GolesArabicTitle" class="form-control" />
+                <span asp-validation-for="GolesArabicTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+    </div>
+</div>
+</div>
+</div>
+
+
