@@ -1,7 +1,21 @@
-﻿@{
-    ViewData["Title"] = "Details";
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer localizer
+@model ArtTop.Models.Project
+@{
+      var culture = CultureInfo.CurrentCulture.Name;
+       var isRTL = CultureInfo.CurrentCulture.Name.StartsWith("ar");
+        ViewData["Title"] = (isRTL?"تفاصيل مشروع":"Project Details") + " - "+ (isRTL?Model.ArabicTitle:Model.EnglishTitle);
     Layout = "~/Views/Shared/_Layout_white.cshtml";
+
+   
+    SiteSetting siteSetting=ViewBag.SiteSetting;
+    List<ContactItem>ContactItems=   ViewBag.ContactItems;
+    List<SocialMedia>SocialMedias=  ViewBag.SocialMedia;
+     List<Service>Services= ViewBag.Services;
+        List<Project>Projects= ViewBag.Projects;
 }
+
 
 
 <section class="project-details">
@@ -9,91 +23,50 @@
         <div class="row">
             <div class="col-md-6">
                 <h5>
-                    Medical Project
+                    @(isRTL?Model.Service.ArabicTitle.Replace("الخدمات","المشاريع").Replace("خدمات","المشاريع"):Model.Service.EnglishTitle.Replace("services","Projects").Replace("Services","Projects")) 
                 </h5>
                 <h2>
-                    Prince Sultan Military City
+                    @(isRTL?Model.ArabicTitle:Model.EnglishTitle)
                 </h2>
-                <img src="~/assets/images/prince-sultan-military-city.jpg" alt="Prince Sultan Military City"
+                <img src="~/assets/images/@Model.CoverImage" alt=" @(isRTL?Model.ArabicTitle:Model.EnglishTitle)"
                     class="project-img">
             </div>
             <div class="col-md-5 offset-md-1">
-                <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
-                    industry. Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                </p>
-                <h3>
-                    Subtitle write here
-                </h3>
-                <ul class="items">
-                    <li>
-                        Lorem Ipsum is simply dummy text of the printing
-                    </li>
-                    <li>
-                        Printing and typesetting industry
-                    </li>
-                    <li>
-                        Lorem Ipsum is simply dummy text of the printing
-                    </li>
-                    <li>
-                        Printing and typesetting industry
-                    </li>
-                </ul>
+               
+                     @Html.Raw(isRTL?Model.ArabicDetails:Model.EnglishDetails)
+              
                 <div class="client-info">
                     <div class="client-info-text">
-                        <label for="">Client</label>
+                        <label for="">@localizer["Client"]</label>
                         <div class="client-name">
-                            Sultan Militrary City
+                          @Model.Client
                         </div>
                     </div>
                     <div class="client-logo">
-                        <img src="~/assets/images/sultan-military-city-logo.png" alt="prince-sultan-military-city">
+                        <img src="~/assets/images/@Model.ClientLogo" alt="@Model.Client">
                     </div>
                 </div>
                 <div class="separator"></div>
                 <div class="project-footer">
                     <div class="project-date">
-                        <label for="">Delivery Date</label>
-                        <div>25 Jun, 2022</div>
+                        <label for="">@localizer["DeliveryDate"]</label>
+                        <div> @Model.DeliveryDate.Value.ToString("dd MMM,yyy")</div>
                     </div>
                     <div class="project-share">
-                        <label for="">Share Project</label>
+                        <label for="">@localizer["ShareProject"]</label>
                         <div>
 
                             <div class="social-links ">
                                 <ul class="list-unstyled list-group list-group-horizontal justify-content-end">
-                                    <li>
-                                        <a href="#" class="tiktok">
-                                            <i class="fa-brands fa-tiktok"></i>
+                                @foreach(var social in SocialMedias)
+                                {
+                                
+                                <li>
+                                        <a href="@social.Link" class="@social.EnglishTitle">
+                                            <i class="fa-brands fa-@social.EnglishTitle"></i>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="#" class="linkedin">
-                                            <i class="fa-brands fa-linkedin"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="snapchat">
-                                            <i class="fa-brands fa-snapchat"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="instagram">
-                                            <i class="fa-brands fa-instagram"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="twitter">
-                                            <i class="fa-brands fa-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="facebook">
-                                            <i class="fa-brands fa-facebook"></i>
-                                        </a>
-                                    </li>
+                                }
                                 </ul>
                             </div>
                         </div>

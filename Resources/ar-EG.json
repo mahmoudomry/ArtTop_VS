@@ -1,5 +1,5 @@
 ﻿{
-  "home": " الصفحة الرئيسية",
+  "home": "الرئيسية",
   "About": "من نحن",
   "Services": "خدماتنا",
   "Projects": "مشاريعنا",
@@ -26,9 +26,25 @@
   "NewsletterPlaceHolder": "بريدك الإلكتروني",
   "Get-our-news-and-updates": "احصل على الأخبار والتحديثات",
   "CopyRight": "جميع الحقوق محفوظة @",
-
   "ToKnowus": "اعرف عنا",
   "OurGoles": "أهدافنا",
+  "All": "الكل",
+  "construction": "انشائي",
+  "Medical": "طبي",
+  "Consultation": "استشاري",
+  "Client": "العميل",
+  "DeliveryDate": "تاريخ التسليم",
+  "ShareProject": "شارك المشروع",
+
+  "ContactInformation": "معلومات التواصل",
+  "GetInTouch": "اتصل بنا",
+  //"WeareAlwaysReady": "We are Always Ready",
+  //"toHelp": "to Help",
+
+  "Subject": "الموضوع",
+  "Message": "الرسالة",
+  "Sendus": "ارسل لنا",
+
   "FullName": "الاسم كامل",
   "Email": "البريد الإكتروني",
   "Password": "كلمة المرور",

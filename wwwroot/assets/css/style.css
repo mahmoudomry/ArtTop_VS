@@ -108,6 +108,9 @@ header nav a{
     font-weight: 600;
     color: #D9D9D9;
 }
+    header nav a:hover, header nav a.active {
+        color: var(--orange)!important;
+    }
 header .green-overlay{
     position: absolute;
     top: 0;
@@ -157,6 +160,9 @@ header.white nav a,
 header.white a.get-in-touch-btn{
     color: #3E3E3E !important;
 }
+    header.white nav a.active, header.white nav a:hover {
+        color: var(--orange) !important;
+    }
 header.white a.search_btn path{
     fill: #7D7D7D;
 }
@@ -352,13 +358,19 @@ section.our-projects .content .text{
 /* our projects end */
 /* clients start */
 section.clients{
-  /*  background-color: var(--light_green);*/
+    background-color: white!important; /*var(--light_green);*/
 }
 section.clients a{
     height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
+}
+.clients a img {
+    filter: grayscale(1);
+}
+.clients a:hover img {
+    filter: grayscale(0);
 }
 /* clients end */
 /* book appointment start */
@@ -606,9 +618,10 @@ section.contact-us .contact-info-box .contact-items{
 section.contact-us .contact-info-box .contact-items .contact-item{
     margin-bottom: 24px;
 }
-section.contact-us .contact-info-box .contact-items img{
-    margin-right: 10px;
-}
+    section.contact-us .contact-info-box .contact-items img {
+        margin-right: 10px;
+        filter: brightness(3.5);
+    }
 section.contact-us .contact-info-box .social-links{
     margin-top: 60px;
 }
@@ -757,9 +770,11 @@ section.services .content .icon{
     left: 20px;
     top: -35px;
 }
-section.services .content .icon img{
-    transform: rotate(45deg);
-}
+    section.services .content .icon img {
+        transform: rotate(45deg);
+        height: 40px;
+        filter: brightness(4);
+    }
 section.services .content .text{
     color: var(--white) !important;
 }

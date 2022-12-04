@@ -17,7 +17,7 @@
 										</div>
 
    
-        <form asp-action="Create" enctype="multipart/form-data" >
+        <form asp-action="Create" enctype="multipart/form-data" method="post">
              <div class="kt-portlet__body">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -155,6 +155,26 @@
                 <label asp-for="Queryphone" class="control-label"></label>
                 <input asp-for="Queryphone" class="form-control" />
                 <span asp-validation-for="Queryphone" class="text-danger"></span>
+            </div>
+              <div class="form-group">
+                <label asp-for="ContactArabicTitle" class="control-label"></label>
+                <input asp-for="ContactArabicTitle" class="form-control" />
+                <span asp-validation-for="ContactArabicTitle" class="text-danger"></span>
+            </div>
+              <div class="form-group">
+                <label asp-for="ContactEnglishTitle" class="control-label"></label>
+                <input asp-for="ContactEnglishTitle" class="form-control" />
+                <span asp-validation-for="ContactEnglishTitle" class="text-danger"></span>
+            </div>
+              <div class="form-group">
+                <label asp-for="ContactDescArabic" class="control-label"></label>
+                <input asp-for="ContactDescArabic" class="form-control" />
+                <span asp-validation-for="ContactDescArabic" class="text-danger"></span>
+            </div>
+              <div class="form-group">
+                <label asp-for="ContactDescEnglish" class="control-label"></label>
+                <input asp-for="ContactDescEnglish" class="form-control" />
+                <span asp-validation-for="ContactDescEnglish" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

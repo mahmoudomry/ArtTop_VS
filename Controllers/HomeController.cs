@@ -30,6 +30,8 @@ namespace ArtTop.Controllers
             ViewBag.Clients= _context.Clients.ToList();
            ViewBag.ContactItems=_context.ContactItem.Where(x=>x.ShowInHome==true).ToList();
             ViewBag.SocialMedia=_context.SocialMedia.ToList();
+            ViewBag.current_controller = "Home";
+            ViewBag.current_action = "Index";
             return View();
         }
         public IActionResult Privacy()
@@ -45,7 +47,8 @@ namespace ArtTop.Controllers
         //About
         public IActionResult About()
         {
-
+            ViewBag.current_controller = "Home";
+            ViewBag.current_action = "About";
             ViewBag.SiteSetting = _context.SiteSettings.FirstOrDefault();
             ViewBag.Features = _context.Features.ToList();
             ViewBag.ContactItems = _context.ContactItem.Where(x => x.ShowInHome == true).ToList();
@@ -58,6 +61,15 @@ namespace ArtTop.Controllers
         }
         public IActionResult Contact()
         {
+            ViewBag.current_controller = "Home";
+            ViewBag.current_action = "Contact";
+            ViewBag.Home = _localizer["home"];
+           
+            ViewBag.SiteSetting = _context.SiteSettings.FirstOrDefault();
+            ViewBag.Services = _context.Services.ToList();
+            ViewBag.ContactItems = _context.ContactItem.Where(x => x.ShowInHome == true).ToList();
+            ViewBag.ContactItemsAll = _context.ContactItem.ToList();
+            ViewBag.SocialMedia = _context.SocialMedia.ToList();
             return View();
         }
         [HttpPost]

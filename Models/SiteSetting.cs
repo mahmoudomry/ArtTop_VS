@@ -83,6 +83,16 @@ namespace ArtTop.Models
         [Required, Display(Name = "Query phone")]
         public string Queryphone { get; set; }
 
+        [Required, Display(Name = " Contact Title Arabic ")]
+        public string ContactArabicTitle { get; set; }
+        [Required, Display(Name = " Contact Title English ")]
+        public string ContactEnglishTitle { get; set; }
+
+        [Required, Display(Name = "Contact Desc Arabic")]
+        public string ContactDescArabic { get; set; }
+        [Required, Display(Name = "Contact Desc English")]
+        public string ContactDescEnglish { get; set; }
+
 
 
     }

@@ -2,7 +2,7 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer localizer
 @{
-
+    var culture = CultureInfo.CurrentCulture.Name;
     var isRTL = CultureInfo.CurrentCulture.Name.StartsWith("ar");
     ViewData["Title"] = "Home Page";
     Layout = null;
@@ -14,7 +14,8 @@
         List<Client>Clients= ViewBag.Clients;
          List<ContactItem>ContactItems=   ViewBag.ContactItems;
           List<SocialMedia>SocialMedias=  ViewBag.SocialMedia;
-            
+            var current_controller = ViewBag.current_controller;
+    var current_action = ViewBag.current_action;
 }
 <!doctype html>
 <html lang="en" dir="@(isRTL?"RTL":"LTR")">
@@ -64,25 +65,25 @@
                 <nav class="ps-5 pe-5 me-auto d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center">
                         <div class="logo">
-                            <a href="#">
+                            <a  href="~/@culture/Home/Index">
                                 <img src="~/assets/images/logo.svg" alt="Art top" />
                             </a>
                         </div>
                         <ul class="nav_bar d-flex align-items-center mt-auto mb-auto">
                             <li class="position-relative overflow-hidden">
-                                <a href="#" class="nav_link active">@localizer["home"]</a>
+                                <a href="~/@culture/Home/Index"   class="nav_link @(current_action=="Index"&&current_controller=="Home"?"active":"")">@localizer["home"]</a>
                             </li>
                             <li class="position-relative overflow-hidden">
-                                <a href="#" class="nav_link">@localizer["About"]</a>
+                                <a  href="~/@culture/Home/About" class="nav_link @(current_action=="About"&&current_controller=="Home"?"active":"")">@localizer["About"]</a>
                             </li>
                             <li class="position-relative overflow-hidden">
-                                <a href="#" class="nav_link">@localizer["Services"]</a>
+                                <a  href="~/@culture/Services/Index" class="nav_link @(current_controller=="Services"?"active":"")">@localizer["Services"]</a>
                             </li>
                             <li class="position-relative overflow-hidden">
-                                <a href="#" class="nav_link">@localizer["Projects"]</a>
+                                <a  href="~/@culture/Projects/Index"  class="nav_link @(current_controller=="Projects"?"active":"")">@localizer["Projects"]</a>
                             </li>
                             <li class="position-relative overflow-hidden">
-                                <a href="#" class="nav_link">@localizer["ContactUs"]</a>
+                                <a  href="~/@culture/Home/Contact"  class="nav_link @(current_action=="Contact"&&current_controller=="Home"?"active":"")">@localizer["ContactUs"]</a>
                             </li>
 
                         </ul>
@@ -450,6 +451,7 @@
                                 </div>-->
                             </div>
                         </div>
+                    </div>
                     </div>
             </section>
             <section class="footer-bottom">

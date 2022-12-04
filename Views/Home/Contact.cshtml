@@ -1,110 +1,97 @@
-﻿@{
-    ViewData["Title"] = "Contact";
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer localizer
+@{
+
+
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var isRTL = CultureInfo.CurrentCulture.Name.StartsWith("ar");
+    ViewData["Title"] = (isRTL?"اتصل بنا":"Contact us");
+    SiteSetting siteSetting=ViewBag.SiteSetting;
+    List<ContactItem>ContactItems=   ViewBag.ContactItems;
+    List<ContactItem>ContactItemsAll=   ViewBag.ContactItemsAll;
+    List<SocialMedia>SocialMedias=  ViewBag.SocialMedia;
+    About about = ViewBag.About;
+        
 }
+
 
 @section HeaderTitle{
 <div class="top-title row">
     <div class="col-md-8 offset-md-2">
         <h1>
-            Contact
+            @ViewData["Title"]
         </h1>
         <ul class="breadcrumb">
-            <li><a href="index.html">Home</a></li>
-            <li>Contact us</li>
+            <li><a href="index.html">@localizer["home"]</a></li>
+            <li>@localizer["ContactUs"]</li>
         </ul>
     </div>
 </div>
 }
 
-</section><!-- top-hero -->
+<!--</section> top-hero -->
 <section class="contact-us">
     <div class="container">
         <div class="row">
             <div style="" class="text-left col-md-6 contact-info-box white" data-aos="fade-up" data-aos-duration="1000">
                 <h4>
-                    Contact Information
+                  @localizer["ContactInformation"]  
                 </h4>
                 <h2>
-                    We are Always Ready
-                    <br>
-                    to Help
+                @Html.Raw(isRTL?siteSetting.ContactArabicTitle:siteSetting.ContactEnglishTitle)
+                   
                 </h2>
                 <p>
-                    We will be happy to answer any question you have.
+                    @(isRTL?siteSetting.ContactDescArabic:siteSetting.ContactDescEnglish)
                 </p>
                 <div class="contact-items">
+
+                @foreach(var contact in ContactItemsAll)
+                {
                     <div class="contact-item">
-                        <img src="~/assets/images/marker-white.svg" alt="">
-                        Kingdome of Saudi Arabia Short Address RHOA7835
+                        <img src="~/assets/images/@contact.Icon" alt="">
+                        @(isRTL?contact.ArabicValue:contact.EnglishValue)
                     </div>
-                    <div class="contact-item">
-                        <img src="~/assets/images/mail-white.svg" alt="">
-                        info@arttopgroup.com
-                    </div>
-                    <div class="contact-item">
-                        <img src="~/assets/images/mobile-white.svg" alt="">
-                        +960 220190014
-                    </div>
+                }
+                    
                 </div>
                 <div class="social-links ">
                     <ul class="list-unstyled list-group list-group-horizontal">
-                        <li>
-                            <a href="#" class="tiktok">
-                                <i class="fa-brands fa-tiktok"></i>
+                      @foreach(var item in SocialMedias)
+                {  
+                    <li>
+                            <a href="@item.Link" class="@item.EnglishTitle">
+                                <i class="fa-brands fa-@item.EnglishTitle"></i>
                             </a>
                         </li>
-                        <li>
-                            <a href="#" class="linkedin">
-                                <i class="fa-brands fa-linkedin"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="snapchat">
-                                <i class="fa-brands fa-snapchat"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="instagram">
-                                <i class="fa-brands fa-instagram"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="twitter">
-                                <i class="fa-brands fa-twitter"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="facebook">
-                                <i class="fa-brands fa-facebook"></i>
-                            </a>
-                        </li>
+                }
                     </ul>
                 </div>
             </div>
             <div class="text-left col-md-6 contact-us-form" data-aos="fade-up" data-aos-duration="1000">
                 <h1>
-                    Get In Touch
+                    @localizer["GetInTouch"]
                 </h1>
                 <form>
                     <div class="mb-3">
                         <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            placeholder="Full Name">
+                            placeholder="@localizer["FullName"]">
                     </div>
                     <div class="mb-3">
                         <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            placeholder="Email">
+                            placeholder="@localizer["Email"]">
                     </div>
                     <div class="mb-3">
                         <input type="subject" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            placeholder="Subject">
+                            placeholder="@localizer["Subject"]">
                     </div>
                     <div class="mb-3">
-                        <textarea name="message" id="message" cols="30" rows="5" placeholder="Message"
+                        <textarea name="message" id="message" cols="30" rows="5" placeholder="@localizer["Message"]"
                             class="form-control"></textarea>
                     </div>
                     <div class="d-flex justify-content-end">
-                        <button type="submit" class="btn btn-green">Send us</button>
+                        <button type="submit" class="btn btn-green">@localizer["Sendus"]</button>
                     </div>
                 </form>
             </div>

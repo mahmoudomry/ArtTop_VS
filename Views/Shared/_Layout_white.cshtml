@@ -2,8 +2,16 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer localizer
 @{
-
+var culture = CultureInfo.CurrentCulture.Name;
     var isRTL = CultureInfo.CurrentCulture.Name.StartsWith("ar");
+  
+    Layout = null;
+        SiteSetting siteSetting=ViewBag.SiteSetting;
+        List<Service>Services= ViewBag.Services;
+         List<ContactItem>ContactItems=   ViewBag.ContactItems;
+          List<SocialMedia>SocialMedias=  ViewBag.SocialMedia;
+                      var current_controller = ViewBag.current_controller;
+    var current_action = ViewBag.current_action;
 }
 <!doctype html>
 <html lang="en" dir="@(isRTL?"RTL":"LTR")">
@@ -55,26 +63,27 @@
                 <nav class="ps-5 pe-5 me-auto d-flex align-items-center justify-content-between">
                     <div class="d-flex align-items-center">
                         <div class="logo">
-                            <a href="#">
+                            <a  href="~/@culture/Home/Index">
                                 <img src="~/assets/images/logo.svg" alt="Art top" />
                             </a>
                         </div>
-                        <ul class="nav_bar d-flex align-items-center mt-auto mb-auto">
+                          <ul class="nav_bar d-flex align-items-center mt-auto mb-auto">
                             <li class="position-relative overflow-hidden">
-                                <a href="#" class="nav_link active">@localizer["home"]</a>
+                                <a href="~/@culture/Home/Index"   class="nav_link @(current_action=="Index"&&current_controller=="Home"?"active":"")">@localizer["home"]</a>
                             </li>
                             <li class="position-relative overflow-hidden">
-                                <a href="#" class="nav_link">About</a>
+                                <a  href="~/@culture/Home/About" class="nav_link @(current_action=="About"&&current_controller=="Home"?"active":"")">@localizer["About"]</a>
                             </li>
                             <li class="position-relative overflow-hidden">
-                                <a href="#" class="nav_link">Services</a>
+                                <a  href="~/@culture/Services/Index" class="nav_link @(current_controller=="Services"?"active":"")">@localizer["Services"]</a>
                             </li>
                             <li class="position-relative overflow-hidden">
-                                <a href="#" class="nav_link">Projects</a>
+                                <a  href="~/@culture/Projects/Index"  class="nav_link @(current_controller=="Projects"?"active":"")">@localizer["Projects"]</a>
                             </li>
                             <li class="position-relative overflow-hidden">
-                                <a href="#" class="nav_link">Contact us</a>
+                                <a  href="~/@culture/Home/Contact"  class="nav_link @(current_action=="Contact"&&current_controller=="Home"?"active":"")">@localizer["ContactUs"]</a>
                             </li>
+
                         </ul>
                     </div>
                     <div class="nav_action d-flex align-items-center">
@@ -109,46 +118,59 @@
                     <div class="row">
                         <div class="footer-section col-md-3">
                             <h3>
-                                Services
+                                @localizer["Services"]
                             </h3>
                             <ul class="list-unstyled">
-                                <li><a href="#">Construction Services</a></li>
-                                <li><a href="#">Medical Services</a></li>
-                                <li><a href="#">Consultation Services</a></li>
+                               @foreach (var service in Services)
+                                { 
+                                    <li><a href="@Url.Action("details","Services",new{Id=service.Id})"> @(isRTL?service.ArabicTitle:service.EnglishTitle)</a></li>
+                                }
                             </ul>
                         </div>
                         <div class="footer-section col-md-3">
                             <h3>
-                                Quick Links
+                              @localizer["QuickLinks"]  
                             </h3>
                             <ul class="list-unstyled">
-                                <li><a href="#">Term of Conditions</a></li>
-                                <li><a href="#">Privacy Policy</a></li>
-                                <li><a href="#">FAQ</a></li>
+                            
+                                <li><a href="#">@localizer["TermofConditions"]  </a></li>
+                                <li><a href="#">@localizer["PrivacyPolicy"]  </a></li>
+                                <li><a href="#">@localizer["FAQ"]  </a></li>
                             </ul>
                         </div>
                         <div class="footer-section newsletter col-md-3">
                             <form action="">
                                 <h3>
-                                    Newsletter
+                                 @localizer["Newsletter"]     
                                 </h3>
                                 <p>
-                                    Get our news and updates
+                                  @localizer["Get-our-news-and-updates"]
                                 </p>
-                                <input type="email" class="newsletter-email" placeholder="Your email">
+                                <input type="email" class="newsletter-email" placeholder="@localizer["NewsletterPlaceHolder"]">
                                 <div class="button-container d-flex justify-content-end">
                                     <button class="btn btn-green" type="button">
-                                        Get Started
+                                      @localizer["GetStarted"]    
                                     </button>
                                 </div>
                             </form>
                         </div>
                         <div class="footer-section contact-info col-md-3">
                             <h3>
-                                Contact us
+                             @localizer["ContactUs"]     
                             </h3>
                             <div>
-                                <div class="d-flex contact-info-item">
+                            @foreach(var item in ContactItems)
+                                {
+                                    <div class="d-flex contact-info-item">
+                                    <div class="icon">
+                                        <img src="~/assets/images/@item.Icon" alt="@(isRTL?item.ArabicValue:item.EnglishValue)">
+                                    </div>
+                                    <div class="text">
+                                      @(isRTL?item.ArabicValue:item.EnglishValue)
+                                    </div>
+                                </div>
+                                }
+                                <!-- <div class="d-flex contact-info-item">
                                     <div class="icon">
                                         <img src="~/assets/images/marker.svg" alt="address">
                                     </div>
@@ -163,9 +185,10 @@
                                     <div class="text">
                                         <a href="mailto:info@arttopgroup.com">info@arttopgroup.com</a>
                                     </div>
-                                </div>
+                                </div>-->
                             </div>
                         </div>
+                    </div>
                     </div>
             </section>
             <section class="footer-bottom">
@@ -173,48 +196,27 @@
                     <div class="row align-items-center">
                         <div class="col-md-4">
                             <div class="logos">
-                                <img src="~/assets/images/footer-logo-1.png" alt="logo 1">
-                                <img src="~/assets/images/footer-logo-2.png" alt="logo 2">
+                                <img src="~/assets/images/@siteSetting.Maarooflogo" alt="logo 1">
+                                <img src="~/assets/images/@siteSetting.VATlogo" alt="logo 2">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="copyright text-center align-items-center">
-                                All Rights are Reserved @@ 2022
+                               @localizer["CopyRight"] @DateTime.Now.Year
                             </div>
                         </div>
                         <div class="col-md-4 text-left">
                             <div class="social-links ">
                                 <ul class="list-unstyled list-group list-group-horizontal justify-content-end">
-                                    <li>
-                                        <a href="#" class="tiktok">
-                                            <i class="fa-brands fa-tiktok"></i>
+                                    
+                                 @foreach(var item in SocialMedias)
+                                {
+                                <li>
+                                        <a href="@item.Link" class="@item.EnglishTitle">
+                                            <i class="fa-brands fa-@item.EnglishTitle"></i>
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="#" class="linkedin">
-                                            <i class="fa-brands fa-linkedin"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="snapchat">
-                                            <i class="fa-brands fa-snapchat"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="instagram">
-                                            <i class="fa-brands fa-instagram"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="twitter">
-                                            <i class="fa-brands fa-twitter"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="#" class="facebook">
-                                            <i class="fa-brands fa-facebook"></i>
-                                        </a>
-                                    </li>
+                                }
                                 </ul>
                             </div>
                         </div>
