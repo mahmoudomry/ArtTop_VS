@@ -77,7 +77,7 @@ namespace ArtTop.Areas.Administrative.Controllers
                 else
                 _context.Update(siteSetting);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index),"Home",, new { area = "Administrative" });
+                return RedirectToAction(nameof(Index),"Home", new { area = "Administrative" });
             }
             return View(siteSetting);
         }

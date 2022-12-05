@@ -45,6 +45,15 @@ namespace ArtTop.Controllers
         }
         public IActionResult Profile()
         {
+            ViewBag.current_controller = "Services";
+            ViewBag.current_action = "Profile";
+            var servicesList = _context.Services.ToList();
+            ViewBag.Services = servicesList;
+            ViewBag.SiteSetting = _context.SiteSettings.FirstOrDefault();
+            ViewBag.ContactItems = _context.ContactItem.Where(x => x.ShowInHome == true).ToList();
+            ViewBag.SocialMedia = _context.SocialMedia.ToList();
+
+
             return View();
         }
     }

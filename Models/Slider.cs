@@ -7,7 +7,7 @@ namespace ArtTop.Models
     public class Slider
     {
         [Key]
-        [Display(Name ="Id")]
+        [Display(Name = "Id")]
         public int Id { get; set; }
 
         [Display(Name = "Arabic Title")]
@@ -34,4 +34,6 @@ namespace ArtTop.Models
         [Required(ErrorMessage = "Required *")]
         public string Link { get; set; }
     }
+
+   
 }

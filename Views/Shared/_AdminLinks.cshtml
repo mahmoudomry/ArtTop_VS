@@ -81,7 +81,7 @@
 								</li>
 
 
-								<li class="kt-menu__item  kt-menu__item--submenu @(current_controller=="Services" ?" kt-menu__item--open":"")" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
+								<li class="kt-menu__item  kt-menu__item--submenu @(current_controller=="Services" ||current_controller=="ServiceSliders"||current_controller=="SubServices"?" kt-menu__item--open":"")" aria-haspopup="true" data-ktmenu-submenu-toggle="hover">
 									<a href="javascript:;" class="kt-menu__link kt-menu__toggle"><i class="kt-menu__link-icon flaticon-web"></i>
 										<span class="kt-menu__link-text">Services</span><i class="kt-menu__ver-arrow la la-angle-right"></i>
 										</a>
@@ -95,6 +95,11 @@
 													</li>
 											<li class="kt-menu__item @(current_controller=="Services" && current_action=="Create"?" kt-menu__item--active":"")">
 												<a   asp-area="Administrative" asp-controller="Services" asp-action="Create" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">Create</span></a></li>
+
+												<li class="kt-menu__item @(current_controller=="ServiceSliders" && (current_action=="Index"||current_action=="Create")?" kt-menu__item--active":"")">
+												<a   asp-area="Administrative" asp-controller="ServiceSliders" asp-action="Index" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">ServiceSliders</span></a></li>
+												<li class="kt-menu__item @(current_controller=="SubServices" && (current_action=="Index"||current_action=="Create")?" kt-menu__item--active":"")">
+												<a   asp-area="Administrative" asp-controller="SubServices" asp-action="Index" class="kt-menu__link "><i class="kt-menu__link-bullet kt-menu__link-bullet--line"><span></span></i><span class="kt-menu__link-text">Sub Services</span></a></li>
 										</ul>
 									</div>
 								</li>

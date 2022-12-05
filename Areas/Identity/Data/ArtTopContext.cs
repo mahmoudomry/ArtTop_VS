@@ -32,6 +32,8 @@ public class ArtTopContext : IdentityDbContext<ApplicationUser>
         builder.Entity<About>().ToTable("About");
         builder.Entity<OurGoles>().ToTable("OurGoles");
         builder.Entity<OurValues>().ToTable("OurValues");
+        builder.Entity<ServiceSlider>().ToTable("ServiceSlider");
+        builder.Entity<SubService>().ToTable("SubServices");
     }
     public DbSet<Client> Clients { get; set; }
     public DbSet<Feature> Features { get; set; }
@@ -46,6 +48,8 @@ public class ArtTopContext : IdentityDbContext<ApplicationUser>
     public DbSet<About> Abouts { get; set; }
     public DbSet<OurGoles> OurGoles { get; set; }
     public DbSet<OurValues> OurValues { get; set; }
+    public DbSet<ArtTop.Models.ServiceSlider> ServiceSlider{ get; set; }
+    public DbSet<ArtTop.Models.SubService> SubServices { get; set; }
 
 
 }
