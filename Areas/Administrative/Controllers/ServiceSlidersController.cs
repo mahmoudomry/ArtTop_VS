@@ -58,11 +58,11 @@ namespace ArtTop.Areas.Administrative.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CoverImage,IsActive,Order,ServiceId")] ServiceSlider serviceSlider, IFormFile? CoverImageFile)
+        public async Task<IActionResult> Create([Bind("Id,CoverImage,IsActive,Order,ServiceId,CoverImageAr")] ServiceSlider serviceSlider, IFormFile? CoverImageFile, IFormFile? CoverImageArFile)
         {
             if (ModelState.IsValid)
             {
-                UploadImages(serviceSlider, CoverImageFile);    
+                UploadImages(serviceSlider, CoverImageFile, CoverImageArFile);    
                 if(serviceSlider.Id==0)
                 _context.Add(serviceSlider);
                 else
@@ -169,11 +169,12 @@ namespace ArtTop.Areas.Administrative.Controllers
         {
           return _context.ServiceSlider.Any(e => e.Id == id);
         }
-        private void UploadImages(ServiceSlider slider, IFormFile? CoverImagefile)
+        private void UploadImages(ServiceSlider slider, IFormFile? CoverImagefile, IFormFile? CoverImageArfile)
         {
             Helper h = new Helper();
             slider.CoverImage = h.saveimage(CoverImagefile, slider.CoverImage == "" || slider.CoverImage == null ? "service-01.jpg" : slider.CoverImage);
-            
+            slider.CoverImageAr = h.saveimage(CoverImageArfile, slider.CoverImageAr == "" || slider.CoverImageAr == null ? "service-01.jpg" : slider.CoverImageAr);
+
         }
     }
 }

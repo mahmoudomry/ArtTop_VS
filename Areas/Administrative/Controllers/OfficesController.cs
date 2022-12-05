@@ -63,11 +63,12 @@ namespace ArtTop.Areas.Administrative.Controllers
             "ManagerName,ArabicAboutTitle,EnglishAboutTitle,ArabicDetails,EnglishDetails,CoverImage,Icon," +
             "ArabicContactTitle,EnglishContactTitle,ArabicAddress,EnglishAddress,Phone,WorkingHours,Weekend," +
             "MissionAR,MissionEn,Mission,ClientAR,ClientEn,Client,WorkerAR,WorkerEn,Worker," +
-            "ExperienceAR,ExperienceEn,Experience,Location")] Office office, int[]? SubServicesIds, IFormFile?CoverImageFile)
+            "ExperienceAR,ExperienceEn,Experience,Location,ProfileImage,CoverImageArabic,WorkingHoursAr,WeekendAr")] Office office,
+            int[]? SubServicesIds, IFormFile?CoverImageFile,IFormFile ? ProfileImageFile,IFormFile? CoverImageArabicFile,IFormFile? ProfileImageArFile)
         {
             if (ModelState.IsValid)
             {
-                UploadImages(office, CoverImageFile);
+                UploadImages(office, CoverImageFile, ProfileImageFile, CoverImageArabicFile, ProfileImageArFile);
                 if(office==null||office.Id==0)
                 _context.Add(office);
                 else
@@ -175,10 +176,13 @@ namespace ArtTop.Areas.Administrative.Controllers
         {
           return _context.Offices.Any(e => e.Id == id);
         }
-        private void UploadImages(Office office, IFormFile? CoverImagefile)
+        private void UploadImages(Office office, IFormFile? CoverImagefile,IFormFile? ProfileImageFile,IFormFile? CoverImageArabicFile,IFormFile? ProfileImageArFile)
         {
             Helper h = new Helper();
             office.CoverImage = h.saveimage(CoverImagefile, office.CoverImage == "" || office.CoverImage == null ? "about-clinic-img.png" : office.CoverImage);
-                   }
+            office.CoverImageArabic = h.saveimage(CoverImageArabicFile, office.CoverImageArabic == "" || office.CoverImageArabic == null ? "about-clinic-img.png" : office.CoverImageArabic);
+            office.ProfileImage = h.saveimage(ProfileImageFile, office.ProfileImage == "" || office.ProfileImage == null ? "about-clinic-img.png" : office.ProfileImage);
+            office.ProfileImageAr = h.saveimage(ProfileImageArFile, office.ProfileImageAr == "" || office.ProfileImageAr == null ? "about-clinic-img.png" : office.ProfileImageAr);
+        }
     }
 }

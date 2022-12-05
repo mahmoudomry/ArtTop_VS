@@ -6,9 +6,68 @@
     --light_green: #34B073;
     --dark_green: #02533B;
 }
-
+@font-face {
+    font-family: IBMPlexSansArabic-Bold;
+    src: url('fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-Bold.ttf');
+    font-weight: bold;
+}
+/*@font-face {
+    font-family: IBMPlexSansArabic-Light;
+    src: url('fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-Light.ttf');
+    font-weight: lighter;
+}*/
+@font-face {
+    font-family: IBMPlexSansArabic-Medium;
+    src: url('fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-Medium.ttf');
+    /*font-weight: normal;*/
+}
+@font-face {
+    font-family: IBMPlexSansArabic-Regular;
+    src: url('fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-Regular.ttf');
+   /* font-weight: normal;*/
+}
+@font-face {
+    font-family: IBMPlexSansArabic-SemiBold;
+    src: url('fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-SemiBold.ttf');
+/*    font-weight: normal;*/
+}
+/*@font-face {
+    font-family: IBMPlexSansArabic-Thin;
+    src: url('fonts/IBM_Plex_Sans_Arabic/IBMPlexSansArabic-Thin.ttf');
+}*/
+@font-face {
+    font-family: Tajawal-Bold;
+    src: url('fonts/Tajawal/Tajawal-Bold.ttf');
+}
+/*@font-face {
+    font-family: Tajawal-Black;
+    src: url('fonts/Tajawal/Tajawal-Black.ttf');
+}*/
+@font-face {
+    font-family: Tajawal-ExtraBold;
+    src: url('fonts/Tajawal/Tajawal-ExtraBold.ttf');
+}
+/*@font-face {
+    font-family: Tajawal-ExtraLight;
+    src: url('fonts/Tajawal/Tajawal-ExtraLight.ttf');
+}*/
+@font-face {
+    font-family: Tajawal-Light;
+    src: url('fonts/Tajawal/Tajawal-Light.ttf');
+}
+@font-face {
+    font-family: Tajawal-Medium;
+    src: url('fonts/Tajawal/Tajawal-Medium.ttf');
+}
+@font-face {
+    font-family: Tajawal-Regular;
+    src: url('fonts/Tajawal/Tajawal-Regular.ttf');
+}
 body {
-    font-family: 'Cairo', sans-serif;
+    font-family:IBMPlexSansArabic-Medium;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: Tajawal-Bold;
 }
 /* search start */
 .overlay {
@@ -1074,9 +1133,17 @@ section.project-details .project-footer .social-links a{
     height: 70px;
     filter:none;
 }
+.carousel-control-prev {
+    left: 0 !important;
+    right: auto;
+}
+.carousel-control-next {
+    right: 0 !important;
+    left: auto;
+}
 /* service-slider end */
 /* what-we-do start */
-section.what-we-do{
+section.what-we-do {
     background-image: url('../images/what-we-do-bg-rtl.jpg');
     background-size: cover;
 }
@@ -1189,6 +1256,14 @@ section.our-clinics .doctor-item .info .position{
 section.our-clinics .doctor-item .info h2{
     margin: 30px 0;
 }
+    section.our-clinics .doctor-item .info h2 a {
+        color: white;
+        text-decoration: none;
+    }
+
+        section.our-clinics .doctor-item .info h2 a:hover {
+            color: var(--orange);
+        }
 section.our-clinics .doctor-item .info p{
     font-weight: 500;
     font-size: 15px;
@@ -1255,6 +1330,9 @@ section.our-clinics .owl-nav .owl-next{
 section.about-clinic .image{
     padding-top: 15px;
 }
+    section.about-clinic .image img {
+        float: left;
+    }
 section.about-clinic .about{
     margin-bottom: 50px;
 }
@@ -1305,7 +1383,7 @@ section.about-clinic .service-item .text{
 /* get in touch start */
 section.get-in-touch{
     background: linear-gradient(
-    to right, 
+    to left, 
     #fff 0%, 
     #fff 50%, 
     #F7F7F7 50%, 
@@ -1336,7 +1414,7 @@ section.get-in-touch .get-in-touch-detials::after{
     right: -90px;
 }
 section.get-in-touch .book-appointment-form-container{
-    padding: 50px 0 50px 30px;
+    padding: 50px 30px 50px 0px;
 }
 section.get-in-touch .book-appointment-form-container::before,
 section.get-in-touch .book-appointment-form-container::after{

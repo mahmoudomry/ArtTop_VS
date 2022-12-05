@@ -49,7 +49,7 @@ namespace ArtTop.Controllers
                 return NotFound();
             return View();
         }
-        public IActionResult Profile()
+        public IActionResult Profile(int Id)
         {
             ViewBag.current_controller = "Services";
             ViewBag.current_action = "Profile";
@@ -59,7 +59,16 @@ namespace ArtTop.Controllers
             ViewBag.ContactItems = _context.ContactItem.Where(x => x.ShowInHome == true).ToList();
             ViewBag.SocialMedia = _context.SocialMedia.ToList();
 
-
+            var office = _context.Offices.Where(x => x.Id == Id).FirstOrDefault();
+            if (office != null)
+            {
+                ViewBag.OfficeSliders = _context.OfficeSliders.Where(x => x.OfficeId == Id).ToList();
+                ViewBag.SubServices = _context.OfficeSubServices.Where(x => x.OfficeId == Id).Select(x=>x.SubService).ToList();
+                ViewBag.OfficesMedia = _context.OfficeSocialMedias.Where(x => x.OfficeId == Id).ToList();
+                return View(office);
+            }
+            else
+                return NotFound();
             return View();
         }
     }

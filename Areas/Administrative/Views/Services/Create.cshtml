@@ -49,6 +49,22 @@
               
                 <span asp-validation-for="CoverImage" class="text-danger"></span>
             </div>
+                      <div class="form-group">
+                <label asp-for="DetailsImage" class="control-label"></label>
+                 <img src="~/assets/images/@Model.DetailsImage" width="200px"/>
+                <input type="hidden" asp-for="DetailsImage" />
+                <input type="file" name="DetailsImageFile" class="form-control" />
+              
+                <span asp-validation-for="CoverImage" class="text-danger"></span>
+            </div>
+              <div class="form-group">
+                <label asp-for="DetailsImageArabic" class="control-label"></label>
+                 <img src="~/assets/images/@Model.DetailsImageArabic" width="200px"/>
+                <input type="hidden" asp-for="DetailsImageArabic" />
+                <input type="file" name="DetailsImageArabicFile" class="form-control" />
+              
+                <span asp-validation-for="CoverImage" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Icon" class="control-label"></label>
                 <img src="~/assets/images/@Model.Icon" width="200px"/>

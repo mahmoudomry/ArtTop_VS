@@ -304,6 +304,9 @@ namespace ArtTop.Migrations
                     b.Property<string>("CoverImage")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("CoverImageArabic")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("EnglishAboutTitle")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -360,10 +363,20 @@ namespace ArtTop.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("ProfileImage")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ProfileImageAr")
+                        .HasColumnType("longtext");
+
                     b.Property<int?>("ServiceId")
                         .HasColumnType("int");
 
                     b.Property<string>("Weekend")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("WeekendAr")
                         .IsRequired()
                         .HasColumnType("longtext");
 
@@ -382,6 +395,10 @@ namespace ArtTop.Migrations
                         .IsRequired()
                         .HasColumnType("longtext");
 
+                    b.Property<string>("WorkingHoursAr")
+                        .IsRequired()
+                        .HasColumnType("longtext");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ServiceId");
@@ -396,6 +413,9 @@ namespace ArtTop.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CoverImage")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("CoverImageAr")
                         .HasColumnType("longtext");
 
                     b.Property<bool>("IsActive")
@@ -576,6 +596,12 @@ namespace ArtTop.Migrations
                     b.Property<string>("CoverImage")
                         .HasColumnType("longtext");
 
+                    b.Property<string>("DetailsImage")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("DetailsImageArabic")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("EnglishDetails")
                         .IsRequired()
                         .HasColumnType("longtext");
@@ -611,6 +637,9 @@ namespace ArtTop.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("CoverImage")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("CoverImageAr")
                         .HasColumnType("longtext");
 
                     b.Property<bool>("IsActive")

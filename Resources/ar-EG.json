@@ -42,10 +42,17 @@
   //"toHelp": "to Help",
   "WhatWeDo": "ماذا نقدم",
   "DiscoverOur": "تعرف على",
+  "Wewillbehappytoreachus": "يسعدنا تواصلكم معنا",
+  "MakeAppointment": "احجز موعد",
+  "WorkingHours": "ساعات العمل",
+  "Closed": "مغلق",
+  "SocialAccounts": "حسابات التواصل الاجتماعي",
   "Subject": "الموضوع",
   "Message": "الرسالة",
   "Sendus": "ارسل لنا",
-
+  "Name": "الاسم",
+  "YourName": "اسمك",
+  "BookNow": "احجز الآن",
   "FullName": "الاسم كامل",
   "Email": "البريد الإكتروني",
   "Password": "كلمة المرور",
@@ -74,5 +81,12 @@
   "BookingDescAr": "BookingDescAr",
   "Maarooflogo": "Maarooflogo",
   "VATlogo": "VATlogo",
-  "CopyRight": "CopyRight"
+  "Friday": "الجمعة",
+  "Saturday": "السبت",
+  "Sunday": "الأحد",
+  "Monday": "الاثنين",
+  "Tuesday": "الثلاثاء",
+  "Wednesday": "الأربعاء",
+  "Thursday": "الخميس",
+  "Location": "العنوان"
 }

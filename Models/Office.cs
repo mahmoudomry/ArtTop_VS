@@ -43,8 +43,14 @@ namespace ArtTop.Models
         public string? ArabicDetails { get; set; } = "";
         [Display(Name = "English Details")]
         public string? EnglishDetails { get; set; } = "";
-        [Display(Name = "Cover Image")]
+        [Display(Name = "Cover Image  En")]
         public string? CoverImage { get; set; }
+        [Display(Name = "Cover Image  Ar")]
+        public string? CoverImageArabic { get; set; }
+        [Display(Name = "Profile Image")]
+        public string? ProfileImage { get; set; }
+        [Display(Name = "Profile Image Arabic")]
+        public string? ProfileImageAr { get; set; }
         [Display(Name = "Icon")]
         public string? Icon { get; set; }
 
@@ -71,10 +77,16 @@ namespace ArtTop.Models
         [Display(Name = "Working Hours")]
         [Required(ErrorMessage = "Required *")]
         public string WorkingHours { get; set; } = "";
+        [Display(Name = "Working Hours Ar")]
+        [Required(ErrorMessage = "Required *")]
+        public string WorkingHoursAr { get; set; } = "";
 
         [Display(Name = "Weekend")]
         [Required(ErrorMessage = "Required *")]
         public string Weekend { get; set; } = "";
+        [Display(Name = "Weekend Ar")]
+        [Required(ErrorMessage = "Required *")]
+        public string WeekendAr { get; set; } = "";
 
 
         [Display(Name = "Mission Counter Title Arabic")]

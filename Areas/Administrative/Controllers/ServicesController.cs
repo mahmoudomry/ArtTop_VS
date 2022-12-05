@@ -55,11 +55,11 @@ namespace ArtTop.Areas.Administrative.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ArabicTitle,EnglishTitle,ArabicDetails,EnglishDetails,CoverImage,Icon,OurOfficeArabic,OurOfficeEnglish,MeetOurWorkersArabic,MeetOurWorkersEnglish")] Service service ,IFormFile? CoverImagefile, IFormFile? Iconfile)
+        public async Task<IActionResult> Create([Bind("Id,ArabicTitle,EnglishTitle,ArabicDetails,EnglishDetails,CoverImage,Icon,OurOfficeArabic,OurOfficeEnglish,MeetOurWorkersArabic,MeetOurWorkersEnglish,DetailsImage,DetailsImageArabic")] Service service ,IFormFile? CoverImageFile, IFormFile? IconFile, IFormFile? DetailsImageFile, IFormFile? DetailsImageArabicFile)
         {
             if (ModelState.IsValid)
             {
-                UploadImages(service, CoverImagefile, Iconfile);
+                UploadImages(service, CoverImageFile, IconFile, DetailsImageFile, DetailsImageArabicFile);
                 if (service == null || service.Id == 0)
                 {
                     _context.Add(service);
@@ -147,11 +147,13 @@ namespace ArtTop.Areas.Administrative.Controllers
         {
           return _context.Services.Any(e => e.Id == id);
         }
-        private void UploadImages(Service service, IFormFile? CoverImagefile, IFormFile? Iconfile)
+        private void UploadImages(Service service, IFormFile? CoverImagefile, IFormFile? Iconfile,IFormFile? DetailsImageFile, IFormFile? DetailsImageArabicFile)
         {
             Helper h = new Helper();
             service.CoverImage = h.saveimage(CoverImagefile, service.CoverImage == "" || service.CoverImage == null ? "service-01.jpg" : service.CoverImage);
             service.Icon = h.saveimage(Iconfile, service.Icon == "" || service.Icon == null ? "construction.svg" : service.Icon);
+            service.DetailsImage = h.saveimage(DetailsImageFile, service.DetailsImage == "" || service.DetailsImage == null ? "what-we-do-bg.jpg" : service.DetailsImage);
+            service.DetailsImageArabic = h.saveimage(DetailsImageArabicFile, service.DetailsImageArabic == "" || service.DetailsImageArabic == null ? "what-we-do-bg.jpg" : service.DetailsImageArabic);
         }
     }
 }

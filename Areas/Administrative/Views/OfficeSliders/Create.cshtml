@@ -31,6 +31,13 @@
                 <input type="file" name="CoverImageFile" class="form-control" />
                 <span asp-validation-for="CoverImage" class="text-danger"></span>
             </div>
+              <div class="form-group">
+                <label asp-for="CoverImageAr" class="control-label"></label>
+                <img src="~/assets/images/@Model.CoverImageAr" width="50px"/>
+                <input type="hidden" asp-for="CoverImageAr" />
+                <input type="file" name="CoverImageArFile" class="form-control" />
+                <span asp-validation-for="CoverImageAr" class="text-danger"></span>
+            </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)

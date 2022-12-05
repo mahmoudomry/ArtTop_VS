@@ -4,26 +4,27 @@
 @inject IViewLocalizer localizer
 @model Service
 @{
-   var culture = CultureInfo.CurrentCulture.Name;
+    var culture = CultureInfo.CurrentCulture.Name;
     Layout = "~/Views/Shared/_Layout_white.cshtml";
 
     var isRTL = CultureInfo.CurrentCulture.Name.StartsWith("ar");
-    ViewData["Title"] = (isRTL?"الخدمات":"Services");
+    var ss = isRTL.ToString().ToLower();
+    ViewData["Title"] = (isRTL ? "الخدمات" : "Services");
 
-     List<ServiceSlider> ServiceSliders=ViewBag.ServiceSliders ;
-      List<SubService> SubServices=ViewBag.SubServices ;
-       List<Office> Offices=ViewBag.Offices ;
-               
+    List<ServiceSlider> ServiceSliders = ViewBag.ServiceSliders;
+    List<SubService> SubServices = ViewBag.SubServices;
+    List<Office> Offices = ViewBag.Offices;
+
 }
 
 <section class="service-slider">
     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-            @foreach(var item in ServiceSliders)
+            @foreach (var item in ServiceSliders)
             {
-            <div class="carousel-item active" data-bs-interval="10000">
-                <img src="~/assets/images/@item.CoverImage" alt="@(isRTL ? Model.ArabicTitle: Model.EnglishTitle)">
-            </div>
+                <div class="carousel-item @(ServiceSliders.IndexOf(item)==0?"active":"")" data-bs-interval="10000">
+                    <img src="~/assets/images/@(isRTL ? item.CoverImageAr:item.CoverImage)" alt="@(isRTL ? Model.ArabicTitle: Model.EnglishTitle)">
+                </div>
             }
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
@@ -36,22 +37,22 @@
         </button>
     </div>
 </section>
-<section class="what-we-do">
+<section class="what-we-do" style="background-image: url('/assets/images/@(isRTL?Model.DetailsImageArabic:Model.DetailsImage)');background-size: cover;">
     <div class="container">
         <div class="row">
             <div class="col-md-5 text">
                 <div class="container">
                     <h5>
-                       @localizer["WhatWeDo"]
+                        @localizer["WhatWeDo"]
                     </h5>
                     <h2>
                         @(isRTL ? Model.ArabicTitle: Model.EnglishTitle)
                     </h2>
                     <p>
-                      @Html.Raw(isRTL ? Model.ArabicDetails: Model.EnglishDetails)
+                        @Html.Raw(isRTL ? Model.ArabicDetails: Model.EnglishDetails)
                     </p>
                     <button class="btn btn-green">
-                      @localizer["GetStarted"]   
+                        @localizer["GetStarted"]   
                     </button>
                 </div>
             </div>
@@ -74,33 +75,33 @@
 <section class="sub-services-items">
     <div class="container">
         <div class="row">
-            @foreach(var item in SubServices )
+            @foreach (var item in SubServices)
             {
-            <div class="col-md-4">
-                <div class="service-item">
-                    <a href="#">
-                        <div class="service-item-image"
+                <div class="col-md-4">
+                    <div class="service-item">
+                        <a href="#">
+                            <div class="service-item-image"
                             style="background-image: url('/assets/images/@item.CoverImage');">
-                        </div>
-                        <div class="content">
-                            <div class="icon">
-                                <img src="~/assets/images/@item.Icon" alt="@(isRTL?item.ArabicTitle:item.EnglishTitle)">
                             </div>
-                            <div class="text">
-                                <h3>
-                                   @(isRTL?item.ArabicTitle:item.EnglishTitle)
-                                </h3>
-                               @* <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                    Ipsum is simply
-                                </p>*@
+                            <div class="content">
+                                <div class="icon">
+                                    <img src="~/assets/images/@item.Icon" alt="@(isRTL?item.ArabicTitle:item.EnglishTitle)">
+                                </div>
+                                <div class="text">
+                                    <h3>
+                                        @(isRTL?item.ArabicTitle:item.EnglishTitle)
+                                    </h3>
+                                    @* <p>
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                        Ipsum is simply
+                                        </p>*@
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                 </div>
-            </div>
             }
-   
+
         </div>
     </div>
 </section>
@@ -109,10 +110,10 @@
     <div class="container">
         <div class="row">
             <h5 class="text-center">
-               @(isRTL?Model.OurOfficeArabic:Model.OurOfficeEnglish)
+                @(isRTL?Model.OurOfficeArabic:Model.OurOfficeEnglish)
             </h5>
             <h2 class="text-center">
-                     @(isRTL?Model.MeetOurWorkersArabic:Model.MeetOurWorkersEnglish)
+                @(isRTL?Model.MeetOurWorkersArabic:Model.MeetOurWorkersEnglish)
             </h2>
         </div>
     </div>
@@ -121,38 +122,39 @@
             <div
                 class="owl-carousel-line animation-dramatic-content animate-dramatic ani_fadeIn aniUtil_dramatic aniUtil_active animate__animated animate__fadeIn">
                 <div class="owl-carousel">
-                    @foreach(var item in Offices)
+                    @foreach (var item in Offices)
                     {
-                    <div class="doctor-item" style="background-image: url('/assets/images/@item.CoverImage')">
-                        <div class="overlay-green"></div>
-                        <div class="row">
-                            <div class="col-md-4 offset-md-7 info">
-                             
-                                        @{
-                                            var Sub=item.OfficeSubServices.FirstOrDefault();
-                                            if(Sub!=null)
-                                            {   <div class="position">
+                        <div class="doctor-item" style="background-image: url('/assets/images/@(isRTL?item.CoverImageArabic: item.CoverImage)')">
+                            <div class="overlay-green"></div>
+                            <div class="row">
+                                <div class="col-md-4 offset-md-7 info">
+
+                                    @{
+                                        var Sub = item.OfficeSubServices.FirstOrDefault();
+                                        if (Sub != null)
+                                        {
+                                            <div class="position">
                                                 @(isRTL?Sub.SubService.ArabicTitle:Sub.SubService.EnglishTitle)   
-                                                 </div>
-                                            }
+                                            </div>
                                         }
-                            
-                                
-                                <h2>
-                                    <a href="~/@culture/Services/Profile/@item.Id">
-                                   @(isRTL?item.ArabicTitle:item.EnglishTitle)   </a>
-                                </h2>
-                                <p>
-                                   @(isRTL?item.ArabicDetails:item.EnglishDetails)   
-                                </p>
-                                <button type="button" class="btn btn-green" data-bs-toggle="modal"
+                                    }
+
+
+                                    <h2>
+                                        <a href="~/@culture/Services/Profile/@item.Id">
+                                            @(isRTL?item.ArabicTitle:item.EnglishTitle)   </a>
+                                    </h2>
+                                    <p>
+                                        @(isRTL?item.ArabicDetails:item.EnglishDetails)   
+                                    </p>
+                                    <button type="button" class="btn btn-green" data-bs-toggle="modal"
                                     data-bs-target="#make-appointment">
-                                    @localizer["BookAppointment"]
-                                </button>
+                                        @localizer["BookAppointment"]
+                                    </button>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                 }
+                    }
                 </div>
             </div><!-- owl-carousel-line -->
         </div>
@@ -226,14 +228,18 @@
 
 
 @section Scripts{
+       
+            <script>
+           
+        
+            $(document).ready(function () {
 
-<script>
-    $(document).ready(function () {
-        /* Client */
+              
         $('.owl-carousel').owlCarousel({
             loop: true,
             margin: 30,
             responsiveClass: true,
+          rtl:@ss,
             nav: true,
             navText: ['<img src="/assets/images/arrow-prev.png">', '<img src="/assets/images/arrow-next.png">'],
             autoWidth: true,
@@ -251,7 +257,9 @@
             @* loop: true,
                 margin: 30,
                 responsiveClass: true, *@
-        });
-    });
-</script>
+        });    });
+        
+        </Script>
+        
+
 }

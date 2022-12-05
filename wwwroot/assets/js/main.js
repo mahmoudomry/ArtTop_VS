@@ -1,4 +1,4 @@
-AOS.init();
+
 
 inlineSVG.init(
   {
@@ -18,3 +18,4 @@ function openSearch() {
 function closeSearch() {
   document.getElementById("myOverlay").style.display = "none";
 }
+AOS.init();

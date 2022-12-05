@@ -12,7 +12,9 @@ namespace ArtTop.Models
             public int Id { get; set; }
             [Display(Name = "Cover Image")]
             public string? CoverImage { get; set; } = "";
-            [Display(Name = "IsActive")]
+        [Display(Name = "Cover Image Ar")]
+        public string? CoverImageAr { get; set; } = "";
+        [Display(Name = "IsActive")]
             [Required(ErrorMessage = "Required *")]
             public bool IsActive { get; set; } = false;
             [Display(Name = "Order")]
