@@ -34,6 +34,10 @@ public class ArtTopContext : IdentityDbContext<ApplicationUser>
         builder.Entity<OurValues>().ToTable("OurValues");
         builder.Entity<ServiceSlider>().ToTable("ServiceSlider");
         builder.Entity<SubService>().ToTable("SubServices");
+        builder.Entity<Office>().ToTable("Office");
+        builder.Entity<OfficeSlider>().ToTable("OfficeSlider");
+        builder.Entity<OfficeSubServices>().ToTable("OfficeSubServices");
+        builder.Entity<OfficeSocialMedia>().ToTable("OfficeSocialMedias");
     }
     public DbSet<Client> Clients { get; set; }
     public DbSet<Feature> Features { get; set; }
@@ -50,6 +54,10 @@ public class ArtTopContext : IdentityDbContext<ApplicationUser>
     public DbSet<OurValues> OurValues { get; set; }
     public DbSet<ArtTop.Models.ServiceSlider> ServiceSlider{ get; set; }
     public DbSet<ArtTop.Models.SubService> SubServices { get; set; }
+    public DbSet<Office> Offices { get; set; }
+    public DbSet<OfficeSlider> OfficeSliders { get; set; }
+    public DbSet<OfficeSubServices> OfficeSubServices { get; set; }
+    public DbSet<OfficeSocialMedia> OfficeSocialMedias { get; set; }
 
 
 }

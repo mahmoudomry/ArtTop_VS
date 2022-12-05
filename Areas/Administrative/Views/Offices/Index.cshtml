@@ -1,0 +1,90 @@
+﻿@model IEnumerable<ArtTop.Models.Office>
+@{
+      ViewData["ActionTitle"]="List";
+    ViewData["Title"] = "Offices";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+   
+
+<div class="row">
+    <div class="col-md-12 ">
+        	<div class="kt-portlet">
+										<div class="kt-portlet__head">
+											<div class="kt-portlet__head-label">
+												<h3 class="kt-portlet__head-title pull-left">
+													@ViewData["ActionTitle"]
+												</h3>
+                                             
+											</div>
+
+                                               <a  class="btn btn-primary pull-right create-btn" href="@Url.Action("Create","Offices",new{area="Administrative"})" >Create New</a>
+                                                
+										</div>
+                                        <div class="kt-portlet__body">
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Service)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArabicTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EnglishTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ArabicManagerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ManagerName)
+            </th>
+        
+            <th>
+                @Html.DisplayNameFor(model => model.CoverImage)
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Service.EnglishTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArabicTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnglishTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ArabicManagerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ManagerName)
+            </td>
+           
+            <td>
+              <img src="~/assets/images/@item.CoverImage" width="200px"/>
+            </td>
+          
+            <td>
+
+
+              <a  class="btn btn-outline-success"  href="@Url.Action("Edit","Offices",new{area="Administrative",Id=item.Id})" ><i class="fa fa-edit  "></i> Edit </a> 
+                 <a  class="btn btn-outline-dark"  href="@Url.Action("Index","OfficeSliders",new{area="Administrative",OfficeId=item.Id})" ><i class="fa fa-eye  "></i> Sliders </a>
+                  <a  class="btn btn-outline-dark"  href="@Url.Action("Index","OfficeSocialMedias",new{area="Administrative",OfficeId=item.Id})" ><i class="fa fa-eye  "></i> Media </a> 
+                <a  class="btn btn-outline-brand"  href="@Url.Action("Details","Offices",new{area="Administrative",Id=item.Id})" ><i class="fa fa-edit  "></i> Details </a> 
+                <a class="btn btn-outline-danger"  href="@Url.Action("Delete","Offices",new{area="Administrative",Id=item.Id})" onclick="return confirm('Are you sure From Deleted?')" > <i class="fa fa-trash "></i> Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>

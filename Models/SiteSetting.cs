@@ -93,7 +93,9 @@ namespace ArtTop.Models
         [Required, Display(Name = "Contact Desc English")]
         public string ContactDescEnglish { get; set; }
 
+        [Display(Name = "Location On Map")]
 
+        public string? Location { get; set; }
 
     }
 }

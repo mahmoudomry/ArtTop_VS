@@ -1,5 +1,6 @@
 ﻿using ArtTop.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
 
 namespace ArtTop.Controllers
@@ -34,11 +35,16 @@ namespace ArtTop.Controllers
             ViewBag.SiteSetting = _context.SiteSettings.FirstOrDefault();
             ViewBag.ContactItems = _context.ContactItem.Where(x => x.ShowInHome == true).ToList();
             ViewBag.SocialMedia = _context.SocialMedia.ToList();
-          
+
             
             var service = servicesList.Where(x=>x.Id==id).FirstOrDefault();
             if (service != null)
+            {
+                ViewBag.ServiceSliders = _context.ServiceSlider.Where(x => x.ServiceId == service.Id).ToList();
+                ViewBag.SubServices = _context.SubServices.Where(x => x.ServiceId == service.Id).ToList();
+                ViewBag.Offices = _context.Offices.Include(x=>x.OfficeSubServices).Where(x => x.ServiceId == service.Id).ToList();
                 return View(service);
+            }
             else
                 return NotFound();
             return View();

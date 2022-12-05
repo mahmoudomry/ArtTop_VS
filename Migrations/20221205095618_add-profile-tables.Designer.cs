@@ -3,6 +3,7 @@ using System;
 using ArtTop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArtTop.Migrations
 {
     [DbContext(typeof(ArtTopContext))]
-    partial class ArtTopContextModelSnapshot : ModelSnapshot
+    [Migration("20221205095618_add-profile-tables")]
+    partial class addprofiletables
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -593,12 +595,6 @@ namespace ArtTop.Migrations
                     b.Property<string>("MeetOurWorkersEnglish")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("OurOfficeArabic")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("OurOfficeEnglish")
-                        .HasColumnType("longtext");
-
                     b.HasKey("Id");
 
                     b.ToTable("Service", (string)null);
@@ -846,10 +842,15 @@ namespace ArtTop.Migrations
                     b.Property<string>("Icon")
                         .HasColumnType("longtext");
 
+                    b.Property<int?>("OfficeId")
+                        .HasColumnType("int");
+
                     b.Property<int?>("ServiceId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("OfficeId");
 
                     b.HasIndex("ServiceId");
 
@@ -1018,7 +1019,7 @@ namespace ArtTop.Migrations
             modelBuilder.Entity("ArtTop.Models.OfficeSubServices", b =>
                 {
                     b.HasOne("ArtTop.Models.Office", "Office")
-                        .WithMany("OfficeSubServices")
+                        .WithMany()
                         .HasForeignKey("OfficeId");
 
                     b.HasOne("ArtTop.Models.SubService", "SubService")
@@ -1050,6 +1051,10 @@ namespace ArtTop.Migrations
 
             modelBuilder.Entity("ArtTop.Models.SubService", b =>
                 {
+                    b.HasOne("ArtTop.Models.Office", null)
+                        .WithMany("OfficeSubServices")
+                        .HasForeignKey("OfficeId");
+
                     b.HasOne("ArtTop.Models.Service", "Service")
                         .WithMany()
                         .HasForeignKey("ServiceId");

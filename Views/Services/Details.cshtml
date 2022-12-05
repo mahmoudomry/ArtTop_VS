@@ -1,17 +1,30 @@
-﻿@{
-    ViewData["Title"] = "Details";
+﻿
+@using Microsoft.AspNetCore.Mvc.Localization
+@using System.Globalization
+@inject IViewLocalizer localizer
+@model Service
+@{
+   var culture = CultureInfo.CurrentCulture.Name;
     Layout = "~/Views/Shared/_Layout_white.cshtml";
+
+    var isRTL = CultureInfo.CurrentCulture.Name.StartsWith("ar");
+    ViewData["Title"] = (isRTL?"الخدمات":"Services");
+
+     List<ServiceSlider> ServiceSliders=ViewBag.ServiceSliders ;
+      List<SubService> SubServices=ViewBag.SubServices ;
+       List<Office> Offices=ViewBag.Offices ;
+               
 }
 
 <section class="service-slider">
     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
         <div class="carousel-inner">
+            @foreach(var item in ServiceSliders)
+            {
             <div class="carousel-item active" data-bs-interval="10000">
-                <img src="~/assets/images/slide-01.jpg" alt="">
+                <img src="~/assets/images/@item.CoverImage" alt="@(isRTL ? Model.ArabicTitle: Model.EnglishTitle)">
             </div>
-            <div class="carousel-item active" data-bs-interval="10000">
-                <img src="~/assets/images/slide-02.jpg" alt="">
-            </div>
+            }
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -29,20 +42,16 @@
             <div class="col-md-5 text">
                 <div class="container">
                     <h5>
-                        What we do
+                       @localizer["WhatWeDo"]
                     </h5>
                     <h2>
-                        Consultant Services
+                        @(isRTL ? Model.ArabicTitle: Model.EnglishTitle)
                     </h2>
                     <p>
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the
-                        industry's standard dummy text ever since the Lorem Ipsum is simply dummy text of the printing
-                        and
-                        typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the
+                      @Html.Raw(isRTL ? Model.ArabicDetails: Model.EnglishDetails)
                     </p>
                     <button class="btn btn-green">
-                        Get Started
+                      @localizer["GetStarted"]   
                     </button>
                 </div>
             </div>
@@ -54,10 +63,10 @@
     <div class="container">
         <div class="row">
             <h5 class="text-center">
-                Book Appointment
+                @localizer["BookAppointment"] 
             </h5>
             <h2 class="text-center white">
-                Discover Our Consultant Services
+                @localizer["DiscoverOur"]  @(isRTL ? Model.ArabicTitle: Model.EnglishTitle)
             </h2>
         </div>
     </div>
@@ -65,75 +74,33 @@
 <section class="sub-services-items">
     <div class="container">
         <div class="row">
+            @foreach(var item in SubServices )
+            {
             <div class="col-md-4">
                 <div class="service-item">
                     <a href="#">
                         <div class="service-item-image"
-                            style="background-image: url('/assets/images/subservice-01.jpg');">
+                            style="background-image: url('/assets/images/@item.CoverImage');">
                         </div>
                         <div class="content">
                             <div class="icon">
-                                <img src="~/assets/images/subservice-icon-01.svg" alt="">
+                                <img src="~/assets/images/@item.Icon" alt="@(isRTL?item.ArabicTitle:item.EnglishTitle)">
                             </div>
                             <div class="text">
                                 <h3>
-                                    Dermatology treatment
+                                   @(isRTL?item.ArabicTitle:item.EnglishTitle)
                                 </h3>
-                                <p>
+                               @* <p>
                                     Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
                                     Ipsum is simply
-                                </p>
+                                </p>*@
                             </div>
                         </div>
                     </a>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="service-item">
-                    <a href="#">
-                        <div class="service-item-image"
-                            style="background-image: url('/assets/images/subservice-02.jpg');">
-                        </div>
-                        <div class="content">
-                            <div class="icon">
-                                <img src="~/assets/images/subservice-icon-02.svg" alt="">
-                            </div>
-                            <div class="text">
-                                <h3>
-                                    Plastic surgery and laser
-                                </h3>
-                                <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                    Ipsum is simply
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="service-item">
-                    <a href="#">
-                        <div class="service-item-image"
-                            style="background-image: url('/assets/images/subservice-03.jpg');">
-                        </div>
-                        <div class="content">
-                            <div class="icon">
-                                <img src="~/assets/images/subservice-icon-03.svg" alt="">
-                            </div>
-                            <div class="text">
-                                <h3>
-                                    Obstetrics and Gynecology
-                                </h3>
-                                <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                    Ipsum is simply
-                                </p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
+            }
+   
         </div>
     </div>
 </section>
@@ -142,10 +109,10 @@
     <div class="container">
         <div class="row">
             <h5 class="text-center">
-                Our clinics
+               @(isRTL?Model.OurOfficeArabic:Model.OurOfficeEnglish)
             </h5>
             <h2 class="text-center">
-                Meet Our Expert Doctors
+                     @(isRTL?Model.MeetOurWorkersArabic:Model.MeetOurWorkersEnglish)
             </h2>
         </div>
     </div>
@@ -154,66 +121,38 @@
             <div
                 class="owl-carousel-line animation-dramatic-content animate-dramatic ani_fadeIn aniUtil_dramatic aniUtil_active animate__animated animate__fadeIn">
                 <div class="owl-carousel">
-                    <div class="doctor-item" style="background-image: url('/assets/images/clinic-slider-01.jpg')">
+                    @foreach(var item in Offices)
+                    {
+                    <div class="doctor-item" style="background-image: url('/assets/images/@item.CoverImage')">
                         <div class="overlay-green"></div>
                         <div class="row">
                             <div class="col-md-4 offset-md-7 info">
-                                <div class="position">
-                                    Dermatology treatment
-                                </div>
+                             
+                                        @{
+                                            var Sub=item.OfficeSubServices.FirstOrDefault();
+                                            if(Sub!=null)
+                                            {   <div class="position">
+                                                @(isRTL?Sub.SubService.ArabicTitle:Sub.SubService.EnglishTitle)   
+                                                 </div>
+                                            }
+                                        }
+                            
+                                
                                 <h2>
-                                    Al Jamal Clinic
+                                    <a href="~/@culture/Services/Profile/@item.Id">
+                                   @(isRTL?item.ArabicTitle:item.EnglishTitle)   </a>
                                 </h2>
                                 <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                   @(isRTL?item.ArabicDetails:item.EnglishDetails)   
                                 </p>
                                 <button type="button" class="btn btn-green" data-bs-toggle="modal"
                                     data-bs-target="#make-appointment">
-                                    Make appointment
+                                    @localizer["BookAppointment"]
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <div class="doctor-item" style="background-image: url('/assets/images/clinic-slider-02.jpg')">
-                        <div class="overlay-green"></div>
-                        <div class="row">
-                            <div class="col-md-4 offset-md-7 info">
-                                <div class="position">
-                                    Dermatology treatment
-                                </div>
-                                <h2>
-                                    Al Jamal Clinic
-                                </h2>
-                                <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                </p>
-                                <button type="button" class="btn btn-green" data-bs-toggle="modal"
-                                    data-bs-target="#make-appointment">
-                                    Make appointment
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="doctor-item" style="background-image: url('/assets/images/clinic-slider-03.jpg')">
-                        <div class="overlay-green"></div>
-                        <div class="row">
-                            <div class="col-md-4 offset-md-7 info">
-                                <div class="position">
-                                    Dermatology treatment
-                                </div>
-                                <h2>
-                                    Al Jamal Clinic
-                                </h2>
-                                <p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                </p>
-                                <button type="button" class="btn btn-green" data-bs-toggle="modal"
-                                    data-bs-target="#make-appointment">
-                                    Make appointment
-                                </button>
-                            </div>
-                        </div>
-                    </div>
+                 }
                 </div>
             </div><!-- owl-carousel-line -->
         </div>

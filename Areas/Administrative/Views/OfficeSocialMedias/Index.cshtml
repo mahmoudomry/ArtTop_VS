@@ -1,8 +1,8 @@
-﻿@model IEnumerable<ArtTop.Models.SocialMedia>
+﻿@model IEnumerable<ArtTop.Models.OfficeSocialMedia>
 
 @{
-     ViewData["ActionTitle"]="List";
-    ViewData["Title"] = "SocialMedia";
+      ViewData["ActionTitle"]="List";
+    ViewData["Title"] = "OfficeSocialMedia";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -19,7 +19,7 @@
                                              
 											</div>
 
-                                               <a  class="btn btn-primary pull-right create-btn" href="@Url.Action("Create","SocialMedias",new{area="Administrative"})" >Create New</a>
+                                               <a  class="btn btn-primary pull-right create-btn" href="@Url.Action("Create","OfficeSocialMedias",new{area="Administrative",OfficeId= Context.Request.Query["OfficeId"]})" >Create New</a>
                                                 
 										</div>
                                         <div class="kt-portlet__body">
@@ -27,15 +27,18 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Office)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.ArabicTitle)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.EnglishTitle)
             </th>
-          
             <th>
-                @Html.DisplayNameFor(model => model.Icon)
+                @Html.DisplayNameFor(model => model.Link)
             </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.Order)
             </th>
@@ -46,13 +49,15 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Office.EnglishTitle)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.ArabicTitle)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.EnglishTitle)
             </td>
-      
-            <td>
+             <td>
              <a href="@item.Link" class="EnglishTitle">
                                             <i class="fa-brands fa-@item.EnglishTitle"></i>
                                         </a> 
@@ -61,8 +66,8 @@
                 @Html.DisplayFor(modelItem => item.Order)
             </td>
             <td>
-                 <a  class="btn btn-outline-success"  href="@Url.Action("Edit","SocialMedias",new{area="Administrative",Id=item.Id})" ><i class="fa fa-edit  "></i> Edit </a>  
-                <a class="btn btn-outline-danger"  href="@Url.Action("Delete","SocialMedias",new{area="Administrative",Id=item.Id})" onclick="return confirm('Are you sure From Deleted?')" > <i class="fa fa-trash "></i> Delete</a>
+                 <a  class="btn btn-outline-success"  href="@Url.Action("Edit","OfficeSocialMedias",new{area="Administrative",Id=item.Id})" ><i class="fa fa-edit  "></i> Edit </a>  
+                <a class="btn btn-outline-danger"  href="@Url.Action("Delete","OfficeSocialMedias",new{area="Administrative",Id=item.Id})" onclick="return confirm('Are you sure From Deleted?')" > <i class="fa fa-trash "></i> Delete</a>
             </td>
         </tr>
 }

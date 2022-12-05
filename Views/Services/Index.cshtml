@@ -65,12 +65,12 @@
                                     @(isRTL?item.ArabicTitle:item.EnglishTitle)
                                 </h3>
                                 <p>
-                                        @{
-                                            string details = (isRTL ? item.ArabicDetails : item.EnglishDetails);
-                                            details=details.Replace("<p>","").Replace("</p>","");
-                                            details = details.Length > 100 ? details.Substring(0, details.IndexOf(' ',100))+" ..." : details;
-                                        }
-                                        @details
+                                        @*@{
+                                        //    string details = (isRTL ? item.ArabicDetails : item.EnglishDetails);
+                                        //    details=details.Replace("<p>","").Replace("</p>","");
+                                        //    details = details.Length > 100 ? details.Substring(0, details.IndexOf(' ',100))+" ..." : details;
+                                        //}
+                                        //@details*@
                                 </p>
                             </div>
                         </div>

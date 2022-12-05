@@ -26,5 +26,15 @@ namespace ArtTop.Models
         public string? CoverImage { get; set; }
         [Display(Name = "Icon")]
         public string? Icon { get; set; }
+
+        [Display(Name = "Our Office Arabic")]
+        public string? OurOfficeArabic { get; set; }
+        [Display(Name = "Our Office English")]
+        public string? OurOfficeEnglish { get; set; }
+
+        [Display(Name = "Meet Our Workers Arabic")]
+        public string? MeetOurWorkersArabic { get; set; }
+        [Display(Name = "Meet Our Workers English")]
+        public string? MeetOurWorkersEnglish { get; set; }
     }
 }
