@@ -69,7 +69,7 @@ namespace ArtTop.Areas.Administrative.Controllers
                 }
                 else
                     _context.Update(subService);
-                _context.Add(subService);
+                
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

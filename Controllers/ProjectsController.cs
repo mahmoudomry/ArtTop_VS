@@ -19,7 +19,7 @@ namespace ArtTop.Controllers
         {
             ViewBag.current_controller = "Projects";
             ViewBag.current_action = "Index";
-            ViewBag.Services = _context.Services.ToList();
+            ViewBag.Services = _context.Services.OrderBy(x => x.Order).ToList();
             ViewBag.SiteSetting = _context.SiteSettings.FirstOrDefault();
             ViewBag.Projects = _context.Projects.ToList();
             ViewBag.ContactItems = _context.ContactItem.Where(x => x.ShowInHome == true).ToList();
@@ -30,7 +30,7 @@ namespace ArtTop.Controllers
         {
             ViewBag.current_controller = "Projects";
             ViewBag.current_action = "Details";
-            ViewBag.Services = _context.Services.ToList();
+            ViewBag.Services = _context.Services.OrderBy(x => x.Order).ToList();
             ViewBag.SiteSetting = _context.SiteSettings.FirstOrDefault();
            // ViewBag.Projects = _context.Projects.ToList();
             ViewBag.ContactItems = _context.ContactItem.Where(x => x.ShowInHome == true).ToList();

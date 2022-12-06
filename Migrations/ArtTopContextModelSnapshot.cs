@@ -619,6 +619,9 @@ namespace ArtTop.Migrations
                     b.Property<string>("MeetOurWorkersEnglish")
                         .HasColumnType("longtext");
 
+                    b.Property<int>("Order")
+                        .HasColumnType("int");
+
                     b.Property<string>("OurOfficeArabic")
                         .HasColumnType("longtext");
 

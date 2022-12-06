@@ -16,7 +16,11 @@
     List<Office> Offices = ViewBag.Offices;
 
 }
-
+<style>
+/*    section.sub-services-items .service-item{
+    height:472px;
+    width:370px;}*/
+</style>
 <section class="service-slider">
     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -75,9 +79,12 @@
 <section class="sub-services-items">
     <div class="container">
         <div class="row">
+            <div
+                class="owl-carousel-line animation-dramatic-content animate-dramatic ani_fadeIn aniUtil_dramatic aniUtil_active animate__animated animate__fadeIn">
+                <div class="owl-carousel subservices">
             @foreach (var item in SubServices)
             {
-                <div class="col-md-4">
+              @*  <div class="col-md-4">*@
                     <div class="service-item">
                         <a href="#">
                             <div class="service-item-image"
@@ -99,9 +106,11 @@
                             </div>
                         </a>
                     </div>
-                </div>
+               @* </div>*@
             }
-
+      
+            </div>
+          </div>
         </div>
     </div>
 </section>
@@ -121,7 +130,7 @@
         <div class="row">
             <div
                 class="owl-carousel-line animation-dramatic-content animate-dramatic ani_fadeIn aniUtil_dramatic aniUtil_active animate__animated animate__fadeIn">
-                <div class="owl-carousel">
+                <div class="owl-carousel doctors">
                     @foreach (var item in Offices)
                     {
                         <div class="doctor-item" style="background-image: url('/assets/images/@(isRTL?item.CoverImageArabic: item.CoverImage)')">
@@ -144,9 +153,9 @@
                                         <a href="~/@culture/Services/Profile/@item.Id">
                                             @(isRTL?item.ArabicTitle:item.EnglishTitle)   </a>
                                     </h2>
-                                    <p>
+                                   @* <p>
                                         @(isRTL?item.ArabicDetails:item.EnglishDetails)   
-                                    </p>
+                                    </p>*@
                                     <button type="button" class="btn btn-green" data-bs-toggle="modal"
                                     data-bs-target="#make-appointment">
                                         @localizer["BookAppointment"]
@@ -235,7 +244,7 @@
             $(document).ready(function () {
 
               
-        $('.owl-carousel').owlCarousel({
+        $('.doctors').owlCarousel({
             loop: true,
             margin: 30,
             responsiveClass: true,
@@ -257,7 +266,35 @@
             @* loop: true,
                 margin: 30,
                 responsiveClass: true, *@
-        });    });
+        });   
+            
+            
+            
+              
+        $('.subservices').owlCarousel({
+            loop: true,
+            margin: 30,
+            responsiveClass: true,
+          rtl:@ss,
+            nav: true,
+            navText: ['<img src="/assets/images/arrow-prev.png">', '<img src="/assets/images/arrow-next.png">'],
+            autoWidth: true,
+            center: true,
+           responsive: {
+                0: {
+                    items: 3,
+                    nav: true
+                },
+                600: {
+                    items: 5,
+                    nav: true
+                },
+            }
+            @* loop: true,
+                margin: 30,
+                responsiveClass: true, *@
+        });  
+            });
         
         </Script>
         

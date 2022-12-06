@@ -97,14 +97,14 @@
             <button type="button" class="btn control" data-filter="all">@localizer["All"]</button>
             @foreach(Service s in Services)
             {
-            <button type="button" class="btn control" data-toggle=".@s.EnglishTitle.Replace("services","").Replace("Services","").Trim()">@(isRTL?s.ArabicTitle.Replace("الخدمات","").Replace("خدمات","").Trim():s.EnglishTitle.Replace("services","").Replace("Services","").Trim()) </button>
+            <button type="button" class="btn control" data-toggle=".service@(s.Id)">@(isRTL?s.ArabicTitle.Replace("الخدمات","").Replace("خدمات","").Trim():s.EnglishTitle.Replace("services","").Replace("Services","").Trim()) </button>
             }
         </div>
 
         <div class="container">
         @foreach(var project in Projects)
         {
-            <div class="mix @project.Service.EnglishTitle.Replace("services","").Replace("Services","").Trim()">
+            <div class="mix service@(project.Service.Id)">
                 <a href="~/@culture/Projects/Details/@project.Id">
                     <div class="project-item" style="background-image: url('/assets/images/@project.CoverImage');">
                         <div class="service-item-overlay"></div>

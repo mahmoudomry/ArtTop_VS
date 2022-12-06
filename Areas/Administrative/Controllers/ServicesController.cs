@@ -55,7 +55,7 @@ namespace ArtTop.Areas.Administrative.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ArabicTitle,EnglishTitle,ArabicDetails,EnglishDetails,CoverImage,Icon,OurOfficeArabic,OurOfficeEnglish,MeetOurWorkersArabic,MeetOurWorkersEnglish,DetailsImage,DetailsImageArabic")] Service service ,IFormFile? CoverImageFile, IFormFile? IconFile, IFormFile? DetailsImageFile, IFormFile? DetailsImageArabicFile)
+        public async Task<IActionResult> Create([Bind("Id,ArabicTitle,EnglishTitle,ArabicDetails,EnglishDetails,CoverImage,Icon,OurOfficeArabic,OurOfficeEnglish,MeetOurWorkersArabic,MeetOurWorkersEnglish,DetailsImage,DetailsImageArabic,Order")] Service service ,IFormFile? CoverImageFile, IFormFile? IconFile, IFormFile? DetailsImageFile, IFormFile? DetailsImageArabicFile)
         {
             if (ModelState.IsValid)
             {

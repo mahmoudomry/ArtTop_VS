@@ -220,7 +220,13 @@ header.white nav a,
 header.white a.get-in-touch-btn{
     color: #3E3E3E !important;
 }
+    header.white a.get-in-touch-btn:hover {
+        color: #3E3E3E !important;
+    }
 
+a.get-in-touch-btn.text-white:hover {
+    color: #fff !important;
+}
 header.white a.search_btn path{
     fill: #7D7D7D;
 }
@@ -261,6 +267,20 @@ section.our-services .service-card h3{
 section.our-services .service-card .number{
     margin-top: 30px;
 }
+
+    section.our-services .service-card a {
+        color: var(--black);
+        text-decoration: none;
+    }
+
+    section.our-services .service-card:hover {
+        background: #003F2C;
+        color: #fff;
+    }
+
+        section.our-services .service-card:hover a {
+            color: #fff;
+        }
 /* our services end */
 /* our features start */
 section.our-features{
@@ -371,6 +391,11 @@ section.our-projects .btn-white{
     align-items: center;
     justify-content: center;
 }
+    section.our-projects .btn-white:hover {
+        background: var(--white);
+        border: 1px solid var(--black);
+        color: black;
+    }
 section.our-projects .project-card h3{
     font-weight: 500;
     font-size: 17px;
@@ -462,21 +487,25 @@ section.book-appointment .book-appointment-form{
 .book-appointment-form-container{
     position: relative;
 }
-.book-appointment-form-container::before{
-    content:url('../images/booking-corner.svg');
-    position: absolute;
-    background-size: cover;
-    right: -100px;
-    top:-50px;
-}
-.book-appointment-form-container::after{
-    content:url('../images/booking-corner.svg');
-    position: absolute;
-    background-size: cover;
-    right: -100px;
-    bottom:-50px;
-    transform: scaleY(-1);
-}
+    .book-appointment-form-container::before {
+        content: url('../images/booking-corner.svg');
+        position: absolute;
+        background-size: cover;
+        left: -100px;
+        top: -50px;
+        right: auto;
+        transform: scalex(-1);
+    }
+    .book-appointment-form-container::after {
+        content: url('../images/booking-corner.svg');
+        position: absolute;
+        background-size: cover;
+        left: -100px;
+        bottom: -50px;
+        right:auto;
+        /*    transform: scaleY(-1);*/
+        transform: rotatez(180deg);
+    }
 .book-appointment-form .service-choices{
     display: flex;
     margin-bottom: 30px;
@@ -594,13 +623,15 @@ footer .contact-info a{
 footer ul li {
     margin-bottom: 10px;
 }
-footer ul li a,
-footer ul li a:hover{
+footer ul li a{
     text-decoration: none;
     color: var(--white);
     font-weight: 300;
     font-size: 15px;
 }
+    footer ul li a:hover {
+        color: var(--orange);
+    }
 footer .footer-bottom{
     padding: 16px 0;
 }
@@ -963,6 +994,11 @@ section.work-features .work-feature .icon{
 section.work-features .work-feature .icon img {
     transform: rotate(45deg);
 }
+
+    section.work-features .work-feature:hover .icon {
+        transform: scale3d(1.2, 1.2, 1.2);
+        transition: 1s;
+    }
 /* work features end */
 /* our-goals start */
 section.our-goals{
@@ -1033,6 +1069,13 @@ section.our-fatures-inner .our-fatures-items .our-fature .icon{
 section.our-fatures-inner .our-fatures-items .our-fature .icon svg{
     height: 41px;
 }
+    section.our-fatures-inner .our-fatures-items .our-fature .icon svg path {
+        fill: var(--white)
+    }
+
+    section.our-fatures-inner .our-fatures-items .our-fature:hover .icon svg path {
+        fill: var(--green)
+    }
 section.our-fatures-inner .our-fatures-items .our-fature h6{
     font-weight: 600;
 }
@@ -1046,7 +1089,7 @@ section.our-fatures-inner .our-fatures-items .our-fature:hover .icon{
 }
 section.our-fatures-inner .our-fatures-items .our-fature:hover .icon svg path{
     fill: #40C782;
-    stroke: #40C782;
+/*    stroke: #40C782;*/
 }
 section.our-fatures-inner .our-fatures-items .our-fature:hover h6{
     color: var(--white);
@@ -1164,59 +1207,86 @@ section.sub-services-header{
     padding-top: 60px;
     height: 450px;
 }
-section.sub-services-items{
+section.sub-services-items {
     padding-bottom: 35px;
-}
-section.sub-services-items .service-item
-{
     margin-top: -265px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.07);
 }
-section.sub-services-items .service-item .service-item-image{
-    background-size: cover;
-    width: 100%;
-    height: 265px;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-}
-section.sub-services-items .service-item .content{
-    position: relative;
-    padding: 30px 45px;
-}
-section.sub-services-items .service-item .icon{
-    position: absolute;
-    width: 70px;
-    height: 70px;
-    background: #40C782;
-    border-radius: 10px;
-    transform: rotate(-45deg);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    left: 20px;
-    top: -35px;
-}
-section.sub-services-items .service-item .icon img {
-    transform: rotate(45deg);
-}
-section.sub-services-items .service-item a {
-    text-decoration: none;
-}
-section.sub-services-items .service-item .text h3 {
-    font-weight: 700;
-    font-size: 20px;
-    margin-left: 70px;
-    height: 40px;
-    color: var(--black);
-    padding-right: 60px;
-}
-section.sub-services-items .service-item .text p {
-    font-weight: 500;
-    font-size: 15px;
-    color: #7D7D7D;
-    margin-top: 30px;
-}
+
+    section.sub-services-items .service-item {
+        margin-bottom: 35px;
+        border-radius: 10px;
+        box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.07);
+        height: 400px;
+        width: 370px;
+    }
+
+        section.sub-services-items .service-item .service-item-image {
+            background-size: cover;
+            width: 100%;
+            height: 265px;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+
+        section.sub-services-items .service-item .content {
+            position: relative;
+            padding: 30px 45px;
+        }
+
+        section.sub-services-items .service-item .icon {
+            position: absolute;
+            width: 70px;
+            height: 70px;
+            background: #40C782;
+            border-radius: 10px;
+            transform: rotate(-45deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            left: 20px;
+            top: -35px;
+        }
+
+            section.sub-services-items .service-item .icon img {
+                transform: rotate(45deg);
+                width: 40px;
+            }
+
+        section.sub-services-items .service-item a {
+            text-decoration: none;
+        }
+
+        section.sub-services-items .service-item .text h3 {
+            font-weight: 700;
+            font-size: 20px;
+            margin-left: 50px;
+            height: 40px;
+            color: var(--black);
+            /* padding-right: 60px;*/
+        }
+
+        section.sub-services-items .service-item .text p {
+            font-weight: 500;
+            font-size: 15px;
+            color: #7D7D7D;
+            margin-top: 30px;
+        }
+
+
+
+    section.sub-services-items .owl-nav .owl-prev {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 50px;
+    }
+
+    section.sub-services-items .owl-nav .owl-next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        right: 50px;
+    }
 /* sub-services end */
 /* our-clinics start */
 section.our-clinics{
@@ -1332,6 +1402,7 @@ section.about-clinic .image{
 }
     section.about-clinic .image img {
         float: left;
+        max-height:450px
     }
 section.about-clinic .about{
     margin-bottom: 50px;

@@ -143,7 +143,7 @@
             </div>
         </header>
         <main>
-            <section class="our-services dark text-center">
+            <section class="our-services dark text-center"  data-aos="fade-up" data-aos-duration="2000">
                 <div class="container">
                     <h5 class="mb-2">
                       @localizer["OurServices"] 
@@ -162,7 +162,7 @@
                                     <img src="~/assets/images/@item.Icon" alt="">
                                 </div>
                                 <h3>
-                                   @(isRTL?item.ArabicTitle:item.EnglishTitle)
+                                   <a href="/@culture/Services/details/@item.Id"> @(isRTL?item.ArabicTitle:item.EnglishTitle)</a>
                                 </h3>
                                 <div class="number">
                                     <img src="~/assets/images/@("0"+itemcounter+".svg")" alt="">
@@ -175,7 +175,7 @@
                     </div>
                 </div>
             </section>
-            <section class="our-features">
+            <section class="our-features"  data-aos="fade-up" data-aos-duration="1000">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-6">
@@ -236,7 +236,7 @@
                     </div>
                 </div>
             </section>
-            <section class="our-projects dark">
+            <section class="our-projects dark" data-aos="fade-up" data-aos-duration="2000">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-8 offset-md-2">
@@ -248,7 +248,7 @@
                             </h2>
                         </div>
                         <div class="col-md-2 d-flex align-items-center">
-                            <a class="btn btn-white">
+                            <a href="/@culture/projects/index" class="btn btn-white">
                               @localizer["DiscoverAll"]   
                             </a>
                         </div>
@@ -258,7 +258,7 @@
                     {
                         <div class="col-md-4">
                             <div class="project-card">
-                                <a href="#">
+                                <a href="/@culture/projects/details/@project.Id">
                                     <h3>
                                        @(isRTL?project.Service.ArabicTitle:project.Service.EnglishTitle)
                                     </h3>
@@ -310,7 +310,7 @@
                           @Html.Raw(isRTL?siteSetting.BookingDescAr:siteSetting.BookingDescEn)   
                             </p>
                         </div>
-                        <div class="col-md-6 offset-md-2 book-appointment-form-container">
+                        <div class="col-md-6 offset-md-2 book-appointment-form-container" data-aos="zoom-in-left"  data-aos-duration="2000">
                             <form action="" class="book-appointment-form">
                                 <div class="corner-top"></div>
                                 <div class="service-choices">

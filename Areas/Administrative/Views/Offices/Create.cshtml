@@ -64,12 +64,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="ArabicDetails" class="control-label"></label>
-                <input asp-for="ArabicDetails" class="form-control" />
+                <textarea asp-for="ArabicDetails" class="form-control ckeditor"></textarea>
                 <span asp-validation-for="ArabicDetails" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="EnglishDetails" class="control-label"></label>
-                <input asp-for="EnglishDetails" class="form-control" />
+                <textarea asp-for="EnglishDetails" class="form-control ckeditor" ></textarea>
                 <span asp-validation-for="EnglishDetails" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -226,4 +226,25 @@
 </div>
 </div>
 </div>
+@section Scripts {
+   
+    <script>
+        CreateEditor('#ArabicDetails');
+        CreateEditor('#EnglishDetails');
+ 
+
+      
+   function CreateEditor(el)
+   {
+CKEDITOR.disableAutoInline = true;
+
+    CKEDITOR.replace(el, {
+      extraPlugins: 'sourcedialog',
+      removePlugins: 'sourcearea',
+      removeButtons: 'PasteFromWord'
+    });
+   }
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
 

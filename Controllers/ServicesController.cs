@@ -21,7 +21,7 @@ namespace ArtTop.Controllers
             ViewBag.current_controller = "Services";
             ViewBag.current_action = "Index";
             ViewBag.SiteSetting = _context.SiteSettings.FirstOrDefault();
-            ViewBag.Services = _context.Services.ToList();
+            ViewBag.Services = _context.Services.OrderBy(x => x.Order).ToList();
             ViewBag.ContactItems = _context.ContactItem.Where(x => x.ShowInHome == true).ToList();
             ViewBag.SocialMedia = _context.SocialMedia.ToList();
             return View();
@@ -30,7 +30,7 @@ namespace ArtTop.Controllers
         {
             ViewBag.current_controller = "Services";
             ViewBag.current_action = "Details";
-            var servicesList= _context.Services.ToList();
+            var servicesList= _context.Services.OrderBy(x => x.Order).ToList();
             ViewBag.Services = servicesList;
             ViewBag.SiteSetting = _context.SiteSettings.FirstOrDefault();
             ViewBag.ContactItems = _context.ContactItem.Where(x => x.ShowInHome == true).ToList();
@@ -53,7 +53,7 @@ namespace ArtTop.Controllers
         {
             ViewBag.current_controller = "Services";
             ViewBag.current_action = "Profile";
-            var servicesList = _context.Services.ToList();
+            var servicesList = _context.Services.OrderBy(x => x.Order).ToList();
             ViewBag.Services = servicesList;
             ViewBag.SiteSetting = _context.SiteSettings.FirstOrDefault();
             ViewBag.ContactItems = _context.ContactItem.Where(x => x.ShowInHome == true).ToList();

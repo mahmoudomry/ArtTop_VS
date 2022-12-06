@@ -24,7 +24,7 @@ namespace ArtTop.Controllers
             ViewBag.Home = _localizer["home"];
             ViewBag.Sliders=_context.Sliders.ToList();
             ViewBag.SiteSetting = _context.SiteSettings.FirstOrDefault();
-            ViewBag.Services= _context.Services.ToList();
+            ViewBag.Services= _context.Services.OrderBy(x=>x.Order).ToList();
             ViewBag.Features=_context.Features.ToList();
             ViewBag.Projects= _context.Projects.ToList();
             ViewBag.Clients= _context.Clients.ToList();
@@ -56,7 +56,7 @@ namespace ArtTop.Controllers
             ViewBag.About = _context.Abouts.FirstOrDefault();
             ViewBag.OurValues=_context.OurValues.ToList();
             ViewBag.OurGoles=_context.OurGoles.ToList();
-            ViewBag.Services = _context.Services.ToList();
+            ViewBag.Services = _context.Services.OrderBy(x => x.Order).ToList();
             return View();
         }
         public IActionResult Contact()
@@ -66,7 +66,7 @@ namespace ArtTop.Controllers
             ViewBag.Home = _localizer["home"];
            
             ViewBag.SiteSetting = _context.SiteSettings.FirstOrDefault();
-            ViewBag.Services = _context.Services.ToList();
+            ViewBag.Services = _context.Services.OrderBy(x => x.Order).ToList();
             ViewBag.ContactItems = _context.ContactItem.Where(x => x.ShowInHome == true).ToList();
             ViewBag.ContactItemsAll = _context.ContactItem.ToList();
             ViewBag.SocialMedia = _context.SocialMedia.ToList();
