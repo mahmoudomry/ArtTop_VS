@@ -38,6 +38,9 @@ public class ArtTopContext : IdentityDbContext<ApplicationUser>
         builder.Entity<OfficeSlider>().ToTable("OfficeSlider");
         builder.Entity<OfficeSubServices>().ToTable("OfficeSubServices");
         builder.Entity<OfficeSocialMedia>().ToTable("OfficeSocialMedias");
+        builder.Entity<Doctor>().ToTable("Doctor");
+        builder.Entity<DoctorSubServices>().ToTable("DoctorSubServices");
+        builder.Entity<ContactMessages>().ToTable("ContactMessages");
     }
     public DbSet<Client> Clients { get; set; }
     public DbSet<Feature> Features { get; set; }
@@ -58,6 +61,9 @@ public class ArtTopContext : IdentityDbContext<ApplicationUser>
     public DbSet<OfficeSlider> OfficeSliders { get; set; }
     public DbSet<OfficeSubServices> OfficeSubServices { get; set; }
     public DbSet<OfficeSocialMedia> OfficeSocialMedias { get; set; }
+    public DbSet<Doctor> Doctors { get; set; }
+    public DbSet<DoctorSubServices> DoctorSubServices { get; set; }
+    public DbSet<ContactMessages> ContactMessages { get; set; }
 
 
 }
