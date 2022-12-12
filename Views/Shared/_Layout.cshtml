@@ -1,21 +1,20 @@
-﻿
-@using System.Globalization
+﻿@using System.Globalization
 @using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer localizer
 @{
     var culture = CultureInfo.CurrentCulture.Name;
     var isRTL = CultureInfo.CurrentCulture.Name.StartsWith("ar");
-  
+
     Layout = null;
-        SiteSetting siteSetting=ViewBag.SiteSetting;
-        List<Service>Services= ViewBag.Services;
-         List<ContactItem>ContactItems=   ViewBag.ContactItems;
-          List<SocialMedia>SocialMedias=  ViewBag.SocialMedia;
-                        var current_controller = ViewBag.current_controller;
+    SiteSetting siteSetting = ViewBag.SiteSetting;
+    List<Service> Services = ViewBag.Services;
+    List<ContactItem> ContactItems = ViewBag.ContactItems;
+    List<SocialMedia> SocialMedias = ViewBag.SocialMedia;
+    var current_controller = ViewBag.current_controller;
     var current_action = ViewBag.current_action;
 }
 <!doctype html>
-<html lang="en"  dir="@(isRTL?"RTL":"LTR")">
+<html lang="en" dir="@(isRTL?"RTL":"LTR")">
 
 <head>
     <meta charset="utf-8">
@@ -25,7 +24,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         crossorigin="anonymous">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
@@ -33,8 +32,8 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
-   
-     @if (isRTL)
+
+    @if (isRTL)
     {
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -72,61 +71,69 @@
     <div class="layout position-relative">
         <header class="inner top-0 ps-4 pe-4 w-100">
             <div class="container">
-                    <nav class="ps-5 pe-5 me-auto d-flex align-items-center justify-content-between">
-                    <div class="d-flex align-items-center">
-                      <div class="logo">
-                            <a  href="~/@culture/Home/Index">
-                                <img src="~/assets/images/logo.svg" alt="Art top" />
+                <nav class="navbar navbar-expand-lg" data-aos="fade-up" data-aos-duration="3000">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="~/@culture/Home/Index">
+                            <img src="~/assets/images/logo.svg" alt="Art top" />
+                        </a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="nav-center">
+                            <div class="collapse navbar-collapse top-menu justify-content-center"
+                                id="navbarNavAltMarkup">
+                                <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+                                    <li class="nav-item">
+                                        <a href="~/@culture/Home/Index"
+                                            class="nav_link @(current_action=="Index"&&current_controller=="Home"?"active":"")">@localizer["home"]</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="~/@culture/Home/About"
+                                            class="nav_link @(current_action=="About"&&current_controller=="Home"?"active":"")">@localizer["About"]</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="~/@culture/Services/Index"
+                                            class="nav_link @(current_controller=="Services"?"active":"")">@localizer["Services"]</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="~/@culture/Projects/Index"
+                                            class="nav_link @(current_controller=="Projects"?"active":"")">@localizer["Projects"]</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="~/@culture/Home/Contact"
+                                            class="nav_link @(current_action=="Contact"&&current_controller=="Home"?"active":"")">@localizer["ContactUs"]</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="search_btn_container nav_action d-flex align-items-center">
+                            <a href="javascript:;" onClick="openSearch()" class="search_btn d-block">
+                                <svg width="17" height="15" viewBox="0 0 17 15" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path
+                                        d="M16.0544 13.4824L12.9381 10.5995C13.8825 9.45576 14.4005 8.06846 14.4007 6.60455C14.4007 4.84039 13.658 3.18171 12.3093 1.93427C10.9608 0.686842 9.16799 -0.000244141 7.26069 -0.000244141C5.35362 -0.000244141 3.56057 0.686842 2.21209 1.93427C-0.571674 4.50965 -0.571674 8.69988 2.21209 11.2748C3.56057 12.5225 5.35362 13.2096 7.26069 13.2096C8.84318 13.2094 10.3429 12.7302 11.5793 11.8565L14.6956 14.7393C14.8831 14.9129 15.1292 14.9998 15.375 14.9998C15.6209 14.9998 15.867 14.9129 16.0544 14.7393C16.4298 14.3923 16.4298 13.8294 16.0544 13.4824ZM3.5709 10.0178C1.53644 8.13584 1.53668 5.07347 3.5709 3.19125C4.55645 2.27977 5.86693 1.77759 7.26069 1.77759C8.65468 1.77759 9.96492 2.27977 10.9505 3.19125C11.936 4.10296 12.4789 5.31523 12.4789 6.60455C12.4789 7.89408 11.936 9.10614 10.9505 10.0178C9.96492 10.9295 8.65468 11.4317 7.26069 11.4317C5.86693 11.4317 4.55645 10.9295 3.5709 10.0178Z"
+                                        fill="white" />
+                                </svg>
+                            </a>
+                            <div class="position-relative overflow-hidden">
+                                <partial name="_SelectLanguage" />
+                            </div>
+                            <a href="" class="get-in-touch-btn d-block  pt-2 pb-2 text-white">
+                                <span>@localizer["Get"] </span>@localizer["InTouch"]
                             </a>
                         </div>
-                             <ul class="nav_bar d-flex align-items-center mt-auto mb-auto">
-                            <li class="position-relative overflow-hidden">
-                                <a href="~/@culture/Home/Index"   class="nav_link @(current_action=="Index"&&current_controller=="Home"?"active":"")">@localizer["home"]</a>
-                            </li>
-                            <li class="position-relative overflow-hidden">
-                                <a  href="~/@culture/Home/About" class="nav_link @(current_action=="About"&&current_controller=="Home"?"active":"")">@localizer["About"]</a>
-                            </li>
-                            <li class="position-relative overflow-hidden">
-                                <a  href="~/@culture/Services/Index" class="nav_link @(current_controller=="Services"?"active":"")">@localizer["Services"]</a>
-                            </li>
-                            <li class="position-relative overflow-hidden">
-                                <a  href="~/@culture/Projects/Index"  class="nav_link @(current_controller=="Projects"?"active":"")">@localizer["Projects"]</a>
-                            </li>
-                            <li class="position-relative overflow-hidden">
-                                <a  href="~/@culture/Home/Contact"  class="nav_link @(current_action=="Contact"&&current_controller=="Home"?"active":"")">@localizer["ContactUs"]</a>
-                            </li>
-
-                        </ul>
-
-                    </div>
-                    <div class="nav_action d-flex align-items-center">
-                        
-                        <a href="" class="search_btn d-block">
-                            <svg width="17" height="15" viewBox="0 0 17 15" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
-                                <path
-                                    d="M16.0544 13.4824L12.9381 10.5995C13.8825 9.45576 14.4005 8.06846 14.4007 6.60455C14.4007 4.84039 13.658 3.18171 12.3093 1.93427C10.9608 0.686842 9.16799 -0.000244141 7.26069 -0.000244141C5.35362 -0.000244141 3.56057 0.686842 2.21209 1.93427C-0.571674 4.50965 -0.571674 8.69988 2.21209 11.2748C3.56057 12.5225 5.35362 13.2096 7.26069 13.2096C8.84318 13.2094 10.3429 12.7302 11.5793 11.8565L14.6956 14.7393C14.8831 14.9129 15.1292 14.9998 15.375 14.9998C15.6209 14.9998 15.867 14.9129 16.0544 14.7393C16.4298 14.3923 16.4298 13.8294 16.0544 13.4824ZM3.5709 10.0178C1.53644 8.13584 1.53668 5.07347 3.5709 3.19125C4.55645 2.27977 5.86693 1.77759 7.26069 1.77759C8.65468 1.77759 9.96492 2.27977 10.9505 3.19125C11.936 4.10296 12.4789 5.31523 12.4789 6.60455C12.4789 7.89408 11.936 9.10614 10.9505 10.0178C9.96492 10.9295 8.65468 11.4317 7.26069 11.4317C5.86693 11.4317 4.55645 10.9295 3.5709 10.0178Z"
-                                    fill="white" />
-                            </svg>
-                        </a>
-                        <div class="position-relative overflow-hidden">
-                            <partial name="_SelectLanguage" />
-                        </div>
-                        <a href="" class="get-in-touch-btn d-block  pt-2 pb-2 text-white">
-                            <span>@localizer["Get"] </span>@localizer["InTouch"]
-                        </a>
                     </div>
                 </nav>
                 @RenderSection("HeaderTitle", required: false)
-                <section class="main-slider">
-                </section>
             </div>
 
         </header>
         <main>
             @RenderBody()
         </main>
-         <footer>
+        <footer>
             <section class="footer-top">
                 <div class="container">
                     <div class="row">
@@ -135,54 +142,57 @@
                                 @localizer["Services"]
                             </h3>
                             <ul class="list-unstyled">
-                               @foreach (var service in Services)
-                                { 
-                                    <li><a href="@Url.Action("details","Services",new{Id=service.Id})"> @(isRTL?service.ArabicTitle:service.EnglishTitle)</a></li>
+                                @foreach (var service in Services)
+                                {
+                                    <li><a href="@Url.Action("details","Services",new{Id=service.Id})">
+                                            @(isRTL?service.ArabicTitle:service.EnglishTitle)</a></li>
                                 }
                             </ul>
                         </div>
                         <div class="footer-section col-md-3">
                             <h3>
-                              @localizer["QuickLinks"]  
+                                @localizer["QuickLinks"]
                             </h3>
                             <ul class="list-unstyled">
-                            
-                                <li><a href="#">@localizer["TermofConditions"]  </a></li>
-                                <li><a href="#">@localizer["PrivacyPolicy"]  </a></li>
-                                <li><a href="#">@localizer["FAQ"]  </a></li>
+
+                                <li><a href="#">@localizer["TermofConditions"] </a></li>
+                                <li><a href="#">@localizer["PrivacyPolicy"] </a></li>
+                                <li><a href="#">@localizer["FAQ"] </a></li>
                             </ul>
                         </div>
                         <div class="footer-section newsletter col-md-3">
                             <form action="">
                                 <h3>
-                                 @localizer["Newsletter"]     
+                                    @localizer["Newsletter"]
                                 </h3>
                                 <p>
-                                  @localizer["Get-our-news-and-updates"]
+                                    @localizer["Get-our-news-and-updates"]
                                 </p>
-                                <input type="email" class="newsletter-email" placeholder="@localizer["NewsletterPlaceHolder"]">
+                                <input type="email" class="newsletter-email"
+                                    placeholder="@localizer["NewsletterPlaceHolder"]">
                                 <div class="button-container d-flex justify-content-end">
                                     <button class="btn btn-green" type="button">
-                                      @localizer["GetStarted"]    
+                                        @localizer["GetStarted"]
                                     </button>
                                 </div>
                             </form>
                         </div>
                         <div class="footer-section contact-info col-md-3">
                             <h3>
-                             @localizer["ContactUs"]     
+                                @localizer["ContactUs"]
                             </h3>
                             <div>
-                            @foreach(var item in ContactItems)
+                                @foreach (var item in ContactItems)
                                 {
                                     <div class="d-flex contact-info-item">
-                                    <div class="icon">
-                                        <img src="~/assets/images/@item.Icon" alt="@(isRTL?item.ArabicValue:item.EnglishValue)">
+                                        <div class="icon">
+                                            <img src="~/assets/images/@item.Icon"
+                                            alt="@(isRTL?item.ArabicValue:item.EnglishValue)">
+                                        </div>
+                                        <div class="text">
+                                            @(isRTL?item.ArabicValue:item.EnglishValue)
+                                        </div>
                                     </div>
-                                    <div class="text">
-                                      @(isRTL?item.ArabicValue:item.EnglishValue)
-                                    </div>
-                                </div>
                                 }
                                 <!-- <div class="d-flex contact-info-item">
                                     <div class="icon">
@@ -203,7 +213,7 @@
                             </div>
                         </div>
                     </div>
-                    </div>
+                </div>
             </section>
             <section class="footer-bottom">
                 <div class="container">
@@ -216,21 +226,21 @@
                         </div>
                         <div class="col-md-4">
                             <div class="copyright text-center align-items-center">
-                               @localizer["CopyRight"] @DateTime.Now.Year
+                                @localizer["CopyRight"] @DateTime.Now.Year
                             </div>
                         </div>
                         <div class="col-md-4 text-left">
                             <div class="social-links ">
                                 <ul class="list-unstyled list-group list-group-horizontal justify-content-end">
-                                    
-                                 @foreach(var item in SocialMedias)
-                                {
-                                <li>
-                                        <a href="@item.Link" class="@item.EnglishTitle">
-                                            <i class="fa-brands fa-@item.EnglishTitle"></i>
-                                        </a>
-                                    </li>
-                                }
+
+                                    @foreach (var item in SocialMedias)
+                                    {
+                                        <li>
+                                            <a href="@item.Link" class="@item.EnglishTitle">
+                                                <i class="fa-brands fa-@item.EnglishTitle"></i>
+                                            </a>
+                                        </li>
+                                    }
                                 </ul>
                             </div>
                         </div>

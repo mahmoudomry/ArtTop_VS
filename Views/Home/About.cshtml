@@ -6,15 +6,15 @@
 
     Layout = "~/Views/Shared/_Layout.cshtml";
     var isRTL = CultureInfo.CurrentCulture.Name.StartsWith("ar");
-    ViewData["Title"] = (isRTL?"من نحن":"About us");
-    SiteSetting siteSetting=ViewBag.SiteSetting;
-    List<Feature>Features= ViewBag.Features;
-    List<ContactItem>ContactItems=   ViewBag.ContactItems;
-    List<SocialMedia>SocialMedias=  ViewBag.SocialMedia;
+    ViewData["Title"] = (isRTL ? "من نحن" : "About us");
+    SiteSetting siteSetting = ViewBag.SiteSetting;
+    List<Feature> Features = ViewBag.Features;
+    List<ContactItem> ContactItems = ViewBag.ContactItems;
+    List<SocialMedia> SocialMedias = ViewBag.SocialMedia;
     About about = ViewBag.About;
     List<OurValues> ourValues = ViewBag.OurValues;
     List<OurGoles> ourGoles = ViewBag.OurGoles;
-        
+
 }
 
 @section HeaderTitle{
@@ -51,7 +51,7 @@
             </div>
             <div class="col-md-6">
                 <p class="mt40">
-                     @(isRTL?about.knowus_DescArabic:about.knowus_DescEnglish)
+                    @(isRTL?about.knowus_DescArabic:about.knowus_DescEnglish)
                 </p>
                 <div class="row vision-mission">
                     <div class="col-md-6">
@@ -66,7 +66,7 @@
                     <div class="col-md-6">
                         <img src="~/assets/images/@about.MissionIcon" alt="Vision">
                         <h6>
-                             @(isRTL?about.MissionTitleArabic:about.MissionTitleEnglish)
+                            @(isRTL?about.MissionTitleArabic:about.MissionTitleEnglish)
                         </h6>
                         <p>
                             @(isRTL?about.MissionDescArabic:about.MissionDescEnglish)
@@ -81,16 +81,16 @@
     <div class="container">
         <div class="row">
             <div class="col-md-10 offset-md-1">
-                <div class="d-flex aign-items-center justify-content-center">
-                @foreach(var item in ourValues)
-                {
-                    <div class="work-feature text-center">
-                        <div class="icon">
-                            <img src="~/assets/images/@item.Icon" alt="">
+                <div class="d-flex aign-items-center justify-content-center work-features-list">
+                    @foreach (var item in ourValues)
+                    {
+                        <div class="work-feature text-center">
+                            <div class="icon">
+                                <img src="~/assets/images/@item.Icon" alt="">
+                            </div>
+                            <h3> @(isRTL?item.ArabicTitle:item.EnglishTitle)</h3>
                         </div>
-                        <h3> @(isRTL?item.ArabicTitle:item.EnglishTitle)</h3>
-                    </div>
-                }
+                    }
                 </div>
             </div>
         </div>
@@ -101,51 +101,52 @@
     <div class="container">
 
         <h5 class="text-center">
-        @localizer["OurGoles"]
+            @localizer["OurGoles"]
         </h5>
         <h2 class="text-center">
-         @(isRTL?about.GolesArabicTitle:about.GolesEnglishTitle)
+            @(isRTL?about.GolesArabicTitle:about.GolesEnglishTitle)
         </h2>
         <div class="row">
             <div class="col-md-4">
-            @for(int i=0;i<=1;i++)
-            {
-                <div class="goal-item" data-aos="@(isRTL?"zoom-in-right":"zoom-in-left")" data-aos-duration="@(i*2000)">
-                    <div class="num">
-                        <img src="~/assets/images/@ourGoles[i].Icon" alt="">
-                        <div>@ourGoles[i].Order.Value.ToString("00")</div>
-                    </div>
-                    <h6>
-                        @(isRTL?ourGoles[i].ArabicTitle:ourGoles[i].EnglishTitle)
-                    </h6>
+                @for (int i = 0; i <= 1; i++)
+                {
+                    <div class="goal-item" data-aos="@(isRTL?"zoom-in-right":"zoom-in-left")" data-aos-duration="@(i*2000)">
+                        <div class="num">
+                            <img src="~/assets/images/@ourGoles[i].Icon" alt="">
+                            <div>@ourGoles[i].Order.Value.ToString("00")</div>
+                        </div>
+                        <h6>
+                            @(isRTL?ourGoles[i].ArabicTitle:ourGoles[i].EnglishTitle)
+                        </h6>
                     </div>
                     if (i == 0)
                     {
                         <div class="separator"></div>
                     }
-               
+
                 }
             </div>
-            <div class="col-md-4" >
-                <img src="~/assets/images/our-goals-img.jpg" alt="Our Goals" data-aos="fade-up" data-aos-duration="1000">
+            <div class="col-md-4">
+                <img src="~/assets/images/our-goals-img.jpg" alt="Our Goals" data-aos="fade-up"
+                    data-aos-duration="1000">
             </div>
             <div class="col-md-4">
-                   @for(int i=2;i<=3;i++)
-            {
-                <div class="goal-item" data-aos="@(isRTL?"zoom-in-left":"zoom-in-right")" data-aos-duration="@(i*2000)">
-                    <div class="num">
-                        <img src="~/assets/images/@ourGoles[i].Icon" alt="">
-                        <div>@ourGoles[i].Order.Value.ToString("00")</div>
-                    </div>
-                    <h6>
-                        @(isRTL?ourGoles[i].ArabicTitle:ourGoles[i].EnglishTitle)
-                    </h6>
+                @for (int i = 2; i <= 3; i++)
+                {
+                    <div class="goal-item" data-aos="@(isRTL?"zoom-in-left":"zoom-in-right")" data-aos-duration="@(i*2000)">
+                        <div class="num">
+                            <img src="~/assets/images/@ourGoles[i].Icon" alt="">
+                            <div>@ourGoles[i].Order.Value.ToString("00")</div>
+                        </div>
+                        <h6>
+                            @(isRTL?ourGoles[i].ArabicTitle:ourGoles[i].EnglishTitle)
+                        </h6>
                     </div>
                     if (i == 2)
                     {
                         <div class="separator"></div>
                     }
-               
+
                 }
             </div>
         </div>
@@ -160,16 +161,17 @@
             @(isRTL?siteSetting.FeatureTitleAr:siteSetting.FeatureTitleEn)
         </h2>
         <div class="row our-fatures-items">
-            <div class="d-flex aign-items-center justify-content-center">
-            @foreach(var item in Features)  
-            {
-            <div class="our-fature">
-                    <div class="icon">
-                        <img class="svg-inline" src="~/assets/images/@item.Icon" alt="@(isRTL?item.ArabicTitle:item.EnglishTitle)">
+            <div class="d-flex aign-items-center justify-content-center features-list">
+                @foreach (var item in Features)
+                {
+                    <div class="our-fature">
+                        <div class="icon">
+                            <img class="svg-inline" src="~/assets/images/@item.Icon"
+                            alt="@(isRTL?item.ArabicTitle:item.EnglishTitle)">
+                        </div>
+                        <h6>@(isRTL?item.ArabicTitle:item.EnglishTitle)</h6>
                     </div>
-                    <h6>@(isRTL?item.ArabicTitle:item.EnglishTitle)</h6>
-                </div>
-            }
+                }
             </div>
         </div>
     </div>

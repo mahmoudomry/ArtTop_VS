@@ -2,14 +2,14 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer localizer
 @{
-      var culture = CultureInfo.CurrentCulture.Name;
-       var isRTL = CultureInfo.CurrentCulture.Name.StartsWith("ar");
-    ViewData["Title"] = (isRTL?"المشاريع":"Projects");
-    SiteSetting siteSetting=ViewBag.SiteSetting;
-    List<ContactItem>ContactItems=   ViewBag.ContactItems;
-    List<SocialMedia>SocialMedias=  ViewBag.SocialMedia;
-     List<Service>Services= ViewBag.Services;
-        List<Project>Projects= ViewBag.Projects;
+    var culture = CultureInfo.CurrentCulture.Name;
+    var isRTL = CultureInfo.CurrentCulture.Name.StartsWith("ar");
+    ViewData["Title"] = (isRTL ? "المشاريع" : "Projects");
+    SiteSetting siteSetting = ViewBag.SiteSetting;
+    List<ContactItem> ContactItems = ViewBag.ContactItems;
+    List<SocialMedia> SocialMedias = ViewBag.SocialMedia;
+    List<Service> Services = ViewBag.Services;
+    List<Project> Projects = ViewBag.Projects;
 }
 
 <style>
@@ -75,13 +75,25 @@
             width: calc(100%/3 - (((3 - 1) * 1rem) / 3));
         }
     }
+
+    @@media only screen and (max-width: 768px) {
+        .controls {
+            display: block;
+            text-align: center;
+        }
+
+        .mix,
+        .gap {
+            width: calc(100% - (((2 - 1) * 1rem) / 2));
+        }
+    }
 </style>
 
 @section HeaderTitle{
 <div class="top-title row">
     <div class="col-md-8 offset-md-2">
         <h1>
-            @ViewData["Title"] 
+            @ViewData["Title"]
         </h1>
         <ul class="breadcrumb">
             <li><a href="index.html">@localizer["home"]</a></li>
@@ -95,34 +107,36 @@
 
         <div class="controls">
             <button type="button" class="btn control" data-filter="all">@localizer["All"]</button>
-            @foreach(Service s in Services)
+            @foreach (Service s in Services)
             {
-            <button type="button" class="btn control" data-toggle=".service@(s.Id)">@(isRTL?s.ArabicTitle.Replace("الخدمات","").Replace("خدمات","").Trim():s.EnglishTitle.Replace("services","").Replace("Services","").Trim()) </button>
+                <button type="button" class="btn control"
+                data-toggle=".service@(s.Id)">@(isRTL?s.ArabicTitle.Replace("الخدمات","").Replace("خدمات","").Trim():s.EnglishTitle.Replace("services","").Replace("Services","").Trim())
+                </button>
             }
         </div>
 
         <div class="container">
-        @foreach(var project in Projects)
-        {
-            <div class="mix service@(project.Service.Id)">
-                <a href="~/@culture/Projects/Details/@project.Id">
-                    <div class="project-item" style="background-image: url('/assets/images/@project.CoverImage');">
-                        <div class="service-item-overlay"></div>
-                        <div class="content">
-                            <div class="text">
-                                <h3>
-                                   @(isRTL?project.Service.ArabicTitle.Replace("الخدمات","المشاريع").Replace("خدمات","المشاريع"):project.Service.EnglishTitle.Replace("services","Projects").Replace("Services","Projects")) 
-                                </h3>
-                                <p>
-                                     @(isRTL?project.ArabicTitle:project.EnglishTitle) 
-                                </p>
+            @foreach (var project in Projects)
+            {
+                <div class="mix service@(project.Service.Id)">
+                    <a href="~/@culture/Projects/Details/@project.Id">
+                        <div class="project-item" style="background-image: url('/assets/images/@project.CoverImage');">
+                            <div class="service-item-overlay"></div>
+                            <div class="content">
+                                <div class="text">
+                                    <h3>
+                                        @(isRTL?project.Service.ArabicTitle.Replace("الخدمات","المشاريع").Replace("خدمات","المشاريع"):project.Service.EnglishTitle.Replace("services","Projects").Replace("Services","Projects"))
+                                    </h3>
+                                    <p>
+                                        @(isRTL?project.ArabicTitle:project.EnglishTitle)
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </a>
-            </div>
+                    </a>
+                </div>
             }
-        
+
         </div>
     </div>
 </section>

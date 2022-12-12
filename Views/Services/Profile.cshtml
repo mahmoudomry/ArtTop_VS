@@ -1,5 +1,4 @@
-﻿
-@using Microsoft.AspNetCore.Mvc.Localization
+﻿@using Microsoft.AspNetCore.Mvc.Localization
 @using System.Globalization
 @inject IViewLocalizer localizer
 @model Office
@@ -13,7 +12,7 @@
 
     List<OfficeSlider> OfficeSliders = ViewBag.OfficeSliders;
     List<SubService> SubServices = ViewBag.SubServices;
-     List<OfficeSocialMedia> OfficesMedia = ViewBag.OfficesMedia;
+    List<OfficeSocialMedia> OfficesMedia = ViewBag.OfficesMedia;
 
 
 }
@@ -21,14 +20,15 @@
 <section class="service-slider">
     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
         <div class="carousel-inner">
-      <div class="carousel-inner">
-            @foreach (var item in OfficeSliders)
-            {
-                <div class="carousel-item @(OfficeSliders.IndexOf(item)==0?"active":"")" data-bs-interval="10000">
-                    <img src="~/assets/images/@(isRTL ? item.CoverImageAr:item.CoverImage)" alt="@(isRTL ? Model.ArabicTitle: Model.EnglishTitle)">
-                </div>
-            }
-        </div>
+            <div class="carousel-inner">
+                @foreach (var item in OfficeSliders)
+                {
+                    <div class="carousel-item @(OfficeSliders.IndexOf(item)==0?"active":"")" data-bs-interval="10000">
+                        <img src="~/assets/images/@(isRTL ? item.CoverImageAr:item.CoverImage)"
+                        alt="@(isRTL ? Model.ArabicTitle: Model.EnglishTitle)">
+                    </div>
+                }
+            </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -45,46 +45,48 @@
         <div class="row about">
             <div class="col-md-5 details">
                 <h5>
-                  @(isRTL?Model.ArabicAboutTitle:Model.EnglishAboutTitle)
+                    @(isRTL?Model.ArabicAboutTitle:Model.EnglishAboutTitle)
                 </h5>
                 <h2>
-                     @(isRTL?Model.ArabicTitle:Model.EnglishTitle)
+                    @(isRTL?Model.ArabicTitle:Model.EnglishTitle)
                 </h2>
                 <p>
-                   @Html.Raw(isRTL?Model.ArabicDetails:Model.EnglishDetails)
+                    @Html.Raw(isRTL?Model.ArabicDetails:Model.EnglishDetails)
                 </p>
                 <a href="#" class="btn btn-green">
                     @localizer["GetStarted"]
                 </a>
             </div>
             <div class="col-md-6 offset-md-1 image">
-                <img src="~/assets/images/@(isRTL?Model.ProfileImageAr:Model.ProfileImage)" alt="  @(isRTL?Model.ArabicTitle:Model.EnglishTitle)">
+                <img src="~/assets/images/@(isRTL?Model.ProfileImageAr:Model.ProfileImage)"
+                    alt="  @(isRTL?Model.ArabicTitle:Model.EnglishTitle)">
             </div>
         </div>
         <div class="row">
-              @foreach (var item in SubServices)
+            @foreach (var item in SubServices)
             {
-            <div class="col-md-4">
-                <div class="service-item">
-                    <a href="#">
-                        <div class="content">
-                            <span class="icon">
-                                <img src="~/assets/images/@item.Icon" alt="  @(isRTL?item.ArabicTitle:item.EnglishTitle)">
-                            </span>
-                            <div class="text">
-                                <h3>
-                                      @(isRTL?item.ArabicTitle:item.EnglishTitle)
-                                </h3>
-                                @*<p>
-                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                    Ipsum is simply
-                                </p>*@
+                <div class="col-md-4">
+                    <div class="service-item">
+                        <a href="#">
+                            <div class="content">
+                                <span class="icon">
+                                    <img src="~/assets/images/@item.Icon"
+                                    alt="  @(isRTL?item.ArabicTitle:item.EnglishTitle)">
+                                </span>
+                                <div class="text">
+                                    <h3>
+                                        @(isRTL?item.ArabicTitle:item.EnglishTitle)
+                                    </h3>
+                                    @*<p>
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                        Ipsum is simply
+                                        </p>*@
+                                </div>
                             </div>
-                        </div>
-                    </a>
+                        </a>
+                    </div>
                 </div>
-            </div>
-          }
+            }
         </div>
     </div>
 </section>
@@ -93,14 +95,14 @@
         <div class="row">
             <div class="col-md-6 get-in-touch-detials">
                 <h5>
-                     @localizer["GetInTouch"]
+                    @localizer["GetInTouch"]
                 </h5>
                 <h2>
-                   @(isRTL?Model.ArabicContactTitle:Model.EnglishContactTitle)  
+                    @(isRTL?Model.ArabicContactTitle:Model.EnglishContactTitle)
                 </h2>
                 <p>
                     @localizer["Wewillbehappytoreachus"]
-                   
+
                 </p>
                 <div class="row">
                     <div class="col-md-6">
@@ -108,16 +110,16 @@
                             <img src="~/assets/images/marker.svg" alt="Location">
                         </div>
                         <div class="title">
-                             @localizer["Location"] 
+                            @localizer["Location"]
                         </div>
                         <div class="address">
-                           @Html.Raw(isRTL?Model.ArabicAddress:Model.EnglishAddress)
+                            @Html.Raw(isRTL?Model.ArabicAddress:Model.EnglishAddress)
                         </div>
                         <div class="title">
-                          @localizer["MakeAppointment"]   
+                            @localizer["MakeAppointment"]
                         </div>
                         <div class="mobile">
-                          @Model.Phone
+                            @Model.Phone
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -128,25 +130,25 @@
                             @localizer["WorkingHours"]
                         </div>
                         <div class="address">
-                             @(isRTL?Model.WorkingHoursAr:Model.WorkingHours)
+                            @(isRTL?Model.WorkingHoursAr:Model.WorkingHours)
                             <br>
-                            @(isRTL?Model.WeekendAr:Model.Weekend): @localizer["Closed"] 
+                            @(isRTL?Model.WeekendAr:Model.Weekend): @localizer["Closed"]
                         </div>
                         <div class="title">
-                          @localizer["SocialAccounts"]   
+                            @localizer["SocialAccounts"]
                         </div>
                         <div class="social-links ">
                             <ul class="list-unstyled list-group list-group-horizontal">
-                               
-                                @foreach(var item in OfficesMedia)
+
+                                @foreach (var item in OfficesMedia)
                                 {
-                                <li>
-                                    <a href="@item.Link" class="@item.EnglishTitle">
-                                        <i class="fa-brands fa-@item.EnglishTitle"></i>
-                                    </a>
-                                </li>
+                                    <li>
+                                        <a href="@item.Link" class="@item.EnglishTitle">
+                                            <i class="fa-brands fa-@item.EnglishTitle"></i>
+                                        </a>
+                                    </li>
                                 }
-                           
+
                             </ul>
                         </div>
                     </div>
@@ -155,7 +157,7 @@
             <div class="col-md-6 book-appointment-form-container">
                 <form action="" class="book-appointment-form">
                     <h2>
-                        @localizer["MakeAppointment"]  
+                        @localizer["MakeAppointment"]
                     </h2>
                     <div class="form-inputs">
                         <div class="row">
@@ -178,7 +180,8 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="persons" class="form-label">@localizer["Persons"]</label>
-                                    <input type="text" class="form-control" id="persons" value="@localizer["PersonsPlaceHolder"]">
+                                    <input type="text" class="form-control" id="persons"
+                                        value="@localizer["PersonsPlaceHolder"]">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -217,13 +220,13 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <div class="d-flex aign-items-center justify-content-center">
+                <div class="d-flex aign-items-center justify-content-center statistics-items-list">
                     <div class="statistics-item">
                         <h2>
                             @Model.Mission
                         </h2>
                         <h3>
-                         @(isRTL?Model.MissionAR:Model.MissionEn)
+                            @(isRTL?Model.MissionAR:Model.MissionEn)
                         </h3>
                     </div>
                     <div class="statistics-item">
@@ -231,7 +234,7 @@
                             @Model.Client
                         </h2>
                         <h3>
-                             @(isRTL?Model.ClientAR:Model.ClientEn)
+                            @(isRTL?Model.ClientAR:Model.ClientEn)
                         </h3>
                     </div>
                     <div class="statistics-item">
@@ -239,7 +242,7 @@
                             @Model.Worker
                         </h2>
                         <h3>
-                             @(isRTL?Model.WorkerAR:Model.WorkerEn)
+                            @(isRTL?Model.WorkerAR:Model.WorkerEn)
                         </h3>
                     </div>
                     <div class="statistics-item">
@@ -247,7 +250,7 @@
                             @Model.Experience+
                         </h2>
                         <h3>
-                           @(isRTL?Model.ExperienceAR:Model.ExperienceEn)
+                            @(isRTL?Model.ExperienceAR:Model.ExperienceEn)
                         </h3>
                     </div>
                 </div>
