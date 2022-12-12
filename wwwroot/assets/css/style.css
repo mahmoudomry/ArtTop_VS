@@ -1660,6 +1660,9 @@ section.statistics .statistics-item h3{
     .nav-center{
         width: 100%;
     }
+    section.services .content{
+        margin-bottom: 0;
+    }
     footer .logos{
         display: flex;
         justify-content: center;
