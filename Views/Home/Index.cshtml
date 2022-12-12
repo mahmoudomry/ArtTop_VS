@@ -6,16 +6,17 @@
     var isRTL = CultureInfo.CurrentCulture.Name.StartsWith("ar");
     ViewData["Title"] = "Home Page";
     Layout = null;
-        SiteSetting siteSetting=ViewBag.SiteSetting;
-        List<Slider>Sliders =ViewBag.Sliders;
-        List<Service>Services= ViewBag.Services;
-        List<Feature>Features= ViewBag.Features;
-        List<Project>Projects= ViewBag.Projects;
-        List<Client>Clients= ViewBag.Clients;
-         List<ContactItem>ContactItems=   ViewBag.ContactItems;
-          List<SocialMedia>SocialMedias=  ViewBag.SocialMedia;
-            var current_controller = ViewBag.current_controller;
+    SiteSetting siteSetting=ViewBag.SiteSetting;
+    List<Slider>Sliders =ViewBag.Sliders;
+    List<Service>Services= ViewBag.Services;
+    List<Feature>Features= ViewBag.Features;
+    List<Project>Projects= ViewBag.Projects;
+    List<Client>Clients= ViewBag.Clients;
+    List<ContactItem>ContactItems=   ViewBag.ContactItems;
+    List<SocialMedia>SocialMedias=  ViewBag.SocialMedia;
+    var current_controller = ViewBag.current_controller;
     var current_action = ViewBag.current_action;
+    var ServicesItems = ViewBag.ServicesItems;
 }
 <!doctype html>
 <html lang="en" dir="@(isRTL?"RTL":"LTR")">
@@ -92,16 +93,27 @@
                                         @(current_controller=="Services"&&current_action=="Index"?"active":"")
                                         data-bs-auto-close="outside">Services</a>
                                     <ul class="dropdown-menu shadow">
-                                        <li>
-                                            <a class="dropdown-item" href="#">
-                                                test
+
+                                    @foreach(var itm in Services)
+                                    {
+                                        <li class="nav-item dropdown">
+                                            <a class="dropdown-item" href="~/@culture/Services/details/@itm.Id">
+                                               @(isRTL?itm.ArabicTitle:itm.EnglishTitle)
                                             </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="#">
-                                                test
+                                            <ul class="dropdown-menu shadow">
+                                             @foreach(var d in ServicesItems)
+                                    {
+                                        <li class="nav-item dropdown">
+                                            <a class="dropdown-item" href="~/@culture/Services/profile/@d.Id">
+                                               @(isRTL?d.ArabicTitle:d.EnglishTitle)
                                             </a>
+                                            </li>
+                                    }
+                                         </ul>
                                         </li>
+                                       
+                                    }
+                                       
                                     </ul>
                                 </li>
                                 <li class="nav-item">

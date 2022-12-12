@@ -33,6 +33,8 @@ namespace ArtTop.Controllers
             ViewBag.SocialMedia=_context.SocialMedia.ToList();
             ViewBag.current_controller = "Home";
             ViewBag.current_action = "Index";
+
+            ViewBag.ServicesItems = _context.Offices.Select(x=>new { x.Id, x.ArabicTitle, x.EnglishTitle, Type = 1,x.ServiceId }).ToList().Union(_context.Doctors.Select(x => new { x.Id, x.ArabicTitle, x.EnglishTitle, Type = 1, x.ServiceId }).ToList());
             return View();
         }
         public IActionResult Privacy()
