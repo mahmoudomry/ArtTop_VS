@@ -88,5 +88,8 @@
   "Tuesday": "الثلاثاء",
   "Wednesday": "الأربعاء",
   "Thursday": "الخميس",
-  "Location": "العنوان"
+  "Location": "العنوان",
+  "MessageSentSuccessfully": "تم ارسال الرسالة بنجاح",
+  "PleaseFillAllBoxes": "الرجاء ملء جميع الحقول",
+  "YouSubscribeSuccessfully": "تم اشتراكك بنجاح"
 }

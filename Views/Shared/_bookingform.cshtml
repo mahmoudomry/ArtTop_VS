@@ -98,8 +98,10 @@
 
 
 $("input[name='ServiceId']").change(function(){
-   
+    $("#divMessage").html('');
 $('.book-appointment-form').block({ message: "<img src='/assets/images/loading.gif'/>" }); 
+
+
      $.ajax({
                 type: "GET",
                 url: "/Services/GetWorkers/"+$(this).val(),
@@ -141,6 +143,7 @@ $(document).ready(function() {
             });
   var sid= $("input[name='ServiceId']:checked").val();
    $('.book-appointment-form').block({ message: "<img src='/assets/images/loading.gif'/>" }); 
+    $("#divMessage").html('');
      $.ajax({
                 type: "GET",
                 url: "/Services/GetWorkers/"+sid,
@@ -175,7 +178,7 @@ $(document).ready(function() {
 
  function submitBook() {
       $('.book-appointment-form').block({ message: "<img src='/assets/images/loading.gif'/>" }); 
-     $("#divMessage").empty();
+     $("#divMessage").html('');
        var token = $('input[name="__RequestVerificationToken"]').val();
        var book= {
            FullName:$("input[name='FullName']").val(),

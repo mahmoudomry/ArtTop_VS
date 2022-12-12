@@ -91,6 +91,8 @@
 		<link href="~/lib/ckeditor/contents.css" rel="stylesheet" type="text/css" />
 		<!--end::Layout Skins -->
 		<link rel="shortcut icon" href="~/assets/images/logo-IconSmall.png" />
+
+		 @await RenderSectionAsync("Styles", required: false)
 		<style>
 			.create-btn
 			{

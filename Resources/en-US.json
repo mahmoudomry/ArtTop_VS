@@ -86,5 +86,9 @@
   "Tuesday": "Tuesday",
   "Wednesday": "Wednesday",
   "Thursday": "Thursday",
-  "Location": "Location"
+  "Location": "Location",
+  "MessageSentSuccessfully": "Message Sent Successfully",
+  "PleaseFillAllBoxes": "Please Fill All Boxes",
+  "YouSubscribeSuccessfully": "You Subscribe Successfully"
+
 }

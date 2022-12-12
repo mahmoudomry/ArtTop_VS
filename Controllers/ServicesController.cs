@@ -73,6 +73,28 @@ namespace ArtTop.Controllers
                 return NotFound();
             return View();
         }
+        public IActionResult PersonProfile(int Id)
+        {
+            ViewBag.current_controller = "Services";
+            ViewBag.current_action = "PersonProfile";
+            var servicesList = _context.Services.OrderBy(x => x.Order).ToList();
+            ViewBag.Services = servicesList;
+            ViewBag.SiteSetting = _context.SiteSettings.FirstOrDefault();
+            ViewBag.ContactItems = _context.ContactItem.Where(x => x.ShowInHome == true).ToList();
+            ViewBag.SocialMedia = _context.SocialMedia.ToList();
+
+            var office = _context.Offices.Where(x => x.Id == Id).FirstOrDefault();
+            if (office != null)
+            {
+                ViewBag.OfficeSliders = _context.OfficeSliders.Where(x => x.OfficeId == Id).ToList();
+                ViewBag.SubServices = _context.OfficeSubServices.Where(x => x.OfficeId == Id).Select(x => x.SubService).ToList();
+                ViewBag.OfficesMedia = _context.OfficeSocialMedias.Where(x => x.OfficeId == Id).ToList();
+                return View(office);
+            }
+            else
+                return NotFound();
+            return View();
+        }
 
         [HttpGet]
         public JsonResult GetWorkers(int? id)

@@ -154,21 +154,7 @@
                             </ul>
                         </div>
                         <div class="footer-section newsletter col-md-3">
-                            <form action="">
-                                <h3>
-                                    @localizer["Newsletter"]
-                                </h3>
-                                <p>
-                                    @localizer["Get-our-news-and-updates"]
-                                </p>
-                                <input type="email" class="newsletter-email"
-                                    placeholder="@localizer["NewsletterPlaceHolder"]">
-                                <div class="button-container d-flex justify-content-end">
-                                    <button class="btn btn-green" type="button">
-                                        @localizer["GetStarted"]
-                                    </button>
-                                </div>
-                            </form>
+                               @Html.Partial("_NewsLetter")
                         </div>
                         <div class="footer-section contact-info col-md-3">
                             <h3>

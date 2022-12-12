@@ -1,6 +1,8 @@
 ﻿@using System.Globalization
+@using ArtTop.Controllers
 @using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer localizer
+@model ContactUsViewModel
 @{
 
 
@@ -73,22 +75,28 @@
                 <h1>
                     @localizer["GetInTouch"]
                 </h1>
-                <form>
+                <form method="post" action="/Home/ContactUs">
+                @Html.Raw(TempData["Message"])
+                @Html.AntiForgeryToken()
                     <div class="mb-3">
-                        <input type="name" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        <input asp-for="FullName"  class="form-control" aria-describedby="emailHelp"
                             placeholder="@localizer["FullName"]">
+                            <span asp-validation-for="FullName" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
-                        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        <input asp-for="Email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                             placeholder="@localizer["Email"]">
+                            <span asp-validation-for="Email" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
-                        <input type="subject" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                        <input asp-for="Subject"  class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                             placeholder="@localizer["Subject"]">
+                            <span asp-validation-for="Subject" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
-                        <textarea name="message" id="message" cols="30" rows="5" placeholder="@localizer["Message"]"
+                        <textarea asp-for="Message"  cols="30" rows="5" placeholder="@localizer["Message"]"
                             class="form-control"></textarea>
+                            <span asp-validation-for="Message" class="text-danger"></span>
                     </div>
                     <div class="d-flex justify-content-end">
                         <button type="submit" class="btn btn-green">@localizer["Sendus"]</button>
@@ -105,3 +113,8 @@
         width="100%" height="560" style="border:0;" allowfullscreen="" loading="lazy"
         referrerpolicy="no-referrer-when-downgrade"></iframe>
 </section>
+
+@section Scripts {
+
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

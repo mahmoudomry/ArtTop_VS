@@ -18,5 +18,9 @@ namespace ArtTop.Models
         public string Subject { get; set; }
         [Required, Display(Name = "Message")]
         public string Message { get; set; }
+        [Display(Name = "Inserted_at")]
+        public DateTime Inserted_at { get; set; } = DateTime.Now;
+        [Display(Name = "IsRead")]
+        public bool IsRead { get; set; } = false;
     }
 }

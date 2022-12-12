@@ -1,0 +1,147 @@
+﻿@model ArtTop.Models.Doctor
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Edit</h1>
+
+<h4>Doctor</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="ServiceId" class="control-label"></label>
+                <select asp-for="ServiceId" class="form-control" asp-items="ViewBag.ServiceId"></select>
+                <span asp-validation-for="ServiceId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="OfficeId" class="control-label"></label>
+                <select asp-for="OfficeId" class="form-control" asp-items="ViewBag.OfficeId"></select>
+                <span asp-validation-for="OfficeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ArabicTitle" class="control-label"></label>
+                <input asp-for="ArabicTitle" class="form-control" />
+                <span asp-validation-for="ArabicTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EnglishTitle" class="control-label"></label>
+                <input asp-for="EnglishTitle" class="form-control" />
+                <span asp-validation-for="EnglishTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ArabicName" class="control-label"></label>
+                <input asp-for="ArabicName" class="form-control" />
+                <span asp-validation-for="ArabicName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EnglisName" class="control-label"></label>
+                <input asp-for="EnglisName" class="form-control" />
+                <span asp-validation-for="EnglisName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ArabicAboutTitle" class="control-label"></label>
+                <input asp-for="ArabicAboutTitle" class="form-control" />
+                <span asp-validation-for="ArabicAboutTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EnglishAboutTitle" class="control-label"></label>
+                <input asp-for="EnglishAboutTitle" class="form-control" />
+                <span asp-validation-for="EnglishAboutTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ArabicDetails" class="control-label"></label>
+                <input asp-for="ArabicDetails" class="form-control" />
+                <span asp-validation-for="ArabicDetails" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EnglishDetails" class="control-label"></label>
+                <input asp-for="EnglishDetails" class="form-control" />
+                <span asp-validation-for="EnglishDetails" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CoverImage" class="control-label"></label>
+                <input asp-for="CoverImage" class="form-control" />
+                <span asp-validation-for="CoverImage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CoverImageArabic" class="control-label"></label>
+                <input asp-for="CoverImageArabic" class="form-control" />
+                <span asp-validation-for="CoverImageArabic" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProfileImage" class="control-label"></label>
+                <input asp-for="ProfileImage" class="form-control" />
+                <span asp-validation-for="ProfileImage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProfileImageAr" class="control-label"></label>
+                <input asp-for="ProfileImageAr" class="form-control" />
+                <span asp-validation-for="ProfileImageAr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ArabicContactTitle" class="control-label"></label>
+                <input asp-for="ArabicContactTitle" class="form-control" />
+                <span asp-validation-for="ArabicContactTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EnglishContactTitle" class="control-label"></label>
+                <input asp-for="EnglishContactTitle" class="form-control" />
+                <span asp-validation-for="EnglishContactTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ArabicAddress" class="control-label"></label>
+                <input asp-for="ArabicAddress" class="form-control" />
+                <span asp-validation-for="ArabicAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EnglishAddress" class="control-label"></label>
+                <input asp-for="EnglishAddress" class="form-control" />
+                <span asp-validation-for="EnglishAddress" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkingHours" class="control-label"></label>
+                <input asp-for="WorkingHours" class="form-control" />
+                <span asp-validation-for="WorkingHours" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WorkingHoursAr" class="control-label"></label>
+                <input asp-for="WorkingHoursAr" class="form-control" />
+                <span asp-validation-for="WorkingHoursAr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Weekend" class="control-label"></label>
+                <input asp-for="Weekend" class="form-control" />
+                <span asp-validation-for="Weekend" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="WeekendAr" class="control-label"></label>
+                <input asp-for="WeekendAr" class="form-control" />
+                <span asp-validation-for="WeekendAr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Location" class="control-label"></label>
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

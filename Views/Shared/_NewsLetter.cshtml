@@ -1,0 +1,55 @@
+﻿ @using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer localizer
+@{
+    var culture = CultureInfo.CurrentCulture.Name;
+    var isRTL = CultureInfo.CurrentCulture.Name.StartsWith("ar");
+}
+<form action="/Home/AddEmaiToNewsLetter/" method="Post" id="Subescribe_form">
+      @Html.AntiForgeryToken()
+                                <h3>
+                                 @localizer["Newsletter"]     
+                                </h3>
+
+                                <p>
+                                  @localizer["Get-our-news-and-updates"]
+                                </p>
+                                 <div class="mb-3" id="divMessage"></div>
+                                <input type="email" name="Email" id="SubscribeEmail" class="newsletter-email" placeholder="@localizer["NewsletterPlaceHolder"]">
+                                <div class="button-container d-flex justify-content-end">
+                                    <button class="btn btn-green" id="Newsletter_submit" onclick="submitSubescribe()" type="button">
+                                      @localizer["GetStarted"]    
+                                    </button>
+                                </div>
+                            </form>
+
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.js"></script>
+
+                          <script type="text/javascript">
+
+                              function submitSubescribe() {
+      $('#Subescribe_form').block({ message: "<img src='/assets/images/loading.gif'/>" }); 
+      $("#Subescribe_form #divMessage").empty();
+       var token = $('#Subescribe_form input[name="__RequestVerificationToken"]').val();
+       var News= {
+       Email:$("#SubscribeEmail").val(),
+       };
+        $.ajax({
+            type: 'POST',
+            url: '/Home/AddEmaiToNewsLetter/',
+            data:{News, __RequestVerificationToken: token},
+            success: function (result) {
+                $("#Subescribe_form #divMessage").html(result.message);
+ $('#Subescribe_form').unblock();   
+            },
+            error: function () {
+                alert("faild");
+            $('#Subescribe_form').unblock();   
+            }
+        })
+   
+    }
+
+                              </script>
+                               @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

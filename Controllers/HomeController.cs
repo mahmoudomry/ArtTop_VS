@@ -3,6 +3,7 @@ using ArtTop.Models;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 
 namespace ArtTop.Controllers
@@ -72,6 +73,7 @@ namespace ArtTop.Controllers
             ViewBag.SocialMedia = _context.SocialMedia.ToList();
             return View();
         }
+      
         [HttpPost]
         public IActionResult SetLanguage(string culture, string returnUrl)
         {
@@ -88,6 +90,90 @@ namespace ArtTop.Controllers
             //   string url = ("~/" + returnUrl["culture"] + "/" + (returnUrl["controller"]!= null ? "/" + returnUrl["controller"] : "")+(returnUrl["action"] != null ?  "/" + returnUrl["action"]:"") +( returnUrl["id"] != null ? "/" + returnUrl["id"] : ""));
             return LocalRedirect(returnUrl);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult ContactUs(ContactUsViewModel contact)
+        {
+
+            if (ModelState.IsValid)
+            {
+                ContactMessages message= new ContactMessages();
+                message.FullName=contact.FullName;  
+                message.Email=contact.Email;    
+                message.Subject=contact.Subject;
+                message.Message = contact.Message;
+                message.Inserted_at = DateTime.Now;
+                message.IsRead = false;
+                _context.Add(message);
+                _context.SaveChanges();
+                TempData["Message"] = "<div class='alert alert-success'> " + _localizer["MessageSentSuccessfully"] + "</div>";
+                return RedirectToAction("Contact", "Home",new ContactUsViewModel());
+                
+            }
+            TempData["Message"] = "<div class='alert alert-danger'> " + _localizer["PleaseFillAllBoxes"] + "</div>";
+            ViewBag.current_controller = "Home";
+            ViewBag.current_action = "Contact";
+            ViewBag.Home = _localizer["home"];
+
+            ViewBag.SiteSetting = _context.SiteSettings.FirstOrDefault();
+            ViewBag.Services = _context.Services.OrderBy(x => x.Order).ToList();
+            ViewBag.ContactItems = _context.ContactItem.Where(x => x.ShowInHome == true).ToList();
+            ViewBag.ContactItemsAll = _context.ContactItem.ToList();
+            ViewBag.SocialMedia = _context.SocialMedia.ToList();
+            return View("Contact", contact);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public JsonResult AddEmaiToNewsLetter(NewsLetterViewModel News)
+        {
+            string Message = "";
+
+            if (ModelState.IsValid)
+            {
+
+                if (_context.NewsLetters.FirstOrDefault(x => x.Email == News.Email) == null)
+                {
+                    NewsLetter newsLetter = new NewsLetter();
+                    newsLetter.Email = News.Email;
+                    newsLetter.Created_at = DateTime.Now;
+
+
+                    _context.Add(newsLetter);
+                    _context.SaveChanges();
+                     Message = "<div class='alert alert-success'> " + _localizer["YouSubscribeSuccessfully"] + "</div>";
+                    return Json(new { status = "success", Message = Message });
+                }
+                else {
+                     Message = "<div class='alert alert-success'> " + _localizer["YouSubscribeSuccessfully"] + "</div>";
+                    return Json(new { status = "success", Message = Message });
+                }
+
+            }
+
+             Message = "<div class='alert alert-danger'> " + _localizer["PleaseFillAllBoxes"] + "</div>";
+            return Json(new { status = "failed", Message = Message });
+           
+        }
+    }
+    public class ContactUsViewModel
+    {
+        [Required]
+        public string FullName { get; set; }
+        [Required,EmailAddress]
+        public string Email { get; set; }
+        [Required]
+        public string Subject { get; set; }
+        [Required]
+        public string Message { get; set; }
+       
+    }
+
+    public class NewsLetterViewModel
+    {
+      
+        [Required, EmailAddress]
+        public string Email { get; set; }
+      
 
     }
 }
