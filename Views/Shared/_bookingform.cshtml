@@ -1,0 +1,211 @@
+﻿ @using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer localizer
+@{
+    var culture = CultureInfo.CurrentCulture.Name;
+    var isRTL = CultureInfo.CurrentCulture.Name.StartsWith("ar");
+    ViewData["Title"] = "Home Page";
+    Layout = null;
+    SiteSetting siteSetting=ViewBag.SiteSetting;
+
+    List<Service>Services= ViewBag.Services;
+    var current_controller = ViewBag.current_controller;
+    var current_action = ViewBag.current_action;
+    var currentworker = "";
+}
+  <form action="/Services/BookAppointment/" method="Post" id="BookAbointment" class="book-appointment-form">
+  @Html.AntiForgeryToken()
+                                <div class="corner-top"></div>
+                                <div class="service-choices">
+                                @foreach (var service in Services)
+        {
+
+            currentworker = (isRTL ? service.WorkersArabic : service.WorkersEnglish);
+            <div class="form-check form-check-inline">
+                                        <input class="form-check-input" checked type="radio" name="ServiceId"
+                                            id="inlineRadio_@service.Id" value="@service.Id">
+                                        <label class="form-check-label d-flex" for="inlineRadio_@service.Id">
+                                            <div class="icon">
+                                                <img src="~/assets/images/@service.Icon" alt="">
+                                            </div>
+                                            <h6>
+                                                 @(isRTL?service.ArabicTitle:service.EnglishTitle)
+                                            </h6>
+                                        </label>
+                                    </div>
+                                    
+                                }
+                                </div>
+                                <div class="form-inputs">
+                                  <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="mb-3" id="divMessage">
+                                            </div>
+                                            </div>
+                                            </div>
+                                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="mb-3">
+                                                <label for="FullName" class="form-label"> @localizer["FullName"]</label>
+                                                <input type="text" class="form-control" id="FullName" name="FullName" placeholder="@localizer["FullName"]"
+                                                    value="">
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row">
+                                              <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="Email" class="form-label"> @localizer["Email"]</label>
+                                                <input type="text" class="form-control" id="Email" name="Email" placeholder="@localizer["Email"]"
+                                                    value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="doctor" id="workerTitle" class="form-label">@currentworker</label>
+                                                <select id="doctor" name="DoctorId" class="form-select">
+                                                    <option value="1">Dr. Ahmed Ali</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="date" class="form-label">@localizer["Date"]</label>
+                                                <input type="date" class="form-control" name="Date" id="date" value="12 Sep, 2022">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="time" class="form-label">@localizer["Time"]</label>
+                                                <input type="text" class="form-control" name="Time" id="time" 
+                                                    value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="btn btn-green" id="start_submit" onclick="submitBook()" type="button">
+                                   @localizer["GetStarted"] 
+                                </button>
+                            </form>
+                                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.js"></script>
+                                    <script src="~/Admin/assets/plugins/general/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script> 
+
+                          <script type="text/javascript">
+
+
+$("input[name='ServiceId']").change(function(){
+   
+$('.book-appointment-form').block({ message: "<img src='/assets/images/loading.gif'/>" }); 
+     $.ajax({
+                type: "GET",
+                url: "/Services/GetWorkers/"+$(this).val(),
+                success: function (data) {
+                     
+                 console.log(data);
+                    $("#doctor").empty();
+                    $.each(data.list, function (index) {
+                       
+                      if("@isRTL"=="True")
+                   {
+
+                       $("#workerTitle").html(data.workerAR);
+                            $("#doctor").append("<option value='" + data.list[index]["id"] + "' data-type='"+data.list[index]["type"]+"'>" + data.list[index]["arabicName"] + "</option>");
+                        }
+                        else{
+                              $("#workerTitle").html(data.workerEn);
+                           $("#doctor").append("<option value='" + data.list[index]["id"] + "' data-type='"+data.list[index]["type"]+"'>" + data.list[index]["englisName"] + "</option>");
+                        }
+                     $('.book-appointment-form').unblock();    
+               });
+                   
+                  
+                  //  $("#doctor").selectpicker('refresh');
+                }
+            });
+
+});
+
+$(document).ready(function() {
+   $('#time').click(function(){  $(".glyphicon-chevron-up").addClass("fa fa-chevron-up");
+      $(".glyphicon-chevron-down").addClass("fa fa-chevron-down");})
+  
+
+      $('#time').timepicker({
+                minuteStep: 30,
+                showInputs: false,
+                disableFocus: true
+            });
+  var sid= $("input[name='ServiceId']:checked").val();
+   $('.book-appointment-form').block({ message: "<img src='/assets/images/loading.gif'/>" }); 
+     $.ajax({
+                type: "GET",
+                url: "/Services/GetWorkers/"+sid,
+                success: function (data) {
+                     
+                 console.log(data);
+                    $("#doctor").empty();
+                    $.each(data.list, function (index) {
+                       
+                      if("@isRTL"=="True")
+                   {
+
+                       $("#workerTitle").html(data.workerAR);
+                            $("#doctor").append("<option value='" + data.list[index]["id"] + "' data-type='"+data.list[index]["type"]+"'>" + data.list[index]["arabicName"] + "</option>");
+                        }
+                        else{
+                              $("#workerTitle").html(data.workerEn);
+                           $("#doctor").append("<option value='" + data.list[index]["id"] + "' data-type='"+data.list[index]["type"]+"'>" + data.list[index]["englisName"] + "</option>");
+                        }
+                     $('.book-appointment-form').unblock();    
+               });
+                   
+                  
+                  //  $("#doctor").selectpicker('refresh');
+                }
+            });
+});
+//$("#start_submit").click(function(){e.preventDefault();
+////$("#BookAbointment").ajaxSubmit({url: 'server.php', type: 'post'})
+  
+//});
+
+ function submitBook() {
+      $('.book-appointment-form').block({ message: "<img src='/assets/images/loading.gif'/>" }); 
+     $("#divMessage").empty();
+       var token = $('input[name="__RequestVerificationToken"]').val();
+       var book= {
+           FullName:$("input[name='FullName']").val(),
+       Email:$("#Email").val(),
+       DoctorId:$("#doctor").val(),
+       Date:$("#date").val(),
+       Time:$("#time").val(),
+       DoctorType:$('option:selected',$("#doctor")).attr('data-type'),
+      ServiceId:$("input[name='ServiceId']:checked").val()
+       };
+        $.ajax({
+            type: 'POST',
+            url: '/Services/BookAppointment/',
+          //  contentType: 'application/json', // when we use .serialize() this generates the data in query string format. this needs the default contentType (default content type is: contentType: 'application/x-www-form-urlencoded; charset=UTF-8') so it is optional, you can remove it
+            data:{book, __RequestVerificationToken: token},
+            success: function (result) {
+                var message="@isRTL"=="True"?result.messageAr:result.message;
+             
+               
+                $("#divMessage").html("<div class='alert alert-"+(result.isAvailable?"success":"danger")+"'>"+message+" </div>");
+ $('.book-appointment-form').unblock();   
+            },
+            error: function () {
+                alert("faild");
+            $('.book-appointment-form').unblock();   
+            }
+        })
+   
+    }
+
+                        </script>
+                   
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

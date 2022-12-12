@@ -2,11 +2,17 @@
   "version": "1.0",
   "defaultProvider": "cdnjs",
   "libraries": [
-
-
     {
       "library": "ckeditor@4.20.1",
       "destination": "wwwroot/lib/ckeditor/"
+    },
+    {
+      "library": "jquery.blockUI@2.70",
+      "destination": "wwwroot/lib/jquery.blockUI/"
+    },
+    {
+      "library": "bootstrap-timepicker@0.5.2",
+      "destination": "wwwroot/lib/bootstrap-timepicker/"
     }
   ]
 }

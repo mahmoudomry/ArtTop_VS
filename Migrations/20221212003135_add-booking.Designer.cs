@@ -3,6 +3,7 @@ using System;
 using ArtTop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArtTop.Migrations
 {
     [DbContext(typeof(ArtTopContext))]
-    partial class ArtTopContextModelSnapshot : ModelSnapshot
+    [Migration("20221212003135_add-booking")]
+    partial class addbooking
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -199,6 +201,9 @@ namespace ArtTop.Migrations
                     b.Property<bool?>("IsRead")
                         .HasColumnType("tinyint(1)");
 
+                    b.Property<string>("Message")
+                        .HasColumnType("longtext");
+
                     b.Property<string>("Notes")
                         .HasColumnType("longtext");
 
@@ -208,10 +213,17 @@ namespace ArtTop.Migrations
                     b.Property<int?>("ServiceId")
                         .HasColumnType("int");
 
+                    b.Property<string>("Subject")
+                        .HasColumnType("longtext");
+
                     b.Property<TimeOnly>("Time")
                         .HasColumnType("time(6)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DoctorId");
+
+                    b.HasIndex("OfficeId");
 
                     b.HasIndex("ServiceId");
 
@@ -1223,9 +1235,21 @@ namespace ArtTop.Migrations
 
             modelBuilder.Entity("ArtTop.Models.Booking", b =>
                 {
+                    b.HasOne("ArtTop.Models.Doctor", "Doctor")
+                        .WithMany()
+                        .HasForeignKey("DoctorId");
+
+                    b.HasOne("ArtTop.Models.Office", "Office")
+                        .WithMany()
+                        .HasForeignKey("OfficeId");
+
                     b.HasOne("ArtTop.Models.Service", "Service")
                         .WithMany()
                         .HasForeignKey("ServiceId");
+
+                    b.Navigation("Doctor");
+
+                    b.Navigation("Office");
 
                     b.Navigation("Service");
                 });
