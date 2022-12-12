@@ -42,6 +42,12 @@ namespace ArtTop.Models
         public string? MeetOurWorkersArabic { get; set; }
         [Display(Name = "Meet Our Workers English")]
         public string? MeetOurWorkersEnglish { get; set; }
+
+        [Display(Name = " Workers Arabic")]
+        public string? WorkersArabic { get; set; }
+        [Display(Name = "Workers English")]
+        public string?WorkersEnglish { get; set; }
+
         [Display(Name = "Order")]
         [Required(ErrorMessage = "Required *")]
         public int Order { get; set; }

@@ -26,7 +26,7 @@ namespace ArtTop.Controllers
             ViewBag.SiteSetting = _context.SiteSettings.FirstOrDefault();
             ViewBag.Services= _context.Services.OrderBy(x=>x.Order).ToList();
             ViewBag.Features=_context.Features.ToList();
-            ViewBag.Projects= _context.Projects.ToList();
+            ViewBag.Projects= _context.Projects.OrderByDescending(x=>x.Id).Take(3).ToList();
             ViewBag.Clients= _context.Clients.ToList();
            ViewBag.ContactItems=_context.ContactItem.Where(x=>x.ShowInHome==true).ToList();
             ViewBag.SocialMedia=_context.SocialMedia.ToList();

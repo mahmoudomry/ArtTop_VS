@@ -3,6 +3,7 @@ using System;
 using ArtTop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArtTop.Migrations
 {
     [DbContext(typeof(ArtTopContext))]
-    partial class ArtTopContextModelSnapshot : ModelSnapshot
+    [Migration("20221211110448_Dooctor-book-contactmessages")]
+    partial class Dooctorbookcontactmessages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -171,51 +173,6 @@ namespace ArtTop.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("About", (string)null);
-                });
-
-            modelBuilder.Entity("ArtTop.Models.Booking", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    b.Property<DateOnly>("Date")
-                        .HasColumnType("date");
-
-                    b.Property<int?>("DoctorId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Email")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasColumnType("longtext");
-
-                    b.Property<bool?>("IsDone")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<bool?>("IsRead")
-                        .HasColumnType("tinyint(1)");
-
-                    b.Property<string>("Notes")
-                        .HasColumnType("longtext");
-
-                    b.Property<int?>("OfficeId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ServiceId")
-                        .HasColumnType("int");
-
-                    b.Property<TimeOnly>("Time")
-                        .HasColumnType("time(6)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ServiceId");
-
-                    b.ToTable("Booking", (string)null);
                 });
 
             modelBuilder.Entity("ArtTop.Models.Client", b =>
@@ -823,12 +780,6 @@ namespace ArtTop.Migrations
                     b.Property<string>("OurOfficeEnglish")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("WorkersArabic")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("WorkersEnglish")
-                        .HasColumnType("longtext");
-
                     b.HasKey("Id");
 
                     b.ToTable("Service", (string)null);
@@ -1219,15 +1170,6 @@ namespace ArtTop.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
-                });
-
-            modelBuilder.Entity("ArtTop.Models.Booking", b =>
-                {
-                    b.HasOne("ArtTop.Models.Service", "Service")
-                        .WithMany()
-                        .HasForeignKey("ServiceId");
-
-                    b.Navigation("Service");
                 });
 
             modelBuilder.Entity("ArtTop.Models.Doctor", b =>

@@ -98,10 +98,9 @@
                                     <h3>
                                         @(isRTL?item.ArabicTitle:item.EnglishTitle)
                                     </h3>
-                                    @* <p>
-                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
-                                        Ipsum is simply
-                                        </p>*@
+                               <p>
+                                        @Html.Raw(isRTL?item.ArabicDetails:item.EnglishDetails)   
+                                    </p>
                                 </div>
                             </div>
                         </a>
@@ -124,6 +123,7 @@
             <h2 class="text-center">
                 @(isRTL?Model.MeetOurWorkersArabic:Model.MeetOurWorkersEnglish)
             </h2>
+          
         </div>
     </div>
     <div class="container">
@@ -153,8 +153,8 @@
                                         <a href="~/@culture/Services/Profile/@item.Id">
                                             @(isRTL?item.ArabicTitle:item.EnglishTitle)   </a>
                                     </h2>
-                                   @* <p>
-                                        @(isRTL?item.ArabicDetails:item.EnglishDetails)   
+                                  @*  <p>
+                                        @Html.Raw(isRTL?item.ArabicDetails:item.EnglishDetails)   
                                     </p>*@
                                     <button type="button" class="btn btn-green" data-bs-toggle="modal"
                                     data-bs-target="#make-appointment">

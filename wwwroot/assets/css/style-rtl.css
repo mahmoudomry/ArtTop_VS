@@ -1216,8 +1216,9 @@ section.sub-services-items {
         margin-bottom: 35px;
         border-radius: 10px;
         box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.07);
-        height: 400px;
+        height: 500px;
         width: 370px;
+        overflow:hidden;
     }
 
         section.sub-services-items .service-item .service-item-image {
@@ -1550,3 +1551,7 @@ section.statistics .statistics-item h3{
         margin-right: 5px;
         margin-left: 5px;
     }
+div.blockElement {
+    border: none !important;
+    background: none !important;
+}
