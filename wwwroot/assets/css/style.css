@@ -1474,6 +1474,9 @@ section.statistics .statistics-item h3{
         margin-right: 5px;
         margin-left: 5px;
     }
+    .mobile-only{
+        display: none;
+    }
 
 @media screen and (max-width: 1399px) {
 }
@@ -1652,13 +1655,68 @@ section.statistics .statistics-item h3{
     }    
     header.inner{
         padding: 0 !important;
-        height: auto;
     }
     .search_btn_container{
         display: none !important;
     }
     .nav-center{
         width: 100%;
+    }
+    section.services .content{
+        margin-bottom: 0;
+    }
+    header.white nav a{
+        color: #fff!important;
+    }
+    header .navbar-nav{
+        padding: 10px;
+        background: rgba(0, 0, 0, 0.9);
+    }
+    header.white .navbar-nav{
+        background: rgba(2, 83, 59, 0.8);
+    }
+    .service-slider .carousel-item{
+        z-index: -1;
+    }
+    section.sub-services-items .owl-nav .owl-next,
+    section.sub-services-items .owl-nav .owl-prev{
+        bottom: -60px;
+        top: auto;
+    }
+    section.our-features .features-list .features-list-item{
+        font-size: 13px;
+    }
+    .navbar-toggler{
+        border-color: #fff;
+    }
+    .navbar-toggler i{
+        color: #fff;
+    }
+    header.white .navbar-toggler{
+        border-color: #333;
+    }
+    header.white .navbar-toggler i{
+        color: #333;
+    }
+    .navbar {
+        z-index: 99 !important;
+    }
+    .mobile-only{
+        display: block;
+    }
+    .nav-link,
+    .nav-link:hover,
+    .nav-link:focus-visible{
+        color: #fff;
+        padding: 5px;
+    }
+    .dropdown-menu{
+        background: none;
+    }
+    .dropdown-menu a,
+    .dropdown-menu a:hover,
+    .dropdown-menu a:focus-visible{
+        color: #fff;
     }
     footer .logos{
         display: flex;

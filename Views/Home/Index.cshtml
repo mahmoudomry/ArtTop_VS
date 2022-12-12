@@ -76,7 +76,7 @@
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
                         aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
+                            <i class="fa-solid fa-bars"></i>
                     </button>
                     <div class="nav-center">
                         <div class="collapse navbar-collapse top-menu justify-content-center" id="navbarNavAltMarkup">
@@ -86,6 +86,23 @@
                                 </li>
                                 <li class="nav-item">
                                     <a  href="~/@culture/Home/About" class="nav_link @(current_action=="About"&&current_controller=="Home"?"active":"")">@localizer["About"]</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="@Url.Action("Index","Services")" data-bs-toggle="dropdown"
+                                        @(current_controller=="Services"&&current_action=="Index"?"active":"")
+                                        data-bs-auto-close="outside">Services</a>
+                                    <ul class="dropdown-menu shadow">
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                test
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                test
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
                                 <li class="nav-item">
                                     <a  href="~/@culture/Services/Index" class="nav_link @(current_controller=="Services"?"active":"")">@localizer["Services"]</a>
