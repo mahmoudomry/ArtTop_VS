@@ -1474,6 +1474,9 @@ section.statistics .statistics-item h3{
         margin-right: 5px;
         margin-left: 5px;
     }
+    .mobile-only{
+        display: none;
+    }
 
 @media screen and (max-width: 1399px) {
 }
@@ -1666,6 +1669,7 @@ section.statistics .statistics-item h3{
         color: #fff!important;
     }
     header .navbar-nav{
+        padding: 10px;
         background: rgba(0, 0, 0, 0.9);
     }
     header.white .navbar-nav{
@@ -1696,6 +1700,23 @@ section.statistics .statistics-item h3{
     }
     .navbar {
         z-index: 99 !important;
+    }
+    .mobile-only{
+        display: block;
+    }
+    .nav-link,
+    .nav-link:hover,
+    .nav-link:focus-visible{
+        color: #fff;
+        padding: 5px;
+    }
+    .dropdown-menu{
+        background: none;
+    }
+    .dropdown-menu a,
+    .dropdown-menu a:hover,
+    .dropdown-menu a:focus-visible{
+        color: #fff;
     }
     footer .logos{
         display: flex;
