@@ -1759,6 +1759,25 @@ section.statistics .statistics-item h3{
     .modal-footer{
         justify-content: center !important;
     }
+    section.our-clinics .owl-nav .owl-prev,
+    section.our-clinics .owl-nav .owl-next{
+        position: static;
+        transform: translateY(20px);
+    }
+    section.our-clinics .owl-nav{
+        display: flex !important;
+        justify-content: space-between;
+    }
+    section.our-clinics .doctor-item {
+        padding: 20px;
+        background-position: center;
+    }
+    section.our-clinics .doctor-item .info .position{
+        font-size: 14px;
+    }
+    section.our-clinics .doctor-item .info h2{
+        font-size: 20px;
+    }
     footer .logos{
         display: flex;
         justify-content: center;
