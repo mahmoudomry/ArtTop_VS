@@ -16,7 +16,8 @@
 
 
 }
-
+<input type="hidden" Id="DoctorId" name="DoctorId" value="@Model.Id" />
+ <input type="hidden" Id="ServiceId" name="ServiceId" value="@Model.ServiceId" />
 <section class="service-slider">
     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -155,63 +156,10 @@
                 </div>
             </div>
             <div class="col-md-6 book-appointment-form-container">
-                <form action="" class="book-appointment-form">
-                    <h2>
+               <h2>
                         @localizer["MakeAppointment"]
-                    </h2>
-                    <div class="form-inputs">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">@localizer["Name"]</label>
-                                    <input type="text" class="form-control" id="name" value="@localizer["YourName"]">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">@localizer["Email"]</label>
-                                    <input type="email" class="form-control" id="email" value="@localizer["YourEmail"]">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="persons" class="form-label">@localizer["Persons"]</label>
-                                    <input type="text" class="form-control" id="persons"
-                                        value="@localizer["PersonsPlaceHolder"]">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="doctor" class="form-label">@localizer["Doctor"]</label>
-                                    <select id="doctor" class="form-select">
-                                        <option value="1">Dr. Ahmed Ali</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="date" class="form-label">@localizer["Date"]</label>
-                                    <input type="date" class="form-control" id="date" value="12 Sep, 2022">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label for="time" class="form-label">@localizer["Time"]</label>
-                                    <input type="time" class="form-control" id="time" value="3:00 pm - 3:30 pm">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="btn btn-green" type="button">
-                        @localizer["BookNow"]
-                    </button>
-                </form>
+                    </h2> 
+                    @Html.Partial("_bookingformDoctor")
             </div>
         </div>
     </div>

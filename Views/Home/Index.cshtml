@@ -82,7 +82,7 @@
                     <div class="nav-center">
                         <div class="collapse navbar-collapse top-menu justify-content-center" id="navbarNavAltMarkup">
                             <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
-                                <li class="nav-item dropdown">
+                                <li class="nav-item dropdown" style="display:none">
                                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Treeview menu  </a>
                                     <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="#"> Dropdown item 1 </a></li>
@@ -110,7 +110,7 @@
                                 <li class="nav-item">
                                     <a  href="~/@culture/Home/About" class="nav_link @(current_action=="About"&&current_controller=="Home"?"active":"")">@localizer["About"]</a>
                                 </li>
-                                <li class="nav-item dropdown">
+                                <li class="nav-item dropdown" style="display:none">
                                     <a class="nav-link dropdown-toggle" href="@Url.Action("Index","Services")" data-bs-toggle="dropdown"
                                         @(current_controller=="Services"&&current_action=="Index"?"active":"")
                                         data-bs-auto-close="outside">Services</a>

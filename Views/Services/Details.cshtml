@@ -60,7 +60,7 @@
                     <p>
                         @Html.Raw(isRTL ? Model.ArabicDetails: Model.EnglishDetails)
                     </p>
-                    <button class="btn btn-green">
+                    <button class="btn btn-green showmodle">
                         @localizer["GetStarted"]   
                     </button>
                 </div>
@@ -189,7 +189,7 @@
 
 
                                     <h2>
-                                        <a href="~/@culture/Services/Profile/@item.Id">
+                                        <a href="~/@culture/Services/PersonProfile/@item.Id">
                                             @(isRTL?item.ArabicName:item.EnglisName)   </a>
                                     </h2>
                                   @*  <p>

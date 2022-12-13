@@ -130,6 +130,56 @@ namespace ArtTop.Controllers
 
             return Json(new { List = MyList,WorkerAR=service.WorkersArabic, WorkerEn=service.WorkersEnglish });
         }
+        [HttpGet]
+        public JsonResult GetWorkersOffice(int? id, int OfficeId)
+        {
+
+            var service = _context.Services.FirstOrDefault(x => x.Id == id);
+
+           
+            var officeList = _context.Offices.Where(a => a.ServiceId == id&&a.Id==OfficeId).Select(x => new { x.Id, x.ArabicManagerName, x.ManagerName, Type = "1" }).ToList();
+
+            List<DoctorLookup> MyList = new List<DoctorLookup>();
+
+
+            foreach (var office in officeList)
+            {
+                DoctorLookup d = new DoctorLookup();
+                d.Id = office.Id;
+                d.ArabicName = office.ArabicManagerName;
+                d.EnglisName = office.ManagerName;
+                d.Type = office.Type;
+                MyList.Add(d);
+
+            }
+
+            return Json(new { List = MyList, WorkerAR = service.WorkersArabic, WorkerEn = service.WorkersEnglish });
+        }
+        [HttpGet]
+        public JsonResult GetWorkersDoctors(int? id, int DoctorId)
+        {
+
+            var service = _context.Services.FirstOrDefault(x => x.Id == id);
+
+            var doctorsList = _context.Doctors.Where(x => x.ServiceId == id&&x.Id==DoctorId).Select(x => new { x.Id, x.ArabicName, x.EnglisName, Type = "2" }).ToList();
+            
+
+            List<DoctorLookup> MyList = new List<DoctorLookup>();
+            foreach (var doctor in doctorsList)
+            {
+                DoctorLookup d = new DoctorLookup();
+                d.Id = doctor.Id;
+                d.ArabicName = doctor.ArabicName;
+                d.EnglisName = doctor.EnglisName;
+                d.Type = doctor.Type;
+                MyList.Add(d);
+
+            }
+
+          
+
+            return Json(new { List = MyList, WorkerAR = service.WorkersArabic, WorkerEn = service.WorkersEnglish });
+        }
 
 
         [HttpPost]
