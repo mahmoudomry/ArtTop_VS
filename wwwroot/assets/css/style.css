@@ -158,9 +158,14 @@ header.white{
     height: 90px;
     border-bottom: 1px solid #D9D9D9;
 }
-  header.white nav a.active, header.white nav a:hover {
+header.white a.dropdown-item {
+        color: white !important;
+    }
+      
+    header.white nav a.active, header.white nav a:hover, header.white nav a.dropdown-toggle.active {
         color: var(--orange) !important;
     }
+   
 header.white nav a,
 header.white a.get-in-touch-btn{
     color: #3E3E3E !important;

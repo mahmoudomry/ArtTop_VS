@@ -26,6 +26,7 @@ namespace ArtTop.Controllers
             ViewBag.Services = _context.Services.OrderBy(x => x.Order).ToList();
             ViewBag.ContactItems = _context.ContactItem.Where(x => x.ShowInHome == true).ToList();
             ViewBag.SocialMedia = _context.SocialMedia.ToList();
+            ViewBag.ServicesItems = _context.Offices.Select(x => new { x.Id, x.ArabicTitle, x.EnglishTitle, Type = 1, x.ServiceId }).ToList().Union(_context.Doctors.Select(x => new { x.Id, ArabicTitle = x.ArabicName, EnglishTitle = x.EnglisName, Type = 2, x.ServiceId }).ToList());
             return View();
         }
         public IActionResult Details(int id)
@@ -37,7 +38,7 @@ namespace ArtTop.Controllers
             ViewBag.SiteSetting = _context.SiteSettings.FirstOrDefault();
             ViewBag.ContactItems = _context.ContactItem.Where(x => x.ShowInHome == true).ToList();
             ViewBag.SocialMedia = _context.SocialMedia.ToList();
-
+            ViewBag.ServicesItems = _context.Offices.Select(x => new { x.Id, x.ArabicTitle, x.EnglishTitle, Type = 1, x.ServiceId }).ToList().Union(_context.Doctors.Select(x => new { x.Id, ArabicTitle = x.ArabicName, EnglishTitle = x.EnglisName, Type = 2, x.ServiceId }).ToList());
 
             var service = servicesList.Where(x => x.Id == id).FirstOrDefault();
             if (service != null)
@@ -46,6 +47,7 @@ namespace ArtTop.Controllers
                 ViewBag.SubServices = _context.SubServices.Where(x => x.ServiceId == service.Id).ToList();
                 ViewBag.Offices = _context.Offices.Include(x => x.OfficeSubServices).Where(x => x.ServiceId == service.Id).ToList();
                 ViewBag.Doctors = _context.Doctors.Include(x => x.SubServices).Where(x => x.ServiceId == service.Id).ToList();
+
                 return View(service);
             }
             else
@@ -61,7 +63,7 @@ namespace ArtTop.Controllers
             ViewBag.SiteSetting = _context.SiteSettings.FirstOrDefault();
             ViewBag.ContactItems = _context.ContactItem.Where(x => x.ShowInHome == true).ToList();
             ViewBag.SocialMedia = _context.SocialMedia.ToList();
-
+            ViewBag.ServicesItems = _context.Offices.Select(x => new { x.Id, x.ArabicTitle, x.EnglishTitle, Type = 1, x.ServiceId }).ToList().Union(_context.Doctors.Select(x => new { x.Id, ArabicTitle = x.ArabicName, EnglishTitle = x.EnglisName, Type = 2, x.ServiceId }).ToList());
             var office = _context.Offices.Where(x => x.Id == Id).FirstOrDefault();
             if (office != null)
             {
@@ -83,7 +85,7 @@ namespace ArtTop.Controllers
             ViewBag.SiteSetting = _context.SiteSettings.FirstOrDefault();
             ViewBag.ContactItems = _context.ContactItem.Where(x => x.ShowInHome == true).ToList();
             ViewBag.SocialMedia = _context.SocialMedia.ToList();
-
+            ViewBag.ServicesItems = _context.Offices.Select(x => new { x.Id, x.ArabicTitle, x.EnglishTitle, Type = 1, x.ServiceId }).ToList().Union(_context.Doctors.Select(x => new { x.Id, ArabicTitle = x.ArabicName, EnglishTitle = x.EnglisName, Type = 2, x.ServiceId }).ToList());
             var doctor = _context.Doctors.Where(x => x.Id == Id).FirstOrDefault();
             if (doctor != null)
             {
@@ -129,6 +131,56 @@ namespace ArtTop.Controllers
             }
 
             return Json(new { List = MyList,WorkerAR=service.WorkersArabic, WorkerEn=service.WorkersEnglish });
+        }
+        [HttpGet]
+        public JsonResult GetWorkersOffice(int? id, int OfficeId)
+        {
+
+            var service = _context.Services.FirstOrDefault(x => x.Id == id);
+
+           
+            var officeList = _context.Offices.Where(a => a.ServiceId == id&&a.Id==OfficeId).Select(x => new { x.Id, x.ArabicManagerName, x.ManagerName, Type = "1" }).ToList();
+
+            List<DoctorLookup> MyList = new List<DoctorLookup>();
+
+
+            foreach (var office in officeList)
+            {
+                DoctorLookup d = new DoctorLookup();
+                d.Id = office.Id;
+                d.ArabicName = office.ArabicManagerName;
+                d.EnglisName = office.ManagerName;
+                d.Type = office.Type;
+                MyList.Add(d);
+
+            }
+
+            return Json(new { List = MyList, WorkerAR = service.WorkersArabic, WorkerEn = service.WorkersEnglish });
+        }
+        [HttpGet]
+        public JsonResult GetWorkersDoctors(int? id, int DoctorId)
+        {
+
+            var service = _context.Services.FirstOrDefault(x => x.Id == id);
+
+            var doctorsList = _context.Doctors.Where(x => x.ServiceId == id&&x.Id==DoctorId).Select(x => new { x.Id, x.ArabicName, x.EnglisName, Type = "2" }).ToList();
+            
+
+            List<DoctorLookup> MyList = new List<DoctorLookup>();
+            foreach (var doctor in doctorsList)
+            {
+                DoctorLookup d = new DoctorLookup();
+                d.Id = doctor.Id;
+                d.ArabicName = doctor.ArabicName;
+                d.EnglisName = doctor.EnglisName;
+                d.Type = doctor.Type;
+                MyList.Add(d);
+
+            }
+
+          
+
+            return Json(new { List = MyList, WorkerAR = service.WorkersArabic, WorkerEn = service.WorkersEnglish });
         }
 
 

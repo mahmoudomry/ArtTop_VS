@@ -24,6 +24,7 @@ namespace ArtTop.Controllers
             ViewBag.Projects = _context.Projects.ToList();
             ViewBag.ContactItems = _context.ContactItem.Where(x => x.ShowInHome == true).ToList();
             ViewBag.SocialMedia = _context.SocialMedia.ToList();
+            ViewBag.ServicesItems = _context.Offices.Select(x => new { x.Id, x.ArabicTitle, x.EnglishTitle, Type = 1, x.ServiceId }).ToList().Union(_context.Doctors.Select(x => new { x.Id, ArabicTitle = x.ArabicName, EnglishTitle = x.EnglisName, Type = 2, x.ServiceId }).ToList());
             return View();
         }
         public IActionResult Details(int?id)
@@ -35,6 +36,7 @@ namespace ArtTop.Controllers
            // ViewBag.Projects = _context.Projects.ToList();
             ViewBag.ContactItems = _context.ContactItem.Where(x => x.ShowInHome == true).ToList();
             ViewBag.SocialMedia = _context.SocialMedia.ToList();
+            ViewBag.ServicesItems = _context.Offices.Select(x => new { x.Id, x.ArabicTitle, x.EnglishTitle, Type = 1, x.ServiceId }).ToList().Union(_context.Doctors.Select(x => new { x.Id, ArabicTitle = x.ArabicName, EnglishTitle = x.EnglisName, Type = 2, x.ServiceId }).ToList());
             var project= _context.Projects.Find(id);
             if(project!=null)
             return View(project);

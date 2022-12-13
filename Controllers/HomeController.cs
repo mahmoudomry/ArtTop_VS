@@ -34,7 +34,7 @@ namespace ArtTop.Controllers
             ViewBag.current_controller = "Home";
             ViewBag.current_action = "Index";
 
-            ViewBag.ServicesItems = _context.Offices.Select(x=>new { x.Id, x.ArabicTitle, x.EnglishTitle, Type = 1,x.ServiceId }).ToList().Union(_context.Doctors.Select(x => new { x.Id, x.ArabicTitle, x.EnglishTitle, Type = 1, x.ServiceId }).ToList());
+            ViewBag.ServicesItems = _context.Offices.Select(x=>new { x.Id, x.ArabicTitle, x.EnglishTitle, Type = 1,x.ServiceId }).ToList().Union(_context.Doctors.Select(x => new { x.Id, ArabicTitle= x.ArabicName, EnglishTitle=x.EnglisName , Type = 2, x.ServiceId }).ToList());
             return View();
         }
         public IActionResult Privacy()
@@ -60,6 +60,7 @@ namespace ArtTop.Controllers
             ViewBag.OurValues=_context.OurValues.ToList();
             ViewBag.OurGoles=_context.OurGoles.ToList();
             ViewBag.Services = _context.Services.OrderBy(x => x.Order).ToList();
+            ViewBag.ServicesItems = _context.Offices.Select(x => new { x.Id, x.ArabicTitle, x.EnglishTitle, Type = 1, x.ServiceId }).ToList().Union(_context.Doctors.Select(x => new { x.Id, ArabicTitle = x.ArabicName, EnglishTitle = x.EnglisName, Type = 2, x.ServiceId }).ToList());
             return View();
         }
         public IActionResult Contact()
@@ -73,6 +74,7 @@ namespace ArtTop.Controllers
             ViewBag.ContactItems = _context.ContactItem.Where(x => x.ShowInHome == true).ToList();
             ViewBag.ContactItemsAll = _context.ContactItem.ToList();
             ViewBag.SocialMedia = _context.SocialMedia.ToList();
+            ViewBag.ServicesItems = _context.Offices.Select(x => new { x.Id, x.ArabicTitle, x.EnglishTitle, Type = 1, x.ServiceId }).ToList().Union(_context.Doctors.Select(x => new { x.Id, ArabicTitle = x.ArabicName, EnglishTitle = x.EnglisName, Type = 2, x.ServiceId }).ToList());
             return View();
         }
       

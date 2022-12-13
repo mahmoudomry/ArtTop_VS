@@ -59,7 +59,7 @@
         <link rel="stylesheet" href="~/assets/css/style.css" />
 
     }    
-  
+
     <link rel="shortcut icon" href="~/assets/images/logo-IconSmall.png" /> 
 
 </head>
@@ -82,7 +82,7 @@
                     <div class="nav-center">
                         <div class="collapse navbar-collapse top-menu justify-content-center" id="navbarNavAltMarkup">
                             <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
-                                <li class="nav-item dropdown">
+                                <li class="nav-item dropdown" style="display:none">
                                     <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Treeview menu  </a>
                                     <ul class="dropdown-menu">
                                     <li><a class="dropdown-item" href="#"> Dropdown item 1 </a></li>
@@ -110,7 +110,31 @@
                                 <li class="nav-item">
                                     <a  href="~/@culture/Home/About" class="nav_link @(current_action=="About"&&current_controller=="Home"?"active":"")">@localizer["About"]</a>
                                 </li>
+
                                 <li class="nav-item dropdown">
+		<a class="nav-link dropdown-toggle @(current_controller=="Services"?"active":"")" href="#" data-toggle="dropdown">   @localizer["Services"]  </a>
+	    <ul class="dropdown-menu">
+          @foreach(var itm in Services)
+                                    {
+		  
+		  <li><a class="dropdown-item dropdown-toggle" href="/@culture/services/Details/@itm.Id">@(isRTL?itm.ArabicTitle:itm.EnglishTitle) </a>
+		  	 <ul class="submenu dropdown-menu">
+                            @foreach(var d in ServicesItems)
+                                    {
+                                        if(d.ServiceId==itm.Id)
+                                        {
+			    <li><a class="dropdown-item" href="/@culture/services/@(d.Type==1?"Profile":"PersonProfile")/@d.Id">@(isRTL?d.ArabicTitle:d.EnglishTitle)</a></li>
+                                    }
+                                    }
+			 </ul>
+		  </li>
+                                    }
+		
+		 
+		  
+	    </ul>
+	</li>
+                                <li class="nav-item dropdown" style="display:none">
                                     <a class="nav-link dropdown-toggle" href="@Url.Action("Index","Services")" data-bs-toggle="dropdown"
                                         @(current_controller=="Services"&&current_action=="Index"?"active":"")
                                         data-bs-auto-close="outside">Services</a>
@@ -138,9 +162,7 @@
                                        
                                     </ul>
                                 </li>
-                                <li class="nav-item">
-                                    <a  href="~/@culture/Services/Index" class="nav_link @(current_controller=="Services"?"active":"")">@localizer["Services"]</a>
-                                </li>
+                               
                                 <li class="nav-item">
                                     <a  href="~/@culture/Projects/Index"  class="nav_link @(current_controller=="Projects"?"active":"")">@localizer["Projects"]</a>
                                 </li>
