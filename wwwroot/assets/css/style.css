@@ -1503,6 +1503,68 @@ section.statistics .statistics-item h3{
     .navbar {
         z-index: 99 !important;
     }
+    .menu-wrap{
+        position: fixed;
+        right: -475px;
+        top: 0;
+        z-index: 99;
+        height: 100vh;
+        width: 475px;
+        background: #1E1E1E;
+        padding: 40px 66px;
+        -webkit-transition: all .3s;
+        -moz-transition: all .3s;
+        -o-transition: all .3s;
+        transition: all .3s;
+        color: var(--white);
+    }
+    .menu-wrap-container{
+        max-width: 215px;
+    }
+    .close-menu{
+        background-color: var(--orange);
+        border-radius: 4px;
+        width: 35px;
+        height: 34px;
+    }
+    .close-menu i{
+        color: var(--white);
+    }
+    .chat-icon{
+        margin: 40px 0 10px;
+    }
+    .menu-wrap h3{
+        font-weight: 600;
+        font-size: 20px; 
+        margin-bottom: 20px;       
+    }
+    .menu-wrap .info-item label{
+        color: #40C782;
+        font-weight: 600;
+        font-size: 15px;     
+        margin-bottom: 5px;   
+    }
+    .menu-wrap .info-item p{
+        font-weight: 400;
+        font-size: 15px;
+    }
+    .menu-wrap .info-item p a{
+        color: var(--white);
+        text-decoration: none;
+    }
+    .menu-wrap .social-links{
+        margin: 20px 0;
+        padding: 15px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .menu-wrap .social-links a{
+        color: var(--white);
+        margin-right: 20px;
+    }
+    .menu-wrap .btn-green{
+        margin-top: 10px;
+    }
 @media screen and (max-width: 1399px) {
 }
 @media only screen and (max-width: 1280px) {
