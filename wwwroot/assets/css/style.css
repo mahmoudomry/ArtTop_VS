@@ -1477,7 +1477,27 @@ section.statistics .statistics-item h3{
     .mobile-only{
         display: none;
     }
-
+    .navbar-expand-lg .navbar-nav .nav-link{
+        color: var(--white) !important;
+        padding: 0 5px;
+    }
+    .dropdown-menu{
+        background: rgba(0, 0, 0, 0.9);
+    }
+    .dropdown-item:focus,
+    .dropdown-item:focus-visible,
+    .dropdown-item{
+        color: var(--white);
+    }
+    .dropdown-item:focus,
+    .dropdown-item:focus-visible,
+    .dropdown-item:hover{
+        color: var(--orange);
+        background-color: transparent;
+    }
+    .navbar {
+        z-index: 99 !important;
+    }
 @media screen and (max-width: 1399px) {
 }
 @media only screen and (max-width: 1280px) {
@@ -1698,25 +1718,25 @@ section.statistics .statistics-item h3{
     header.white .navbar-toggler i{
         color: #333;
     }
-    .navbar {
-        z-index: 99 !important;
-    }
     .mobile-only{
         display: block;
     }
     .nav-link,
-    .nav-link:hover,
     .nav-link:focus-visible{
-        color: #fff;
-        padding: 5px;
+        color: #fff !important;
+        background-color: transparent;
     }
     .dropdown-menu{
         background: none;
     }
     .dropdown-menu a,
-    .dropdown-menu a:hover,
     .dropdown-menu a:focus-visible{
         color: #fff;
+        background-color: transparent;
+    }
+    .nav-link:hover,
+    .dropdown-menu a:hover{
+        color: var(--orange)!important;
     }
     footer .logos{
         display: flex;
@@ -1732,6 +1752,29 @@ section.statistics .statistics-item h3{
     }
 }
 
+@media all and (min-width: 992px) {
+
+	.dropdown-menu li{
+		position: relative;
+	}
+	.dropdown-menu .submenu{ 
+		display: none;
+		position: absolute;
+		left:100%; top:-7px;
+	}
+	.dropdown-menu .submenu-left{ 
+		right:100%; left:auto;
+	}
+
+	.dropdown-menu > li:hover{ background-color: #f1f1f1 }
+	.dropdown-menu > li:hover > .submenu{
+		display: block;
+	}
+    .navbar-nav > li:hover > ul{
+        position: absolute;
+		display: block;
+    }
+}	
 div.blockElement {
     border: none !important;
     background: none !important;
