@@ -121,7 +121,10 @@
 		  	 <ul class="submenu dropdown-menu">
                             @foreach(var d in ServicesItems)
                                     {
+                                        if(d.ServiceId==itm.Id)
+                                        {
 			    <li><a class="dropdown-item" href="/@culture/services/@(d.Type==1?"Profile":"PersonProfile")/@d.Id">@(isRTL?d.ArabicTitle:d.EnglishTitle)</a></li>
+                                    }
                                     }
 			 </ul>
 		  </li>
