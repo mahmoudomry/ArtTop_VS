@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ArtTop.Models.Doctor>
 @{
       ViewData["ActionTitle"]="List";
-    ViewData["Title"] = "Doctors";
+    ViewData["Title"] = "Persons";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -27,6 +27,9 @@
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Service)
+            </th>
+             <th>
+                Title
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ArabicTitle)
@@ -55,6 +58,9 @@
                 @Html.DisplayFor(modelItem => item.Service.EnglishTitle)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Service.WorkersEnglish)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.ArabicTitle)
             </td>
             <td>
@@ -75,8 +81,8 @@
 
 
               <a  class="btn btn-outline-success"  href="@Url.Action("Edit","Doctors",new{area="Administrative",Id=item.Id})" ><i class="fa fa-edit  "></i> Edit </a> 
-                 <a  class="btn btn-outline-dark"  href="@Url.Action("Index","OfficeSliders",new{area="Administrative",OfficeId=item.Id})" ><i class="fa fa-eye  "></i> Sliders </a>
-                  <a  class="btn btn-outline-dark"  href="@Url.Action("Index","OfficeSocialMedias",new{area="Administrative",OfficeId=item.Id})" ><i class="fa fa-eye  "></i> Media </a> 
+                 <a  class="btn btn-outline-dark"  href="@Url.Action("Index","DoctorSliders",new{area="Administrative",DoctorId=item.Id})" ><i class="fa fa-eye  "></i> Sliders </a>
+                  <a  class="btn btn-outline-dark"  href="@Url.Action("Index","DoctorSocialMedias",new{area="Administrative",DoctorId=item.Id})" ><i class="fa fa-eye  "></i> Media </a> 
                 <a  class="btn btn-outline-brand"  href="@Url.Action("Details","Doctors",new{area="Administrative",Id=item.Id})" ><i class="fa fa-edit  "></i> Details </a> 
                 <a class="btn btn-outline-danger"  href="@Url.Action("Delete","Doctors",new{area="Administrative",Id=item.Id})" onclick="return confirm('Are you sure From Deleted?')" > <i class="fa fa-trash "></i> Delete</a>
             </td>

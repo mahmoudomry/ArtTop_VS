@@ -1,31 +1,23 @@
 ﻿@model ArtTop.Models.OfficeSocialMedia
 
 @{
-    ViewData["Title"] = "OfficeSocialMedia";
-    ViewData["ActionTitle"]= Model==null||Model.Id==0? "Create":"Edit";
+    ViewData["Title"] = "Edit";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+<h1>Edit</h1>
+
+<h4>OfficeSocialMedia</h4>
+<hr />
 <div class="row">
-    <div class="col-md-8 offset-2">
-        	<div class="kt-portlet">
-										<div class="kt-portlet__head">
-											<div class="kt-portlet__head-label">
-												<h3 class="kt-portlet__head-title">
-													@ViewData["ActionTitle"]
-                                                     <br />
-                                                    <span class="badge badge-info"> @ViewBag.OfficeDetails</span>
-												</h3>
-											</div>
-										</div>
-<div class="kt-portlet__body">
-        <form asp-action="Create" enctype="multipart/form-data" method="post">
+    <div class="col-md-4">
+        <form asp-action="Edit">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
-                <input type="hidden" asp-for="Type" />
             <div class="form-group">
                 <label asp-for="OfficeId" class="control-label"></label>
-                <select asp-for="OfficeId" class ="form-control" asp-items="ViewBag.OfficeId"></select>
+                <select asp-for="OfficeId" class="form-control" asp-items="ViewBag.OfficeId"></select>
+                <span asp-validation-for="OfficeId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ArabicTitle" class="control-label"></label>
@@ -42,11 +34,11 @@
                 <input asp-for="Link" class="form-control" />
                 <span asp-validation-for="Link" class="text-danger"></span>
             </div>
-          @*  <div class="form-group">
+            <div class="form-group">
                 <label asp-for="Icon" class="control-label"></label>
                 <input asp-for="Icon" class="form-control" />
                 <span asp-validation-for="Icon" class="text-danger"></span>
-            </div>*@
+            </div>
             <div class="form-group">
                 <label asp-for="Order" class="control-label"></label>
                 <input asp-for="Order" class="form-control" />
@@ -55,12 +47,11 @@
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
-        </form><div>
-    <a asp-action="Index" asp-route-OfficeId="@Model?.OfficeId">Back to List</a>
-</div>
+        </form>
     </div>
 </div>
 
-</div>
+<div>
+    <a asp-action="Index">Back to List</a>
 </div>
 

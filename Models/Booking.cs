@@ -20,19 +20,26 @@ namespace ArtTop.Models
         public DateOnly Date { get; set; }
         [Display(Name = "Time"), DataType(DataType.Time)]
         public TimeOnly Time { get; set; }
-        [Display(Name = "Doctor")]
+        [Display(Name = "DoctorId")]
         public int? DoctorId { get; set; }
-        //[Display(Name = "Doctor")]
-        //public Doctor? Doctor { get; set; }
+        [Display(Name = "Doctor")]
+        [ForeignKey("DoctorId")]
+        public Doctor? Doctor { get; set; }
         [Display(Name = "Service")]
         public int? ServiceId { get; set; }
         [Display(Name = "Service"), ForeignKey("ServiceId")]
         public Service? Service { get; set; }
-
-        [Display(Name = "Office")]
+        /// <summary>
+        /// Type=1 for office 
+        /// Type=2 for doctor
+        /// </summary>
+        [Display(Name = "Type")]
+        public int? Type { get; set; }
+        [Display(Name = "OfficeId")]
         public int? OfficeId { get; set; }
-        //[Display(Name = "Office")]
-        //public Office? Office { get; set; }
+        [Display(Name = "Office")]
+        [ForeignKey("OfficeId")]
+        public Office? Office { get; set; }
         [Display(Name = "IsRead")]
         public bool? IsRead { get; set; }
 

@@ -3,6 +3,7 @@ using System;
 using ArtTop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArtTop.Migrations
 {
     [DbContext(typeof(ArtTopContext))]
-    partial class ArtTopContextModelSnapshot : ModelSnapshot
+    [Migration("20221212225539_edit-office-slider-socialmdia13994")]
+    partial class editofficeslidersocialmdia13994
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -211,14 +213,7 @@ namespace ArtTop.Migrations
                     b.Property<TimeOnly>("Time")
                         .HasColumnType("time(6)");
 
-                    b.Property<int?>("Type")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("DoctorId");
-
-                    b.HasIndex("OfficeId");
 
                     b.HasIndex("ServiceId");
 
@@ -1252,21 +1247,9 @@ namespace ArtTop.Migrations
 
             modelBuilder.Entity("ArtTop.Models.Booking", b =>
                 {
-                    b.HasOne("ArtTop.Models.Doctor", "Doctor")
-                        .WithMany()
-                        .HasForeignKey("DoctorId");
-
-                    b.HasOne("ArtTop.Models.Office", "Office")
-                        .WithMany()
-                        .HasForeignKey("OfficeId");
-
                     b.HasOne("ArtTop.Models.Service", "Service")
                         .WithMany()
                         .HasForeignKey("ServiceId");
-
-                    b.Navigation("Doctor");
-
-                    b.Navigation("Office");
 
                     b.Navigation("Service");
                 });

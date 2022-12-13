@@ -22,9 +22,20 @@ namespace ArtTop.Models
             public int Order { get; set; }
             [Display(Name = "OfficeId")]
             public int? OfficeId { get; set; }
-            [Display(Name = "Office")]
+        /// <summary>
+        /// Type=1 for office 
+        /// Type=2 for doctor
+        /// </summary>
+        [Display(Name = "Type")]
+        public int? Type { get; set; }
+        [Display(Name = "Office")]
             [ForeignKey("OfficeId")]
             public Office? Office { get; set; }
-        }
+        [Display(Name = "DoctorId")]
+        public int? DoctorId { get; set; }
+        [Display(Name = "Doctor")]
+        [ForeignKey("DoctorId")]
+        public Doctor? Doctor { get; set; }
+    }
     
 }

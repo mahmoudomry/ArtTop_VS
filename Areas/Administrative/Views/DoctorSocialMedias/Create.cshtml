@@ -1,7 +1,7 @@
 ﻿@model ArtTop.Models.OfficeSocialMedia
 
 @{
-    ViewData["Title"] = "OfficeSocialMedia";
+    ViewData["Title"] = "Person SocialMedia";
     ViewData["ActionTitle"]= Model==null||Model.Id==0? "Create":"Edit";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
@@ -13,8 +13,8 @@
 											<div class="kt-portlet__head-label">
 												<h3 class="kt-portlet__head-title">
 													@ViewData["ActionTitle"]
-                                                     <br />
-                                                    <span class="badge badge-info"> @ViewBag.OfficeDetails</span>
+                                                       <br />
+                                                    <span class="badge badge-info"> @ViewBag.PersonDetails</span>
 												</h3>
 											</div>
 										</div>
@@ -24,8 +24,8 @@
             <input type="hidden" asp-for="Id" />
                 <input type="hidden" asp-for="Type" />
             <div class="form-group">
-                <label asp-for="OfficeId" class="control-label"></label>
-                <select asp-for="OfficeId" class ="form-control" asp-items="ViewBag.OfficeId"></select>
+                <label asp-for="DoctorId" class="control-label"></label>
+                <select asp-for="DoctorId" class ="form-control" asp-items="ViewBag.DoctorId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="ArabicTitle" class="control-label"></label>
@@ -56,7 +56,7 @@
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form><div>
-    <a asp-action="Index" asp-route-OfficeId="@Model?.OfficeId">Back to List</a>
+    <a asp-action="Index" asp-route-DoctorId="@Model?.DoctorId">Back to List</a>
 </div>
     </div>
 </div>

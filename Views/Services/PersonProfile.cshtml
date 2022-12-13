@@ -1,0 +1,225 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+@using System.Globalization
+@inject IViewLocalizer localizer
+@model Doctor
+@{
+    var culture = CultureInfo.CurrentCulture.Name;
+    Layout = "~/Views/Shared/_Layout_white.cshtml";
+
+    var isRTL = CultureInfo.CurrentCulture.Name.StartsWith("ar");
+    var ss = isRTL.ToString().ToLower();
+    ViewData["Title"] = (isRTL ? "الخدمات" : "Services");
+
+    List<OfficeSlider> OfficeSliders = ViewBag.OfficeSliders;
+    List<SubService> SubServices = ViewBag.SubServices;
+    List<OfficeSocialMedia> OfficesMedia = ViewBag.OfficesMedia;
+
+
+}
+
+<section class="service-slider">
+    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-inner">
+                @foreach (var item in OfficeSliders)
+                {
+                    <div class="carousel-item @(OfficeSliders.IndexOf(item)==0?"active":"")" data-bs-interval="10000">
+                        <img src="~/assets/images/@(isRTL ? item.CoverImageAr:item.CoverImage)"
+                        alt="@(isRTL ? Model.ArabicTitle: Model.EnglishTitle)">
+                    </div>
+                }
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</section>
+<section class="about-clinic">
+    <div class="container">
+        <div class="row about">
+            <div class="col-md-5 details">
+                <h5>
+                    @(isRTL?Model.ArabicAboutTitle:Model.EnglishAboutTitle)
+                </h5>
+                <h2>
+                    @(isRTL?Model.ArabicName:Model.EnglisName)
+                </h2>
+                <p>
+                    @Html.Raw(isRTL?Model.ArabicDetails:Model.EnglishDetails)
+                </p>
+                <a href="#" class="btn btn-green">
+                    @localizer["GetStarted"]
+                </a>
+            </div>
+            <div class="col-md-6 offset-md-1 image">
+                <img src="~/assets/images/@(isRTL?Model.ProfileImageAr:Model.ProfileImage)"
+                    alt="  @(isRTL?Model.ArabicTitle:Model.EnglishTitle)">
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in SubServices)
+            {
+                <div class="col-md-4">
+                    <div class="service-item">
+                        <a href="#">
+                            <div class="content">
+                                <span class="icon">
+                                    <img src="~/assets/images/@item.Icon"
+                                    alt="  @(isRTL?item.ArabicTitle:item.EnglishTitle)">
+                                </span>
+                                <div class="text">
+                                    <h3>
+                                        @(isRTL?item.ArabicTitle:item.EnglishTitle)
+                                    </h3>
+                                    @*<p>
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem
+                                        Ipsum is simply
+                                        </p>*@
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+<section class="get-in-touch">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 get-in-touch-detials">
+                <h5>
+                    @localizer["GetInTouch"]
+                </h5>
+                <h2>
+                    @(isRTL?Model.ArabicContactTitle:Model.EnglishContactTitle)
+                </h2>
+                <p>
+                    @localizer["Wewillbehappytoreachus"]
+
+                </p>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="icon">
+                            <img src="~/assets/images/marker.svg" alt="Location">
+                        </div>
+                        <div class="title">
+                            @localizer["Location"]
+                        </div>
+                        <div class="address">
+                            @Html.Raw(isRTL?Model.ArabicAddress:Model.EnglishAddress)
+                        </div>
+                        <div class="title">
+                            @localizer["MakeAppointment"]
+                        </div>
+                        <div class="mobile">
+                            @Model.Phone
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="icon">
+                            <img src="~/assets/images/time.svg" alt="Location">
+                        </div>
+                        <div class="title">
+                            @localizer["WorkingHours"]
+                        </div>
+                        <div class="address">
+                            @(isRTL?Model.WorkingHoursAr:Model.WorkingHours)
+                            <br>
+                            @(isRTL?Model.WeekendAr:Model.Weekend): @localizer["Closed"]
+                        </div>
+                        <div class="title">
+                            @localizer["SocialAccounts"]
+                        </div>
+                        <div class="social-links ">
+                            <ul class="list-unstyled list-group list-group-horizontal">
+
+                                @foreach (var item in OfficesMedia)
+                                {
+                                    <li>
+                                        <a href="@item.Link" class="@item.EnglishTitle">
+                                            <i class="fa-brands fa-@item.EnglishTitle"></i>
+                                        </a>
+                                    </li>
+                                }
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 book-appointment-form-container">
+                <form action="" class="book-appointment-form">
+                    <h2>
+                        @localizer["MakeAppointment"]
+                    </h2>
+                    <div class="form-inputs">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label for="name" class="form-label">@localizer["Name"]</label>
+                                    <input type="text" class="form-control" id="name" value="@localizer["YourName"]">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label for="email" class="form-label">@localizer["Email"]</label>
+                                    <input type="email" class="form-control" id="email" value="@localizer["YourEmail"]">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="persons" class="form-label">@localizer["Persons"]</label>
+                                    <input type="text" class="form-control" id="persons"
+                                        value="@localizer["PersonsPlaceHolder"]">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="doctor" class="form-label">@localizer["Doctor"]</label>
+                                    <select id="doctor" class="form-select">
+                                        <option value="1">Dr. Ahmed Ali</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="date" class="form-label">@localizer["Date"]</label>
+                                    <input type="date" class="form-control" id="date" value="12 Sep, 2022">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label for="time" class="form-label">@localizer["Time"]</label>
+                                    <input type="time" class="form-control" id="time" value="3:00 pm - 3:30 pm">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-green" type="button">
+                        @localizer["BookNow"]
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="map-full">
+    <iframe
+        src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d48859.137189179666!2d46.236827087772106!3d24.468920858988426!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1664682324182!5m2!1sen!2s"
+        width="100%" height="560" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"></iframe>
+</section>

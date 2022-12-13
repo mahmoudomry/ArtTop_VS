@@ -1,0 +1,84 @@
+﻿@model IEnumerable<ArtTop.Models.ContactMessages>
+
+@{
+      ViewData["ActionTitle"]="List";
+    ViewData["Title"] = "ContactMessages";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+   
+
+<div class="row">
+    <div class="col-md-12 ">
+        	<div class="kt-portlet">
+										<div class="kt-portlet__head">
+											<div class="kt-portlet__head-label">
+												<h3 class="kt-portlet__head-title pull-left">
+													@ViewData["ActionTitle"]
+                                                    	</h3>
+                                             
+											</div>
+
+                                             
+                                                
+										</div>
+                                        <div class="kt-portlet__body">
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Subject)
+            </th>
+           @* <th>
+                @Html.DisplayNameFor(model => model.Message)
+            </th>*@
+            <th>
+                @Html.DisplayNameFor(model => model.Inserted_at)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsRead)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+          @*  <td>
+                @Html.DisplayFor(modelItem => item.Message)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Inserted_at)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsRead)
+            </td>
+            <td>
+                  <a  class="btn btn-outline-success"  href="@Url.Action("Details","ContactMessages",new{area="Administrative",Id=item.Id})" ><i class="fa fa-edit  "></i> Details </a> 
+
+                <a class="btn btn-outline-danger"  href="@Url.Action("Delete","ContactMessages",new{area="Administrative",Id=item.Id})" onclick="return confirm('Are you sure From Deleted?')" > <i class="fa fa-trash "></i> Delete</a>
+
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>

@@ -11,28 +11,28 @@ using ArtTop.Models;
 namespace ArtTop.Areas.Administrative.Controllers
 {
     [Area("Administrative")]
-    public class OfficeSocialMediasController : Controller
+    public class DoctorSocialMediasController : Controller
     {
         private readonly ArtTopContext _context;
 
-        public OfficeSocialMediasController(ArtTopContext context)
+        public DoctorSocialMediasController(ArtTopContext context)
         {
             _context = context;
         }
 
-        // GET: Administrative/OfficeSocialMedias
-        public async Task<IActionResult> Index(int? OfficeId)
+        // GET: Administrative/DoctorSocialMedias
+        public async Task<IActionResult> Index(int? DoctorId)
         {
-            if (OfficeId == null)
+            if (DoctorId == null)
             {
-                var artTopContext = _context.OfficeSocialMedias.Where(x=>x.Type==1).Include(o => o.Office);
+                var artTopContext = _context.OfficeSocialMedias.Where(x=>x.Type==2).Include(o => o.Office);
                 return View(await artTopContext.ToListAsync());
             }
             else
             {
-                var office = _context.Offices.Include("Service").FirstOrDefault(x => x.Id == OfficeId);
-                ViewBag.OfficeDetails = " Service: " + office.Service.EnglishTitle + " - Name: " + office.EnglishTitle + "";
-                var artTopContext = _context.OfficeSocialMedias.Where(x => x.OfficeId == OfficeId&&x.Type==1).Include(o => o.Office);
+                var doctor = _context.Doctors.Include("Service").FirstOrDefault(x => x.Id == DoctorId);
+                ViewBag.PersonDetails = " Service: " + doctor.Service.EnglishTitle + " - Name: " + doctor.EnglisName + "";
+                var artTopContext = _context.OfficeSocialMedias.Where(x => x.DoctorId == DoctorId && x.Type==2).Include(o => o.Office);
                 return View(await artTopContext.ToListAsync());
             }
         }
@@ -46,7 +46,7 @@ namespace ArtTop.Areas.Administrative.Controllers
             }
 
             var officeSocialMedia = await _context.OfficeSocialMedias
-                .Include(o => o.Office)
+                .Include(o => o.Doctor)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (officeSocialMedia == null)
             {
@@ -57,17 +57,16 @@ namespace ArtTop.Areas.Administrative.Controllers
         }
 
         // GET: Administrative/OfficeSocialMedias/Create
-        public IActionResult Create(int? OfficeId)
+        public IActionResult Create(int? DoctorId)
         {
-            if (OfficeId != null)
+            if (DoctorId != null)
             {
-                var office = _context.Offices.Include("Service").FirstOrDefault(x => x.Id == OfficeId);
-                ViewBag.OfficeDetails = " Service: " + office.Service.EnglishTitle + " - Name: " + office.EnglishTitle + "";
-
-                ViewData["OfficeId"] = new SelectList(_context.Offices.Where(x => x.Id == OfficeId), "Id", "EnglishTitle");
+                var doctor = _context.Doctors.Include("Service").FirstOrDefault(x => x.Id == DoctorId);
+                ViewBag.PersonDetails = " Service: " + doctor.Service.EnglishTitle + " - Name: " + doctor.EnglisName + "";
+                ViewData["DoctorId"] = new SelectList(_context.Doctors.Where(x => x.Id == DoctorId), "Id", "EnglisName");
             }
             else
-                ViewData["OfficeId"] = new SelectList(_context.Offices, "Id", "EnglishTitle");
+                ViewData["DoctorId"] = new SelectList(_context.Doctors, "Id", "EnglisName");
             return View(new OfficeSocialMedia());
         }
 
@@ -76,21 +75,21 @@ namespace ArtTop.Areas.Administrative.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,OfficeId,ArabicTitle,EnglishTitle,Link,Icon,Order,Type")] OfficeSocialMedia officeSocialMedia)
+        public async Task<IActionResult> Create([Bind("Id,DoctorId,ArabicTitle,EnglishTitle,Link,Icon,Order,Type")] OfficeSocialMedia officeSocialMedia)
         {
             if (ModelState.IsValid)
             {
-                officeSocialMedia.Type = officeSocialMedia.Type ?? 1;
+                officeSocialMedia.Type = officeSocialMedia.Type ?? 2;
                 if (officeSocialMedia.Id == 0)
                     _context.Add(officeSocialMedia);
                 else
                     _context.Update(officeSocialMedia);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index), new { OfficeId = officeSocialMedia.OfficeId });
+                return RedirectToAction(nameof(Index), new { DoctorId = officeSocialMedia.DoctorId });
             }
-            var office = _context.Offices.Include("Service").FirstOrDefault(x => x.Id == officeSocialMedia.OfficeId);
-            ViewBag.OfficeDetails = " Service: " + office.Service.EnglishTitle + " - Name: " + office.EnglishTitle + "";
-            ViewData["OfficeId"] = new SelectList(_context.Offices, "Id", "EnglishTitle", officeSocialMedia.OfficeId);
+            var doctor = _context.Doctors.Include("Service").FirstOrDefault(x => x.Id == officeSocialMedia.DoctorId);
+            ViewBag.PersonDetails = " Service: " + doctor.Service.EnglishTitle + " - Name: " + doctor.EnglisName + "";
+            ViewData["DoctorId"] = new SelectList(_context.Doctors, "Id", "EnglisName", officeSocialMedia.DoctorId);
             return View(officeSocialMedia);
         }
 
@@ -107,9 +106,9 @@ namespace ArtTop.Areas.Administrative.Controllers
             {
                 return NotFound();
             }
-            var office = _context.Offices.Include("Service").FirstOrDefault(x => x.Id == officeSocialMedia.OfficeId);
-            ViewBag.OfficeDetails = " Service: " + office.Service.EnglishTitle + " - Name: " + office.EnglishTitle + "";
-            ViewData["OfficeId"] = new SelectList(_context.Offices, "Id", "EnglishTitle", officeSocialMedia.OfficeId);
+            var doctor = _context.Doctors.Include("Service").FirstOrDefault(x => x.Id == officeSocialMedia.DoctorId);
+            ViewBag.PersonDetails = " Service: " + doctor.Service.EnglishTitle + " - Name: " + doctor.EnglisName + "";
+            ViewData["DoctorId"] = new SelectList(_context.Doctors, "Id", "DoctorId", officeSocialMedia.DoctorId);
             return View("Create", officeSocialMedia);
         }
 

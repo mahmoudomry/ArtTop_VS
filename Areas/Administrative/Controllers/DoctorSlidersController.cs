@@ -11,28 +11,29 @@ using ArtTop.Models;
 namespace ArtTop.Areas.Administrative.Controllers
 {
     [Area("Administrative")]
-    public class OfficeSlidersController : Controller
+    public class DoctorSlidersController : Controller
     {
         private readonly ArtTopContext _context;
 
-        public OfficeSlidersController(ArtTopContext context)
+        public DoctorSlidersController(ArtTopContext context)
         {
             _context = context;
         }
 
         // GET: Administrative/OfficeSliders
-        public async Task<IActionResult> Index(int? OfficeId)
+        public async Task<IActionResult> Index(int? DoctorId)
         {
-            if (OfficeId == null)
+            if (DoctorId == null)
             {
-                var artTopContext = _context.OfficeSliders.Include(o => o.Office);
+                var artTopContext = _context.OfficeSliders.Where(x => x.Type == 2).Include(o => o.Office);
                 return View(await artTopContext.ToListAsync());
             }
             else
             {
-                var office = _context.Offices.Include("Service").FirstOrDefault(x => x.Id == OfficeId);
-                ViewBag.OfficeDetails = " Service: " + office.Service.EnglishTitle + " - Name: " + office.EnglishTitle + "";
-                var artTopContext = _context.OfficeSliders.Where(x=>x.OfficeId== OfficeId).Include(o => o.Office);
+                var doctor = _context.Doctors.Include("Service").FirstOrDefault(x => x.Id == DoctorId);
+                if (doctor != null)
+                    ViewBag.PersonDetails = " Service: " + doctor.Service.EnglishTitle + " - Name: " + doctor.EnglisName + "";
+                var artTopContext = _context.OfficeSliders.Where(x=>x.DoctorId == DoctorId && x.Type==2).Include(o => o.Office);
                 return View(await artTopContext.ToListAsync());
             }
         }
@@ -57,17 +58,16 @@ namespace ArtTop.Areas.Administrative.Controllers
         }
 
         // GET: Administrative/OfficeSliders/Create
-        public IActionResult Create(int? OfficeId)
+        public IActionResult Create(int? DoctorId)
         {
-            if (OfficeId != null)
+            if (DoctorId != null)
             {
-                var office = _context.Offices.Include("Service").FirstOrDefault(x => x.Id == OfficeId);
-                ViewBag.OfficeDetails = " Service: " + office.Service.EnglishTitle + " - Name: " + office.EnglishTitle + "";
-
-                ViewData["OfficeId"] = new SelectList(_context.Offices.Where(x => x.Id == OfficeId), "Id", "EnglishTitle");
+                var doctor = _context.Doctors.Include("Service").FirstOrDefault(x => x.Id == DoctorId);
+                ViewBag.PersonDetails = " Service: " + doctor.Service.EnglishTitle + " - Name: " + doctor.EnglisName + "";
+                ViewData["DoctorId"] = new SelectList(_context.Doctors.Where(x => x.Id == DoctorId), "Id", "EnglisName");
             }
             else
-                ViewData["OfficeId"] = new SelectList(_context.Offices, "Id", "EnglishTitle");
+                ViewData["DoctorId"] = new SelectList(_context.Doctors, "Id", "EnglisName");
             return View(new OfficeSlider());
         }
 
@@ -76,23 +76,22 @@ namespace ArtTop.Areas.Administrative.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,CoverImage,IsActive,Order,OfficeId,CoverImageAr,Type")] OfficeSlider officeSlider, IFormFile? CoverImageFile, IFormFile? CoverImageArFile)
+        public async Task<IActionResult> Create([Bind("Id,CoverImage,IsActive,Order,DoctorId,CoverImageAr,Type")] OfficeSlider officeSlider, IFormFile? CoverImageFile, IFormFile? CoverImageArFile)
         {
             if (ModelState.IsValid)
             {
-                officeSlider.Type = officeSlider.Type ?? 1;
+                officeSlider.Type = officeSlider.Type ?? 2;
                 UploadImages(officeSlider, CoverImageFile, CoverImageArFile);
                 if (officeSlider.Id == 0)
                     _context.Add(officeSlider);
                 else
                     _context.Update(officeSlider);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index), new { OfficeId = officeSlider.OfficeId});
+                return RedirectToAction(nameof(Index), new { DoctorId = officeSlider.DoctorId });
             }
-
-            var office = _context.Offices.Include("Service").FirstOrDefault(x => x.Id == officeSlider.OfficeId);
-            ViewBag.OfficeDetails = " Service: " + office.Service.EnglishTitle + " - Name: " + office.EnglishTitle + "";
-            ViewData["OfficeId"] = new SelectList(_context.Offices, "Id", "EnglishTitle", officeSlider.OfficeId);
+            var doctor = _context.Doctors.Include("Service").FirstOrDefault(x => x.Id == officeSlider.DoctorId);
+            ViewBag.PersonDetails = " Service: " + doctor.Service.EnglishTitle + " - Name: " + doctor.EnglisName + "";
+            ViewData["DoctorId"] = new SelectList(_context.Doctors, "Id", "EnglisName", officeSlider.DoctorId);
             return View(officeSlider);
         }
 
@@ -109,9 +108,9 @@ namespace ArtTop.Areas.Administrative.Controllers
             {
                 return NotFound();
             }
-            var office = _context.Offices.Include("Service").FirstOrDefault(x => x.Id == officeSlider.OfficeId);
-            ViewBag.OfficeDetails = " Service: " + office.Service.EnglishTitle + " - Name: " + office.EnglishTitle + "";
-            ViewData["OfficeId"] = new SelectList(_context.Offices, "Id", "EnglishTitle", officeSlider.OfficeId);
+            var doctor = _context.Doctors.Include("Service").FirstOrDefault(x => x.Id == officeSlider.DoctorId);
+            ViewBag.PersonDetails = " Service: " + doctor.Service.EnglishTitle + " - Name: " + doctor.EnglisName + "";
+            ViewData["DoctorId"] = new SelectList(_context.Doctors, "Id", "EnglisName", officeSlider.DoctorId);
             return View("Create", officeSlider);
         }
 
@@ -147,7 +146,7 @@ namespace ArtTop.Areas.Administrative.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["OfficeId"] = new SelectList(_context.Offices, "Id", "EnglishTitle", officeSlider.OfficeId);
+            ViewData["DoctorId"] = new SelectList(_context.Offices, "Id", "EnglisName", officeSlider.DoctorId);
             return View(officeSlider);
         }
 

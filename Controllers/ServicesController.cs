@@ -45,6 +45,7 @@ namespace ArtTop.Controllers
                 ViewBag.ServiceSliders = _context.ServiceSlider.Where(x => x.ServiceId == service.Id).ToList();
                 ViewBag.SubServices = _context.SubServices.Where(x => x.ServiceId == service.Id).ToList();
                 ViewBag.Offices = _context.Offices.Include(x => x.OfficeSubServices).Where(x => x.ServiceId == service.Id).ToList();
+                ViewBag.Doctors = _context.Doctors.Include(x => x.SubServices).Where(x => x.ServiceId == service.Id).ToList();
                 return View(service);
             }
             else
@@ -83,13 +84,13 @@ namespace ArtTop.Controllers
             ViewBag.ContactItems = _context.ContactItem.Where(x => x.ShowInHome == true).ToList();
             ViewBag.SocialMedia = _context.SocialMedia.ToList();
 
-            var office = _context.Offices.Where(x => x.Id == Id).FirstOrDefault();
-            if (office != null)
+            var doctor = _context.Doctors.Where(x => x.Id == Id).FirstOrDefault();
+            if (doctor != null)
             {
-                ViewBag.OfficeSliders = _context.OfficeSliders.Where(x => x.OfficeId == Id).ToList();
-                ViewBag.SubServices = _context.OfficeSubServices.Where(x => x.OfficeId == Id).Select(x => x.SubService).ToList();
-                ViewBag.OfficesMedia = _context.OfficeSocialMedias.Where(x => x.OfficeId == Id).ToList();
-                return View(office);
+                ViewBag.OfficeSliders = _context.OfficeSliders.Where(x => x.DoctorId == Id).ToList();
+                ViewBag.SubServices = _context.DoctorSubServices.Where(x => x.DoctorId == Id).Select(x => x.SubService).ToList();
+                ViewBag.OfficesMedia = _context.OfficeSocialMedias.Where(x => x.DoctorId == Id).ToList();
+                return View(doctor);
             }
             else
                 return NotFound();
@@ -160,10 +161,11 @@ namespace ArtTop.Controllers
                     Booking b = new Booking();
                     b.IsRead = false;
                     b.IsDone = false;
+                    b.Type = book.DoctorType;
                    if(book.DoctorType==1)
-                        b.DoctorId=book.DoctorId;
+                        b.OfficeId = book.DoctorId;
                    if(book.DoctorType==2)
-                        b.OfficeId=book.DoctorId;
+                        b.DoctorId = book.DoctorId;
                    b.ServiceId=book.ServiceId;
 
                     b.FullName=book.FullName;

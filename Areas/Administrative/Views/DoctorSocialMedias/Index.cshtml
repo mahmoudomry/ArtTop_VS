@@ -2,7 +2,7 @@
 
 @{
       ViewData["ActionTitle"]="List";
-    ViewData["Title"] = "OfficeSocialMedia";
+    ViewData["Title"] = "PersonSocialMedia";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -15,13 +15,13 @@
 											<div class="kt-portlet__head-label">
 												<h3 class="kt-portlet__head-title pull-left">
 													@ViewData["ActionTitle"]
-                                                     <br />
-                                                    <span class="badge badge-info"> @ViewBag.OfficeDetails</span>
+                                                       <br />
+                                                    <span class="badge badge-info"> @ViewBag.PersonDetails</span>
 												</h3>
                                              
 											</div>
 
-                                               <a  class="btn btn-primary pull-right create-btn" href="@Url.Action("Create","OfficeSocialMedias",new{area="Administrative",OfficeId= Context.Request.Query["OfficeId"]})" >Create New</a>
+                                               <a  class="btn btn-primary pull-right create-btn" href="@Url.Action("Create","DoctorSocialMedias",new{area="Administrative",DoctorId= Context.Request.Query["DoctorId"]})" >Create New</a>
                                                 
 										</div>
                                         <div class="kt-portlet__body">
@@ -29,7 +29,7 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Office)
+                @Html.DisplayNameFor(model => model.Doctor)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.ArabicTitle)
@@ -51,7 +51,7 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Office.EnglishTitle)
+                @Html.DisplayFor(modelItem => item.Doctor.EnglisName)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ArabicTitle)
@@ -68,8 +68,8 @@
                 @Html.DisplayFor(modelItem => item.Order)
             </td>
             <td>
-                 <a  class="btn btn-outline-success"  href="@Url.Action("Edit","OfficeSocialMedias",new{area="Administrative",Id=item.Id})" ><i class="fa fa-edit  "></i> Edit </a>  
-                <a class="btn btn-outline-danger"  href="@Url.Action("Delete","OfficeSocialMedias",new{area="Administrative",Id=item.Id})" onclick="return confirm('Are you sure From Deleted?')" > <i class="fa fa-trash "></i> Delete</a>
+                 <a  class="btn btn-outline-success"  href="@Url.Action("Edit","DoctorSocialMedias",new{area="Administrative",Id=item.Id})" ><i class="fa fa-edit  "></i> Edit </a>  
+                <a class="btn btn-outline-danger"  href="@Url.Action("Delete","DoctorSocialMedias",new{area="Administrative",Id=item.Id})" onclick="return confirm('Are you sure From Deleted?')" > <i class="fa fa-trash "></i> Delete</a>
             </td>
         </tr>
 }
