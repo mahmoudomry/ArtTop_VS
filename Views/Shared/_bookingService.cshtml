@@ -1,0 +1,200 @@
+﻿ @using System.Globalization
+@using ArtTop.Controllers
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer localizer
+@{
+    var culture = CultureInfo.CurrentCulture.Name;
+    var isRTL = CultureInfo.CurrentCulture.Name.StartsWith("ar");
+    ViewData["Title"] = "Home Page";
+    Layout = null;
+    SiteSetting siteSetting=ViewBag.SiteSetting;
+
+    List<Service>Services= ViewBag.Services;
+    var current_controller = ViewBag.current_controller;
+    var current_action = ViewBag.current_action;
+    var currentworker = "";
+}
+
+<div class="modal fade" id="make-appointment" tabindex="-1" aria-labelledby="MakeAppointmentModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="MakeAppointmentModalLabel">@localizer["MakeAppointment"]</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body book-appointment-form">
+          <form action="/Services/BookAppointment/" method="Post" id="BookAbointmentService" class="book-appointment-form">
+  @Html.AntiForgeryToken()
+                       <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="FullName" class="form-label"> @localizer["FullName"]</label>
+                                                <input type="text" class="form-control" id="FullName" name="FullName" placeholder="@localizer["FullName"]"
+                                                    value="">
+                                            </div>
+                                        </div>
+                                         <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="Phone" class="form-label"> @localizer["Phone"]</label>
+                                                <input type="text" class="form-control" id="Phone" name="Phone" placeholder="@localizer["Phone"]"
+                                                    value="">
+                                            </div>
+                                        </div>
+                                        </div>
+                                        <div class="row">
+                                              <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="Email" class="form-label"> @localizer["Email"]</label>
+                                                <input type="text" class="form-control" id="Email" name="Email" placeholder="@localizer["Email"]"
+                                                    value="">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="doctor" id="workerTitle" class="form-label">@currentworker</label>
+                                                <select id="doctor" name="DoctorId" class="form-select">
+                                                    <option value="1">Dr. Ahmed Ali</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="date" class="form-label">@localizer["Date"]</label>
+                                                <input type="date" class="form-control" name="Date" id="date" value="12 Sep, 2022">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="time" class="form-label">@localizer["Time"]</label>
+                                                <input type="text" class="form-control" name="Time" id="time" 
+                                                    value="">
+                                            </div>
+                                        </div>
+                                    </div>
+                </form>
+            </div>
+            <div class="modal-footer justify-content-start"  >
+                <button type="button" class="btn btn-green" onclick="submitBookservice()">@localizer["BookNow"]</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                                 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.js"></script>
+                                    <script src="~/Admin/assets/plugins/general/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script> 
+
+                          <script type="text/javascript">
+
+
+
+
+$(document).ready(function() {
+     var type=$("#TypeHdn").val();
+    var Did=$("#DoctorIdHdn").val();
+       var sid= $("#ServiceHdn").val();
+        $('.book-appointment-form').block({ message: "<img src='/assets/images/loading.gif'/>" }); 
+    $(".BookAbointmentService #divMessage").html('');
+     $.ajax({
+                type: "GET",
+                url: "/Services/GetWorkers/"+sid,
+                success: function (data) {
+                     
+                 console.log(data);
+                    $("#doctor").empty();
+                    $.each(data.list, function (index) {
+                       
+                      if("@isRTL"=="True")
+                   {
+                    
+                       $("#workerTitle").html(data.workerAR);
+                      
+                            $("#doctor").append("<option   value='" + data.list[index]["id"] + "' data_type='"+data.list[index]["type"]+"  '>" + data.list[index]["arabicName"] + "</option>");
+                        
+                   }
+                        else{
+                              $("#workerTitle").html(data.workerEn);
+   
+                            $("#doctor").append("<option   value='" + data.list[index]["id"] + "' data_type='"+data.list[index]["type"]+"'>" + data.list[index]["englisName"] + "</option>");
+                       
+                        }
+
+                      
+                     $('.book-appointment-form').unblock();    
+               });
+                   
+                  
+                 
+                }
+            });
+
+            $(".showmodle").click(function(){
+
+
+
+                    $("#TypeHdn").val($(this).attr("data-type"));
+                      $("#DoctorIdHdn").val($(this).attr("data-id"));
+
+                          var sid= $("#ServiceHdn").val();
+ 
+$("#doctor option[data_type='"+$("#TypeHdn").val()+"'],option[value='"+$("#DoctorIdHdn").val()+"']").attr("selected","selected")
+                      $('#make-appointment').modal('show');
+             $("#doctor option[data_type='"+$("#TypeHdn").val()+"'],option[value='"+$("#DoctorIdHdn").val()+"']").attr("selected","selected")
+                
+                })
+   $('#time').click(function(){  $(".glyphicon-chevron-up").addClass("fa fa-chevron-up");
+      $(".glyphicon-chevron-down").addClass("fa fa-chevron-down");})
+  
+
+      $('#time').timepicker({
+                minuteStep: 30,
+                showInputs: false,
+                disableFocus: true
+            });
+ 
+    
+
+  
+});
+
+
+ function submitBookservice() {
+      $('.book-appointment-form').block({ message: "<img src='/assets/images/loading.gif'/>" }); 
+     $(".BookAbointmentService #divMessage").html('');
+       var token = $('input[name="__RequestVerificationToken"]').val();
+       var book= {
+           FullName:$("input[name='FullName']").val(),
+           Phone:$("input[name='Phone']").val(),
+       Email:$("#Email").val(),
+       DoctorId:$("#doctor").val(),
+       Date:$("#date").val(),
+       Time:$("#time").val(),
+       DoctorType:$('option:selected',$("#doctor")).attr('data-type'),
+      ServiceId:$("input[name='ServiceId']:checked").val()
+       };
+        $.ajax({
+            type: 'POST',
+            url: '/Services/BookAppointment/',
+          //  contentType: 'application/json', // when we use .serialize() this generates the data in query string format. this needs the default contentType (default content type is: contentType: 'application/x-www-form-urlencoded; charset=UTF-8') so it is optional, you can remove it
+            data:{book, __RequestVerificationToken: token},
+            success: function (result) {
+                var message="@isRTL"=="True"?result.messageAr:result.message;
+             
+               
+                $("#divMessage").html("<div class='alert alert-"+(result.isAvailable?"success":"danger")+"'>"+message+" </div>");
+ $('.book-appointment-form').unblock();   
+            },
+            error: function () {
+                alert("faild");
+            $('.book-appointment-form').unblock();   
+            }
+        })
+   
+    }
+
+                        </script>
+                   
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

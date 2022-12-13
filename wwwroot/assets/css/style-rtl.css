@@ -542,7 +542,7 @@ section.book-appointment .book-appointment-form{
     cursor: pointer;
 }
 .book-appointment-form .form-check-label .icon{
-    margin-right: 10px;
+    margin-left: 10px;
 }
 .book-appointment-form .form-inputs .mb-3{
     position: relative;
