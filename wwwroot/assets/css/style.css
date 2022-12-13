@@ -1485,15 +1485,17 @@ section.statistics .statistics-item h3{
         background: rgba(0, 0, 0, 0.9);
     }
     .dropdown-item:focus,
-    .dropdown-item:focus-visible,
-    .dropdown-item{
-        color: var(--white);
+    .dropdown-item:focus-visible{
+        color: var(--orange);
     }
     .dropdown-item:focus,
     .dropdown-item:focus-visible,
     .dropdown-item:hover{
         color: var(--orange);
         background-color: transparent;
+    }
+    .dropdown-item{
+        color: var(--white);
     }
     .navbar {
         z-index: 99 !important;
@@ -1738,6 +1740,22 @@ section.statistics .statistics-item h3{
     .dropdown-menu a:hover{
         color: var(--orange)!important;
     }
+    .modal-lg {
+        width: auto !important;
+    }
+    .modal-header h1{
+        font-size: 20px !important;
+        padding-top: 0;
+    }
+    .modal-header{
+        padding: 10px;
+    }
+    .modal-body{
+        padding: 5px;
+    }
+    .modal-footer{
+        justify-content: center !important;
+    }
     footer .logos{
         display: flex;
         justify-content: center;
@@ -1766,7 +1784,9 @@ section.statistics .statistics-item h3{
 		right:100%; left:auto;
 	}
 
-	.dropdown-menu > li:hover{ background-color: #f1f1f1 }
+	.dropdown-menu > li:hover{ 
+        color: var(--orange)!important;
+     }
 	.dropdown-menu > li:hover > .submenu{
 		display: block;
 	}
