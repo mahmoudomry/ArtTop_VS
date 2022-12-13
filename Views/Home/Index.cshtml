@@ -337,7 +337,7 @@
                             }
                                
                             </div>
-                            <button class="btn btn-green" type="button">
+                            <button class="btn btn-green" onclick="gotosection('#book-appointment')"  type="button">
                                  @localizer["GetStarted"]  
                             </button>
                         </div>
@@ -404,7 +404,7 @@
                 </div> <!-- container -->
             </section><!-- clients -->
 
-            <section class="book-appointment">
+            <section class="book-appointment" id="book-appointment">
                 <div class="container">
                     <div class="row">
                         <div class="col-md-4">
@@ -544,6 +544,17 @@
        <script src="~/Admin/assets/plugins/general/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script> 
     <script src="~/assets/js/inlineSVG.min.js"></script>
     <script src="~/assets/js/main.js"></script>
+    <script>
+    
+  function gotosection(section) {
+    $('body, html').animate({
+      scrollTop: $(section).offset().top
+    }, 600);
+
+  };
+
+    </script>
+
     @if (isRTL)
     {
         <script>

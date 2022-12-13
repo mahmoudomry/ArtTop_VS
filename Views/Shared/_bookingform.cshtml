@@ -45,10 +45,17 @@
                                             </div>
                                  <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-6">
                                             <div class="mb-3">
                                                 <label for="FullName" class="form-label"> @localizer["FullName"]</label>
                                                 <input type="text" class="form-control" id="FullName" name="FullName" placeholder="@localizer["FullName"]"
+                                                    value="">
+                                            </div>
+                                        </div>
+                                         <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="Phone" class="form-label"> @localizer["Phone"]</label>
+                                                <input type="text" class="form-control" id="Phone" name="Phone" placeholder="@localizer["Phone"]"
                                                     value="">
                                             </div>
                                         </div>
@@ -182,6 +189,7 @@ $(document).ready(function() {
        var token = $('input[name="__RequestVerificationToken"]').val();
        var book= {
            FullName:$("input[name='FullName']").val(),
+           Phone:$("input[name='Phone']").val(),
        Email:$("#Email").val(),
        DoctorId:$("#doctor").val(),
        Date:$("#date").val(),

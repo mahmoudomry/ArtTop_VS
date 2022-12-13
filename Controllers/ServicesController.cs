@@ -162,13 +162,15 @@ namespace ArtTop.Controllers
                     b.IsRead = false;
                     b.IsDone = false;
                     b.Type = book.DoctorType;
+                  
                    if(book.DoctorType==1)
                         b.OfficeId = book.DoctorId;
                    if(book.DoctorType==2)
                         b.DoctorId = book.DoctorId;
                    b.ServiceId=book.ServiceId;
 
-                    b.FullName=book.FullName;
+                    b.FullName=book.FullName; 
+                    b.Phone = book.Phone;
                     b.Email=book.Email;
                     b.Date=date;
                     b.Time=time;   
@@ -197,6 +199,8 @@ namespace ArtTop.Controllers
 
       
         public string FullName { get; set; }
+        public string Phone { get; set; }
+        
         public string Email { get; set; }
         public int ServiceId { get; set; }
         public int DoctorId { get; set; }

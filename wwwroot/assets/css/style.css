@@ -1399,13 +1399,13 @@ section.get-in-touch .get-in-touch-detials{
 
 }
 section.get-in-touch .get-in-touch-detials::after{
-    content: '';
+    /*content: '';
     background-image: url('../images/get-in-touch-pattern.svg');
     width: 654px;
     height: 66px;
     position: absolute;
     bottom: -40px;
-    right: -90px;
+    right: -90px;*/
 }
 section.get-in-touch .book-appointment-form-container{
     padding: 50px 0 50px 30px;
@@ -1437,6 +1437,9 @@ section.get-in-touch .social-links a{
     color: #BBBBBB;
     margin-right: 15px;
 }
+    section.get-in-touch .social-links a:hover {
+        color: #40C782;
+    }
 /* get in touch end */
 /* statistics start */
 section.statistics{

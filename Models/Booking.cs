@@ -12,6 +12,8 @@ namespace ArtTop.Models
         public string FullName { get; set; }
         [Required, EmailAddress, Display(Name = "Email")]
         public string Email { get; set; }
+        [Required,  Display(Name = "Phone")]
+        public string Phone { get; set; }
         //[ Display(Name = "Subject")]
         //public string? Subject { get; set; }
         //[ Display(Name = "Message")]
