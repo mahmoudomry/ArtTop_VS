@@ -59,7 +59,27 @@
         <link rel="stylesheet" href="~/assets/css/style.css" />
 
     }    
-  
+  <style type="text/css">
+
+	
+		.dropdown-menu li{
+			position: relative;
+		}
+		.nav-item .submenu{ 
+			display: none;
+			position: absolute;
+			left:100%; top:-7px;
+		}
+		.nav-item .submenu-left{ 
+			right:100%; left:auto;
+		}
+
+		.dropdown-menu > li:hover{ background-color: #f1f1f1 }
+		.dropdown-menu > li:hover > .submenu{
+			display: block;
+		}
+	
+</style>
     <link rel="shortcut icon" href="~/assets/images/logo-IconSmall.png" /> 
 
 </head>
@@ -110,6 +130,27 @@
                                 <li class="nav-item">
                                     <a  href="~/@culture/Home/About" class="nav_link @(current_action=="About"&&current_controller=="Home"?"active":"")">@localizer["About"]</a>
                                 </li>
+
+                                <li class="nav-item dropdown">
+		<a class="nav-link dropdown-toggle @(current_controller=="Services"?"active":"")" href="#" data-toggle="dropdown">   @localizer["Services"]  </a>
+	    <ul class="dropdown-menu">
+          @foreach(var itm in Services)
+                                    {
+		  
+		  <li><a class="dropdown-item dropdown-toggle" href="/@culture/services/Details/@itm.Id">@(isRTL?itm.ArabicTitle:itm.EnglishTitle) </a>
+		  	 <ul class="submenu dropdown-menu">
+                            @foreach(var d in ServicesItems)
+                                    {
+			    <li><a class="dropdown-item" href="/@culture/services/@(d.Type==1?"Profile":"PersonProfile")/@d.Id">@(isRTL?d.ArabicTitle:d.EnglishTitle)</a></li>
+                                    }
+			 </ul>
+		  </li>
+                                    }
+		
+		 
+		  
+	    </ul>
+	</li>
                                 <li class="nav-item dropdown" style="display:none">
                                     <a class="nav-link dropdown-toggle" href="@Url.Action("Index","Services")" data-bs-toggle="dropdown"
                                         @(current_controller=="Services"&&current_action=="Index"?"active":"")

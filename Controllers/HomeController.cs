@@ -34,7 +34,7 @@ namespace ArtTop.Controllers
             ViewBag.current_controller = "Home";
             ViewBag.current_action = "Index";
 
-            ViewBag.ServicesItems = _context.Offices.Select(x=>new { x.Id, x.ArabicTitle, x.EnglishTitle, Type = 1,x.ServiceId }).ToList().Union(_context.Doctors.Select(x => new { x.Id, x.ArabicTitle, x.EnglishTitle, Type = 1, x.ServiceId }).ToList());
+            ViewBag.ServicesItems = _context.Offices.Select(x=>new { x.Id, x.ArabicTitle, x.EnglishTitle, Type = 1,x.ServiceId }).ToList().Union(_context.Doctors.Select(x => new { x.Id, ArabicTitle= x.ArabicName, EnglishTitle=x.EnglisName , Type = 2, x.ServiceId }).ToList());
             return View();
         }
         public IActionResult Privacy()
