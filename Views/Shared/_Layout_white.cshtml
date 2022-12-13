@@ -248,6 +248,14 @@
     <script src="~/Admin/assets/plugins/general/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
     <script src="~/assets/js/inlineSVG.min.js"></script>
     <script src="~/assets/js/main.js"></script>
+    <script>
+         function gotosection(section) {
+    $('body, html').animate({
+      scrollTop: $(section).offset().top
+    }, 600);
+
+  };
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 

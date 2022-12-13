@@ -333,6 +333,7 @@ section.our-features .question{
 section.our-features .phone{
     font-size: 16px;
     font-weight: 700;
+    direction:ltr;
 }
 section.our-features .separator{
     width: 1px;
@@ -558,7 +559,7 @@ section.book-appointment .book-appointment-form{
 }
 .book-appointment-form .form-inputs label{
     position: absolute;
-    padding-left: 12px;
+    padding-right: 12px;
     padding-top: 8px;
     font-weight: 400;
     font-size: 14px;
@@ -592,6 +593,7 @@ footer .newsletter input:focus{
     outline: none;
 }
 footer .newsletter input{
+    direction:rtl;
     color: var(--white);
     font-weight: 400;
     font-size: 13px;
@@ -610,7 +612,7 @@ footer .contact-info .contact-info-item{
     margin-bottom: 12px;
 }
 footer .contact-info .icon{
-    margin-right: 12px;
+    margin-left: 12px;
 }
 footer .contact-info .text{
     font-weight: 300;
@@ -733,6 +735,7 @@ section.contact-us .contact-us-form h1{
 }
 section.contact-us .contact-us-form input,
 section.contact-us .contact-us-form textarea{    
+    direction:rtl;
     border: none;
     border-bottom: 1px solid #EEEEEE;
     border-radius: 0 !important;
@@ -1477,13 +1480,13 @@ section.get-in-touch .get-in-touch-detials{
 
 }
 section.get-in-touch .get-in-touch-detials::after{
-    content: '';
+  /*  content: '';
     background-image: url('../images/get-in-touch-pattern.svg');
     width: 654px;
     height: 66px;
     position: absolute;
     bottom: -40px;
-    right: -90px;
+    right: -90px;*/
 }
 section.get-in-touch .book-appointment-form-container{
     padding: 50px 30px 50px 0px;
@@ -1507,6 +1510,8 @@ section.get-in-touch .address{
     color: #3E3E3E;
 }
 section.get-in-touch .mobile{
+    direction:ltr;
+    text-align:right;
     font-weight: 700;
     font-size: 19px;
     color: #40C782;
@@ -1515,6 +1520,9 @@ section.get-in-touch .social-links a{
     color: #BBBBBB;
     margin-right: 15px;
 }
+    section.get-in-touch .social-links a:hover {
+        color: #40C782;
+    }
 /* get in touch end */
 /* statistics start */
 section.statistics{
