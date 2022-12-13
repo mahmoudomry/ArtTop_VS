@@ -59,27 +59,7 @@
         <link rel="stylesheet" href="~/assets/css/style.css" />
 
     }    
-  <style type="text/css">
 
-	
-		.dropdown-menu li{
-			position: relative;
-		}
-		.nav-item .submenu{ 
-			display: none;
-			position: absolute;
-			left:100%; top:-7px;
-		}
-		.nav-item .submenu-left{ 
-			right:100%; left:auto;
-		}
-
-		.dropdown-menu > li:hover{ background-color: #f1f1f1 }
-		.dropdown-menu > li:hover > .submenu{
-			display: block;
-		}
-	
-</style>
     <link rel="shortcut icon" href="~/assets/images/logo-IconSmall.png" /> 
 
 </head>
@@ -179,9 +159,7 @@
                                        
                                     </ul>
                                 </li>
-                                <li class="nav-item">
-                                    <a  href="~/@culture/Services/Index" class="nav_link @(current_controller=="Services"?"active":"")">@localizer["Services"]</a>
-                                </li>
+                               
                                 <li class="nav-item">
                                     <a  href="~/@culture/Projects/Index"  class="nav_link @(current_controller=="Projects"?"active":"")">@localizer["Projects"]</a>
                                 </li>
