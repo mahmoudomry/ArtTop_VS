@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ArtTop.Models.OfficeSlider>
 @{
       ViewData["ActionTitle"]="List";
-    ViewData["Title"] = "DoctorSliders";
+    ViewData["Title"] = "Person Sliders";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -14,19 +14,22 @@
 											<div class="kt-portlet__head-label">
 												<h3 class="kt-portlet__head-title pull-left">
 													@ViewData["ActionTitle"]
-                                                     <br />
-                                                    <span class="badge badge-info"> @ViewBag.OfficeDetails</span>
+                                                    <br />
+                                                    <span class="badge badge-info"> @ViewBag.PersonDetails</span>
 												</h3>
                                              
 											</div>
 
-                                               <a  class="btn btn-primary pull-right create-btn" href="@Url.Action("Create","DoctorSliders",new{area="Administrative",OfficeId= Context.Request.Query["OfficeId"]})" >Create New</a>
+                                               <a  class="btn btn-primary pull-right create-btn" href="@Url.Action("Create","DoctorSliders",new{area="Administrative",DoctorId= Context.Request.Query["DoctorId"]})" >Create New</a>
                                                 
 										</div>
                                         <div class="kt-portlet__body">
 <table class="table">
     <thead>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Doctor)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.CoverImage)
             </th>
@@ -36,16 +39,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.Order)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Office)
-            </th>
+           
             <th></th>
         </tr>
     </thead>
     <tbody>
 @foreach (var item in Model) {
-        <tr>   <td>
-                @Html.DisplayFor(modelItem => item.Office.EnglishTitle)
+        <tr>  
+            <td>
+                @Html.DisplayFor(modelItem => item.Doctor.EnglisName)
             </td>
             <td>
                <img src="~/assets/images/@item.CoverImage" width="200px"/>
@@ -58,9 +60,9 @@
             </td>
          
             <td>
-                 <a  class="btn btn-outline-success"  href="@Url.Action("Edit","OfficeSliders",new{area="Administrative",Id=item.Id})" ><i class="fa fa-edit  "></i> Edit </a> 
+                 <a  class="btn btn-outline-success"  href="@Url.Action("Edit","DoctorSliders",new{area="Administrative",Id=item.Id})" ><i class="fa fa-edit  "></i> Edit </a> 
 
-                <a class="btn btn-outline-danger"  href="@Url.Action("Delete","OfficeSliders",new{area="Administrative",Id=item.Id})" onclick="return confirm('Are you sure From Deleted?')" > <i class="fa fa-trash "></i> Delete</a>
+                <a class="btn btn-outline-danger"  href="@Url.Action("Delete","DoctorSliders",new{area="Administrative",Id=item.Id})" onclick="return confirm('Are you sure From Deleted?')" > <i class="fa fa-trash "></i> Delete</a>
       
             </td>
         </tr>
