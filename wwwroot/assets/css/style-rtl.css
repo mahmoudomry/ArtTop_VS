@@ -69,6 +69,9 @@ body {
 h1, h2, h3, h4, h5, h6 {
     font-family: Tajawal-Bold;
 }
+img{
+    max-width: 100%
+}
 /* search start */
 .overlay {
     height: 100%;
@@ -1437,7 +1440,6 @@ section.about-clinic .service-item .icon{
     align-items: center;
     justify-content: center;
     margin-left: 30px;
-    o
 }
 section.about-clinic .service-item a{
     text-decoration: none;
@@ -1559,6 +1561,408 @@ section.statistics .statistics-item h3{
         margin-right: 5px;
         margin-left: 5px;
     }
+    .mobile-only{
+        display: none;
+    }
+    .navbar-expand-lg .navbar-nav .nav-link{
+        color: var(--white) !important;
+        padding: 0 5px;
+    }
+    .dropdown-menu{
+        background: rgba(0, 0, 0, 0.9);
+    }
+    .dropdown-item:focus,
+    .dropdown-item:focus-visible{
+        color: var(--orange);
+    }
+    .dropdown-item:focus,
+    .dropdown-item:focus-visible,
+    .dropdown-item:hover{
+        color: var(--orange);
+        background-color: transparent;
+    }
+    .dropdown-item{
+        color: var(--white);
+    }
+    .navbar {
+        z-index: 99 !important;
+    }
+    .menu-wrap{
+        position: fixed;
+        left: -475px;
+        top: 0;
+        z-index: 99;
+        height: 100vh;
+        width: 475px;
+        background: #1E1E1E;
+        padding: 40px 66px;
+        -webkit-transition: all .3s;
+        -moz-transition: all .3s;
+        -o-transition: all .3s;
+        transition: all .3s;
+        color: var(--white);
+    }
+    .menu-wrap-container{
+        max-width: 215px;
+    }
+    .close-menu{
+        background-color: var(--orange);
+        border-radius: 4px;
+        width: 35px;
+        height: 34px;
+    }
+    .close-menu i{
+        color: var(--white);
+    }
+    .chat-icon{
+        margin: 40px 0 10px;
+    }
+    .menu-wrap h3{
+        font-weight: 600;
+        font-size: 20px; 
+        margin-bottom: 20px;       
+    }
+    .menu-wrap .info-item label{
+        color: #40C782;
+        font-weight: 600;
+        font-size: 15px;     
+        margin-bottom: 5px;   
+    }
+    .menu-wrap .info-item p{
+        font-weight: 400;
+        font-size: 15px;
+    }
+    .menu-wrap .info-item p a{
+        color: var(--white);
+        text-decoration: none;
+    }
+    .menu-wrap .social-links{
+        margin: 20px 0;
+        padding: 15px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .menu-wrap .social-links a{
+        color: var(--white);
+        margin-right: 20px;
+    }
+    .menu-wrap .btn-green{
+        margin-top: 10px;
+    }
+    @media screen and (max-width: 1399px) {
+    }
+    @media only screen and (max-width: 1280px) {
+    }
+    @media only screen and (max-width: 991px) {
+    }
+    @media only screen and (min-width: 769px) {
+        section.our-clinics .doctor-item{
+            min-width: 970px;
+        }
+    }
+    @media only screen and (max-width: 768px) {
+        header.home{
+            min-height: 580px;
+            padding: 0  !important;
+        }
+        .main-slider .carousel-indicators{
+            right: 0;
+        }
+        .main-slider h2{
+            font-size: 60px;
+        }
+        section.our-services{
+            padding: 30px 0 !important;
+        }
+        section.our-services .service-card{
+            margin-bottom: 20px;
+        }
+        section.our-services h2{
+            width: 90% !important;
+            margin-bottom: 30px !important;
+        }
+        section.our-features{
+            padding: 30px 0 !important;
+        }
+        section.our-features .call-us{
+            margin-bottom: 24px;
+        }
+        section.our-features h5{
+            margin-top: 30px;
+        }
+        section.our-features .btn-green{
+            margin-top: 20px;
+        }
+        section.our-projects {
+            padding: 30px 0;
+        }
+        section.our-projects .btn-white{
+            margin-bottom: 20px;
+        }
+        section.our-projects .project-card h3{
+            margin-bottom: 10px;
+        }
+        section.our-projects .project-card{
+            margin-top: 40px !important;
+        }
+        section.clients a{
+            height: auto;
+        }
+        section.book-appointment{
+            padding: 30px 0;
+        }
+        .book-appointment-form .service-choices{
+            flex-direction: column;
+            margin-bottom: 20px;
+        }
+        .book-appointment-form .form-check-inline{
+            margin-bottom: 20px;
+        }
+        .book-appointment-form .form-check-label{
+            padding-bottom: 10px !important;
+        }
+        .book-appointment-form .btn-green{
+            margin-top: 10px;
+        }
+        .top-title h1{
+            font-size: 60px;
+        }
+        section.to-know-us{
+            padding: 30px 0;
+        }
+        header.inner{
+            min-height: auto;
+        }
+        section h5{
+            margin-top: 20px;
+        }
+        section.to-know-us .to-know-2{
+            margin-top: 20px;
+        }
+        .work-features-list{
+            display: block !important;
+        }
+        .work-features-list .work-feature{
+            margin-bottom: 20px;
+        }
+        .features-list{
+            display: block !important;
+        }
+        section.our-fatures-inner{
+            padding-top: 30px;
+            padding-bottom: 30px;
+            height: auto;
+        }
+        section.empty{
+            height: 0 !important;
+        }
+        section.services{
+            padding: 30px 0;
+        }
+        section.projects{
+            padding: 30px 0;
+        }
+        section.contact-us{
+            background: none
+        }
+        section.contact-us .contact-info-box{
+            padding: 30px 15px;
+            background-color: #34B073;
+        }
+        section.contact-us .contact-us-form{
+            padding: 30px 15px;
+        }
+        section.project-details{
+            padding: 30px 0;
+        }
+        section.what-we-do .text{
+            padding: 30px 0 30px;
+            height: auto;
+        }
+        section.what-we-do .btn-green{
+            margin-top: 20px;
+        }
+        section.sub-services-header{
+            padding-top: 30px;
+        }
+        section h2{
+            font-size: 30px;
+        }
+        .doctors .owl-nav{
+            display: none !important;
+        }
+        section.our-clinics{
+            padding: 30px 0;
+        }
+        .modal-content{
+            padding: 5px;
+        }
+        section.about-clinic .details{
+            padding-top: 30px;
+        }
+        section.about-clinic .btn-green{
+            margin-top: 20px;
+        }
+        section.get-in-touch{
+            background: none;
+        }
+        section.get-in-touch .get-in-touch-detials{
+            padding: 30px 15px;
+        }
+        section.get-in-touch .get-in-touch-detials::after{
+            width: auto;
+        }
+        section.get-in-touch .book-appointment-form-container{
+            padding: 30px 15px;
+        }
+        section.statistics{
+            padding: 30px 0;
+        }
+        section.statistics .statistics-items-list{
+            flex-direction: column !important;
+        }
+        section.statistics .statistics-item{
+            flex: 0 0 100%;
+        }    
+        header.inner{
+            padding: 0 !important;
+        }
+        .search_btn_container{
+            display: none !important;
+        }
+        .nav-center{
+            width: 100%;
+        }
+        section.services .content{
+            margin-bottom: 0;
+        }
+        header.white nav a{
+            color: #fff!important;
+        }
+        header .navbar-nav{
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.9);
+        }
+        header.white .navbar-nav{
+            background: rgba(2, 83, 59, 0.8);
+        }
+        .service-slider .carousel-item{
+            z-index: -1;
+        }
+        section.sub-services-items .owl-nav .owl-next,
+        section.sub-services-items .owl-nav .owl-prev{
+            bottom: -60px;
+            top: auto;
+        }
+        section.our-features .features-list .features-list-item{
+            font-size: 13px;
+        }
+        .navbar-toggler{
+            border-color: #fff;
+        }
+        .navbar-toggler i{
+            color: #fff;
+        }
+        header.white .navbar-toggler{
+            border-color: #333;
+        }
+        header.white .navbar-toggler i{
+            color: #333;
+        }
+        .mobile-only{
+            display: block;
+        }
+        .nav-link,
+        .nav-link:focus-visible{
+            color: #fff !important;
+            background-color: transparent;
+        }
+        .dropdown-menu{
+            background: none;
+        }
+        .dropdown-menu a,
+        .dropdown-menu a:focus-visible{
+            color: #fff;
+            background-color: transparent;
+        }
+        .nav-link:hover,
+        .dropdown-menu a:hover{
+            color: var(--orange)!important;
+        }
+        .modal-lg {
+            width: auto !important;
+        }
+        .modal-header h1{
+            font-size: 20px !important;
+            padding-top: 0;
+        }
+        .modal-header{
+            padding: 10px;
+        }
+        .modal-body{
+            padding: 5px;
+        }
+        .modal-footer{
+            justify-content: center !important;
+        }
+        section.our-clinics .owl-nav .owl-prev,
+        section.our-clinics .owl-nav .owl-next{
+            position: static;
+            transform: translateY(20px);
+        }
+        section.our-clinics .owl-nav{
+            display: flex !important;
+            justify-content: space-between;
+        }
+        section.our-clinics .doctor-item {
+            padding: 20px;
+            background-position: center;
+        }
+        section.our-clinics .doctor-item .info .position{
+            font-size: 14px;
+        }
+        section.our-clinics .doctor-item .info h2{
+            font-size: 20px;
+        }
+        footer .logos{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        footer .copyright {
+            margin-bottom: 20px;
+        }
+        footer .social-links ul{
+            justify-content: center !important;
+        }
+    }
+    
+    @media all and (min-width: 992px) {
+    
+        .dropdown-menu li{
+            position: relative;
+        }
+        .dropdown-menu .submenu{ 
+            display: none;
+            position: absolute;
+            right:100%; top:-7px;
+        }
+        .dropdown-menu .submenu-left{ 
+            left:100%; right:auto;
+        }
+    
+        .dropdown-menu > li:hover{ 
+            color: var(--orange)!important;
+         }
+        .dropdown-menu > li:hover > .submenu{
+            display: block;
+        }
+        .navbar-nav > li:hover > ul{
+            position: absolute;
+            display: block;
+        }
+    }	
 div.blockElement {
     border: none !important;
     background: none !important;

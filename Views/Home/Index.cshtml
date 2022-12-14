@@ -184,7 +184,7 @@
                         <div class="position-relative overflow-hidden">
                             <partial name="_SelectLanguage" />
                         </div>
-                        <a href="" class="get-in-touch-btn d-block  pt-2 pb-2 text-white">
+                        <a href="" class="get-in-touch-btn d-block  pt-2 pb-2 text-white menuBar">
                             <span>@localizer["Get"] </span>@localizer["InTouch"]
                         </a>
                     </div>
@@ -257,6 +257,62 @@
                     </div>
                 </nav>
             }
+            <div class="menu-wrap">
+                <div class="menu-wrap-container">
+                    <button type="button" class="close-menu"><i class="fa fa-close"></i> </button>
+                    <div class="chat-icon">
+                        <img src="~/assets/images/chat-bubble.svg" alt="">
+                    </div>
+                    <h3>
+                        We will be Happy to Reach us and Listen to you
+                    </h3>
+                    <div class="info-item">
+                        <label for="">
+                            Address
+                        </label>
+                        <p>
+                            Kingdome of Saudi Arabia Short Address RHOA7835
+                        </p>
+                    </div>
+                    <div class="info-item">
+                        <label for="">
+                            Email
+                        </label>
+                        <p>
+                            <a href="mailto:info@arttopgroup.com">info@arttopgroup.com</a>
+                        </p>
+                    </div>
+                    <div class="info-item">
+                        <label for="">
+                            Phone
+                        </label>
+                        <p>
+                            <a href="tel:+960 3309110">+960 3309110</a>
+                        </p>
+                    </div>                    
+                    <div class="social-links ">
+                        <ul class="list-unstyled list-group list-group-horizontal justify-content-start">
+                            
+                            @foreach(var item in SocialMedias)
+                        {
+                        <li>
+                                <a href="@item.Link" class="@item.EnglishTitle">
+                                    <i class="fa-brands fa-@item.EnglishTitle"></i>
+                                </a>
+                            </li>
+                        }
+                        </ul>
+                    </div>
+                    <div class="info-item">
+                        <p >
+                            Have any Question?
+                        </p>
+                        <a href="#" class="btn btn-green">
+                            Send us
+                        </a>
+                    </div>                  
+                </div>
+            </div>
                 <section class="main-slider">
                     <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
                         <div class="carousel-indicators">
@@ -622,6 +678,21 @@
                         }
                     }
                 });
+                $(document).on("click", ".close-menu", function (e) {
+                    e.preventDefault();
+                    $(".menuBar").removeClass("active");
+                    $(".menu-wrap").css("left", "-475px");
+                });
+                $(document).on("click", ".menuBar", function (e) {
+                    e.preventDefault();
+                    if ($(this).hasClass("active")) {
+                        $(this).removeClass("active");
+                        $(".menu-wrap").css("left", "-475px");
+                    } else {
+                        $(this).addClass("active");
+                        $(".menu-wrap").css("left", "0");
+                    }
+                });
             });
         </script>
     }
@@ -648,6 +719,21 @@
                             nav: true,
                             loop: false
                         }
+                    }
+                });
+                $(document).on("click", ".close-menu", function (e) {
+                    e.preventDefault();
+                    $(".menuBar").removeClass("active");
+                    $(".menu-wrap").css("right", "-475px");
+                });
+                $(document).on("click", ".menuBar", function (e) {
+                    e.preventDefault();
+                    if ($(this).hasClass("active")) {
+                        $(this).removeClass("active");
+                        $(".menu-wrap").css("right", "-475px");
+                    } else {
+                        $(this).addClass("active");
+                        $(".menu-wrap").css("right", "0");
                     }
                 });
             });
