@@ -1696,6 +1696,9 @@ section.statistics .statistics-item h3{
     section.project-details{
         padding: 30px 0;
     }
+    section.what-we-do {
+        background-image: none !important;
+    }
     section.what-we-do .text{
         padding: 30px 0 30px;
         height: auto;
