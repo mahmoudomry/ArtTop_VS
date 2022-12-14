@@ -1303,7 +1303,6 @@ section.our-clinics .doctor-item{
     position: relative;
     background-size: cover;
     height: 420px;
-    width: 970px;
     border-radius: 10px;
     justify-content: center;
 }
@@ -1666,7 +1665,7 @@ section.statistics .statistics-item h3{
             padding: 0  !important;
         }
         .main-slider .carousel-indicators{
-            right: 0;
+            left: 0;
         }
         .main-slider h2{
             font-size: 60px;
