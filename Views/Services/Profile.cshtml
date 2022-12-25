@@ -19,30 +19,33 @@
 
 <input type="hidden" Id="OfficeId" name="OfficeId" value="@Model.Id" />
  <input type="hidden" Id="ServiceId" name="ServiceId" value="@Model.ServiceId" />
-<section class="service-slider">
-    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
+ @if (OfficeSliders != null && OfficeSliders.Count() > 0)
+{
+    <section class="service-slider" data-aos="fade-up" data-aos-duration="1000">
+        <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
             <div class="carousel-inner">
-                @foreach (var item in OfficeSliders)
-                {
-                    <div class="carousel-item @(OfficeSliders.IndexOf(item)==0?"active":"")" data-bs-interval="10000">
-                        <img src="~/assets/images/@(isRTL ? item.CoverImageAr:item.CoverImage)"
+                <div class="carousel-inner">
+                    @foreach (var item in OfficeSliders)
+                    {
+                        <div class="carousel-item @(OfficeSliders.IndexOf(item)==0?"active":"")" data-bs-interval="10000">
+                            <img src="~/assets/images/@(isRTL ? item.CoverImageAr:item.CoverImage)"
                         alt="@(isRTL ? Model.ArabicTitle: Model.EnglishTitle)">
-                    </div>
-                }
+                        </div>
+                    }
+                </div>
             </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-</section>
-<section class="about-clinic">
+    </section>
+}
+<section class="about-clinic" data-aos="fade-up" data-aos-duration="1000">
     <div class="container">
         <div class="row about">
             <div class="col-md-5 details">
@@ -92,7 +95,7 @@
         </div>
     </div>
 </section>
-<section class="get-in-touch">
+<section class="get-in-touch" data-aos="fade-up" data-aos-duration="1000">
     <div class="container">
         <div class="row">
             <div class="col-md-6 get-in-touch-detials">
@@ -156,7 +159,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 book-appointment-form-container">
+            <div class="col-md-6 book-appointment-form-container" data-aos="zoom-in-left"  data-aos-duration="2000">
                 <h2>
                         @localizer["MakeAppointment"]
                     </h2> 
@@ -165,7 +168,7 @@
         </div>
     </div>
 </section>
-<section class="statistics">
+<section class="statistics" data-aos="fade-up" data-aos-duration="1000">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -207,7 +210,7 @@
         </div>
     </div>
 </section>
-<section class="map-full">
+<section class="map-full" data-aos="fade-up" data-aos-duration="1000">
   
     <iframe src="@Model.Location" 
         width="100%" height="560" style="border:0;" allowfullscreen="" loading="lazy"

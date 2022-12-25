@@ -27,6 +27,12 @@ namespace ArtTop.Areas.Administrative.Controllers
             return View(await artTopContext.ToListAsync());
         }
 
+        public JsonResult GetSubServices(int id)
+        {
+            var list = _context.SubServices.Where(x => x.ServiceId == id).ToList();
+            return Json(list);  
+        }
+
         // GET: Administrative/SubServices/Details/5
         public async Task<IActionResult> Details(int? id)
         {

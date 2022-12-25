@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<ArtTop.Models.OfficeSlider>
 @{
       ViewData["ActionTitle"]="List";
-    ViewData["Title"] = "DoctorSliders";
+    ViewData["Title"] = "OfficeSliders";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
@@ -20,7 +20,7 @@
                                              
 											</div>
 
-                                               <a  class="btn btn-primary pull-right create-btn" href="@Url.Action("Create","DoctorSliders",new{area="Administrative",OfficeId= Context.Request.Query["OfficeId"]})" >Create New</a>
+                                               <a  class="btn btn-primary pull-right create-btn" href="@Url.Action("Create","OfficeSliders",new{area="Administrative",OfficeId= Context.Request.Query["OfficeId"]})" >Create New</a>
                                                 
 										</div>
                                         <div class="kt-portlet__body">

@@ -92,5 +92,9 @@
   "MessageSentSuccessfully": "تم ارسال الرسالة بنجاح",
   "PleaseFillAllBoxes": "الرجاء ملء جميع الحقول",
   "YouSubscribeSuccessfully": "تم اشتراكك بنجاح",
-  "Phone": "رقم الهاتف"
+  "Phone": "رقم الهاتف",
+  "HaveanyQuestion": "لديك اي استفسار ؟",
+  "Address": "العنوان",
+  "AllServices": "جميع الخدمات"
+
 }

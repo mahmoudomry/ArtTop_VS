@@ -24,7 +24,7 @@ namespace ArtTop.Controllers
             ViewBag.current_action = "Index";
             ViewBag.SiteSetting = _context.SiteSettings.FirstOrDefault();
             ViewBag.Services = _context.Services.OrderBy(x => x.Order).ToList();
-            ViewBag.ContactItems = _context.ContactItem.Where(x => x.ShowInHome == true).ToList();
+            ViewBag.ContactItems = _context.ContactItem.ToList();
             ViewBag.SocialMedia = _context.SocialMedia.ToList();
             ViewBag.ServicesItems = _context.Offices.Select(x => new { x.Id, x.ArabicTitle, x.EnglishTitle, Type = 1, x.ServiceId }).ToList().Union(_context.Doctors.Select(x => new { x.Id, ArabicTitle = x.ArabicName, EnglishTitle = x.EnglisName, Type = 2, x.ServiceId }).ToList());
             return View();
@@ -61,7 +61,7 @@ namespace ArtTop.Controllers
             var servicesList = _context.Services.OrderBy(x => x.Order).ToList();
             ViewBag.Services = servicesList;
             ViewBag.SiteSetting = _context.SiteSettings.FirstOrDefault();
-            ViewBag.ContactItems = _context.ContactItem.Where(x => x.ShowInHome == true).ToList();
+            ViewBag.ContactItems = _context.ContactItem.ToList();
             ViewBag.SocialMedia = _context.SocialMedia.ToList();
             ViewBag.ServicesItems = _context.Offices.Select(x => new { x.Id, x.ArabicTitle, x.EnglishTitle, Type = 1, x.ServiceId }).ToList().Union(_context.Doctors.Select(x => new { x.Id, ArabicTitle = x.ArabicName, EnglishTitle = x.EnglisName, Type = 2, x.ServiceId }).ToList());
             var office = _context.Offices.Where(x => x.Id == Id).FirstOrDefault();
@@ -83,7 +83,7 @@ namespace ArtTop.Controllers
             var servicesList = _context.Services.OrderBy(x => x.Order).ToList();
             ViewBag.Services = servicesList;
             ViewBag.SiteSetting = _context.SiteSettings.FirstOrDefault();
-            ViewBag.ContactItems = _context.ContactItem.Where(x => x.ShowInHome == true).ToList();
+            ViewBag.ContactItems = _context.ContactItem.ToList();
             ViewBag.SocialMedia = _context.SocialMedia.ToList();
             ViewBag.ServicesItems = _context.Offices.Select(x => new { x.Id, x.ArabicTitle, x.EnglishTitle, Type = 1, x.ServiceId }).ToList().Union(_context.Doctors.Select(x => new { x.Id, ArabicTitle = x.ArabicName, EnglishTitle = x.EnglisName, Type = 2, x.ServiceId }).ToList());
             var doctor = _context.Doctors.Where(x => x.Id == Id).FirstOrDefault();

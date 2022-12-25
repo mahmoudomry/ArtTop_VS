@@ -20,7 +20,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Arttop</title>
+   <title>@(isRTL?siteSetting.SiteTitleAr:siteSetting.SiteTitleEn)</title>
+    <meta name="description" content="@(isRTL?siteSetting.SiteDescAr:siteSetting.SiteDescEn)" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
@@ -32,6 +33,7 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
+                <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-utilities.css" />
     @if (isRTL)
     {
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.rtl.min.css"
@@ -63,40 +65,45 @@
     <div class="layout position-relative">
         <header class="inner white top-0 ps-4 pe-4 w-100">
             <div class="container">
-                <nav class="navbar navbar-expand-lg" data-aos="fade-up" data-aos-duration="3000">
-                    <div class="container-fluid">
-                        <a class="navbar-brand" href="~/@culture/Home/Index">
-                            <img src="~/assets/images/logo.svg" alt="Art top" />
-                        </a>
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="nav-center">
-                            <div class="collapse navbar-collapse top-menu justify-content-center"
-                                id="navbarNavAltMarkup">
-                                <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
-                                    <li class="nav-item">
-                                        <a href="~/@culture/Home/Index"
-                                            class="nav_link @(current_action=="Index"&&current_controller=="Home"?"active":"")">@localizer["home"]</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="~/@culture/Home/About"
-                                            class="nav_link @(current_action=="About"&&current_controller=="Home"?"active":"")">@localizer["About"]</a>
-                                    </li>
-                                 <li class="nav-item dropdown">
+                  <nav class="navbar navbar-expand-lg" data-aos="fade-up" data-aos-duration="3000">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="~/@culture/Home/Index">
+                        <img src="~/assets/images/logo.svg" alt="Art top" />
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                            <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div class="nav-center">
+                        <div class="collapse navbar-collapse top-menu justify-content-center" id="navbarNavAltMarkup">
+                            <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+                             
+                                <li class="nav-item">
+                                    <a href="~/@culture/Home/Index"   class="nav_link @(current_action=="Index"&&current_controller=="Home"?"active":"")">@localizer["home"]</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a  href="~/@culture/Home/About" class="nav_link @(current_action=="About"&&current_controller=="Home"?"active":"")">@localizer["About"]</a>
+                                </li>
+
+                                     </li>
+
+                                <li class="nav-item dropdown">
 		<a class="nav-link dropdown-toggle @(current_controller=="Services"?"active":"")" href="#" data-toggle="dropdown">   @localizer["Services"]  </a>
 	    <ul class="dropdown-menu">
+           <li><a class="dropdown-item" href="/@culture/services/"> @localizer["AllServices"] </a></li>
           @foreach(var itm in Services)
                                     {
 		  
-		  <li><a class="dropdown-item dropdown-toggle" href="/@culture/services/Details/@itm.Id">@(isRTL?itm.ArabicTitle:itm.EnglishTitle) </a>
+		  <li class="dropdown "><a class="dropdown-item dropdown-toggle" href="#">@(isRTL?itm.ArabicTitle:itm.EnglishTitle) </a>
 		  	 <ul class="submenu dropdown-menu">
+                 <li><a class="dropdown-item " href="/@culture/services/Details/@itm.Id">@(isRTL?itm.ArabicTitle:itm.EnglishTitle) </a></li>
                             @foreach(var d in ServicesItems)
                                     {
+
                                         if(d.ServiceId==itm.Id)
                                         {
+
 			    <li><a class="dropdown-item" href="/@culture/services/@(d.Type==1?"Profile":"PersonProfile")/@d.Id">@(isRTL?d.ArabicTitle:d.EnglishTitle)</a></li>
                                     }
                                     }
@@ -108,41 +115,108 @@
 		  
 	    </ul>
 	</li>
-                                    <li class="nav-item">
-                                        <a href="~/@culture/Projects/Index"
-                                            class="nav_link @(current_controller=="Projects"?"active":"")">@localizer["Projects"]</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a href="~/@culture/Home/Contact"
-                                            class="nav_link @(current_action=="Contact"&&current_controller=="Home"?"active":"")">@localizer["ContactUs"]</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="search_btn_container nav_action d-flex align-items-center">
-                            <a href="javascript:;" onClick="openSearch()" class="search_btn d-block">
-                                <svg width="17" height="15" viewBox="0 0 17 15" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M16.0544 13.4824L12.9381 10.5995C13.8825 9.45576 14.4005 8.06846 14.4007 6.60455C14.4007 4.84039 13.658 3.18171 12.3093 1.93427C10.9608 0.686842 9.16799 -0.000244141 7.26069 -0.000244141C5.35362 -0.000244141 3.56057 0.686842 2.21209 1.93427C-0.571674 4.50965 -0.571674 8.69988 2.21209 11.2748C3.56057 12.5225 5.35362 13.2096 7.26069 13.2096C8.84318 13.2094 10.3429 12.7302 11.5793 11.8565L14.6956 14.7393C14.8831 14.9129 15.1292 14.9998 15.375 14.9998C15.6209 14.9998 15.867 14.9129 16.0544 14.7393C16.4298 14.3923 16.4298 13.8294 16.0544 13.4824ZM3.5709 10.0178C1.53644 8.13584 1.53668 5.07347 3.5709 3.19125C4.55645 2.27977 5.86693 1.77759 7.26069 1.77759C8.65468 1.77759 9.96492 2.27977 10.9505 3.19125C11.936 4.10296 12.4789 5.31523 12.4789 6.60455C12.4789 7.89408 11.936 9.10614 10.9505 10.0178C9.96492 10.9295 8.65468 11.4317 7.26069 11.4317C5.86693 11.4317 4.55645 10.9295 3.5709 10.0178Z"
-                                        fill="white" />
-                                </svg>
-                            </a>
-                            <div class="position-relative overflow-hidden">
-                                <partial name="_SelectLanguage" />
-                            </div>
-                            <a href="" class="get-in-touch-btn d-block  pt-2 pb-2 text-white">
-                                <span>@localizer["Get"] </span>@localizer["InTouch"]
-                            </a>
+                             
+                               
+                                <li class="nav-item">
+                                    <a  href="~/@culture/Projects/Index"  class="nav_link @(current_controller=="Projects"?"active":"")">@localizer["Projects"]</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a  href="~/@culture/Home/Contact"  class="nav_link @(current_action=="Contact"&&current_controller=="Home"?"active":"")">@localizer["ContactUs"]</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
-                </nav>
+                    <div class="search_btn_container nav_action d-flex align-items-center">
+                        <!--<a href="javascript:;" onClick="openSearch()" class="search_btn d-block">
+                            <svg width="17" height="15" viewBox="0 0 17 15" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M16.0544 13.4824L12.9381 10.5995C13.8825 9.45576 14.4005 8.06846 14.4007 6.60455C14.4007 4.84039 13.658 3.18171 12.3093 1.93427C10.9608 0.686842 9.16799 -0.000244141 7.26069 -0.000244141C5.35362 -0.000244141 3.56057 0.686842 2.21209 1.93427C-0.571674 4.50965 -0.571674 8.69988 2.21209 11.2748C3.56057 12.5225 5.35362 13.2096 7.26069 13.2096C8.84318 13.2094 10.3429 12.7302 11.5793 11.8565L14.6956 14.7393C14.8831 14.9129 15.1292 14.9998 15.375 14.9998C15.6209 14.9998 15.867 14.9129 16.0544 14.7393C16.4298 14.3923 16.4298 13.8294 16.0544 13.4824ZM3.5709 10.0178C1.53644 8.13584 1.53668 5.07347 3.5709 3.19125C4.55645 2.27977 5.86693 1.77759 7.26069 1.77759C8.65468 1.77759 9.96492 2.27977 10.9505 3.19125C11.936 4.10296 12.4789 5.31523 12.4789 6.60455C12.4789 7.89408 11.936 9.10614 10.9505 10.0178C9.96492 10.9295 8.65468 11.4317 7.26069 11.4317C5.86693 11.4317 4.55645 10.9295 3.5709 10.0178Z"
+                                    fill="white" />
+                            </svg>
+                        </a>-->
+                        <div class="position-relative overflow-hidden">
+                            <partial name="_SelectLanguage" />
+                        </div>
+                        <a href="" class="get-in-touch-btn d-block  pt-2 pb-2 text-white menuBar">
+                            <span>@localizer["Get"] </span>@localizer["InTouch"]
+                        </a>
+                    </div>
+                </div>
+            </nav>
                 @RenderSection("HeaderTitle", required: false)
                 <section class="main-slider">
                 </section>
             </div>
 
         </header>
+                    <div class="menu-wrap">
+                <div class="menu-wrap-container">
+                    <button type="button" class="close-menu"><i class="fa fa-close"></i> </button>
+                    <div class="chat-icon">
+                        <img src="~/assets/images/chat-bubble.svg" alt="">
+                    </div>
+                    <h3>
+                        @Html.Raw(isRTL?siteSetting.ContactArabicTitle:siteSetting.ContactEnglishTitle)
+                    </h3>
+                    <div class="info-item">
+                        <label for="">
+                            @localizer["Address"]
+                        </label>
+                        <p>
+                       
+                                @{
+                                    var addressitem = ContactItems.Where(x => x.Order == 1).FirstOrDefault();
+                                }
+                                @(isRTL?addressitem.ArabicValue:addressitem.EnglishValue) 
+                        </p>
+                    </div>
+                    <div class="info-item">
+                        <label for="">
+                            @localizer["Email"]  
+                        </label>
+                        <p>
+                                @{
+                                    var Emailitem = ContactItems.Where(x => x.Order == 2).FirstOrDefault();
+                                }
+                               
+                            <a href="mailto:@(Emailitem.EnglishValue)">@Emailitem.EnglishValue</a>
+                        </p>
+                    </div>
+                    <div class="info-item">
+                        <label for="">
+                            @localizer["Phone"]  
+                        </label>
+                        <p>
+                        @{
+                                    var phneitem = ContactItems.Where(x => x.Order == 2).FirstOrDefault();
+                                }
+                            <a href="tel:@(phneitem.EnglishValue)">@(phneitem.EnglishValue)</a>
+                        </p>
+                    </div>                    
+                    <div class="social-links ">
+                        <ul class="list-unstyled list-group list-group-horizontal justify-content-start">
+                            
+                            @foreach(var item in SocialMedias)
+                        {
+                        <li>
+                                <a href="@item.Link" class="@item.EnglishTitle">
+                                    <i class="fa-brands fa-@item.EnglishTitle"></i>
+                                </a>
+                            </li>
+                        }
+                        </ul>
+                    </div>
+                    <div class="info-item">
+                        <p >
+                            @localizer["HaveanyQuestion"]
+                        </p>
+                        <a href="~/@culture/Home/Contact" class="btn btn-green">
+                            @localizer["Sendus"]  
+                        </a>
+                    </div>                  
+                </div>
+            </div>
         <main>
             @RenderBody()
         </main>
@@ -181,7 +255,7 @@
                                 @localizer["ContactUs"]
                             </h3>
                             <div>
-                                @foreach (var item in ContactItems)
+                                @foreach (var item in ContactItems.Where(x=>x.ShowInHome==true))
                                 {
                                     <div class="d-flex contact-info-item">
                                         <div class="icon">
@@ -254,21 +328,37 @@
             </footer> *@
     </div>
 
-    @* <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> *@
-    <script src="~/assets/js/jquery-3.6.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- <script src ="https://cdn.jsdelivr.net/gh/KodingKhurram/animate.css-dynamic@main/animate.min.js"></script> -->
-    @* <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script> *@
-    @* <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/ScrollTrigger.min.js"></script> *@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.js"></script>
-    <script src="~/Admin/assets/plugins/general/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.70/jquery.blockUI.js"></script>
+       <script src="~/Admin/assets/plugins/general/bootstrap-timepicker/js/bootstrap-timepicker.min.js"></script> 
     <script src="~/assets/js/inlineSVG.min.js"></script>
     <script src="~/assets/js/main.js"></script>
     <script>
+        $(document).ready(function () {
+         $(document).on("click", ".close-menu", function (e) {
+                    e.preventDefault();
+                    $(".menuBar").removeClass("active");
+                    $(".menu-wrap").css("left", "-475px");
+                });
+                $(document).on("click", ".menuBar", function (e) {
+                    e.preventDefault();
+                    if ($(this).hasClass("active")) {
+                        $(this).removeClass("active");
+                        $(".menu-wrap").css("left", "-475px");
+                    } else {
+                        $(this).addClass("active");
+                        $(".menu-wrap").css("left", "0");
+                    }
+                });
+                });
          function gotosection(section) {
     $('body, html').animate({
       scrollTop: $(section).offset().top

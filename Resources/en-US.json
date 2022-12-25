@@ -90,6 +90,8 @@
   "MessageSentSuccessfully": "Message Sent Successfully",
   "PleaseFillAllBoxes": "Please Fill All Boxes",
   "YouSubscribeSuccessfully": "You Subscribe Successfully",
-  "Phone": "Phone"
-
+  "Phone": "Phone",
+  "HaveanyQuestion": "Have any Question?",
+  "Address": "Address",
+  "AllServices": "All Services"
 }

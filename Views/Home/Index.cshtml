@@ -33,27 +33,24 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
     <link rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
-
+       <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap-utilities.css" />
     @if (isRTL)
     {
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ 
         <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700&display=swap"
         rel="stylesheet">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.rtl.min.css"
         integrity="sha384-gXt9imSW0VcJVHezoNQsP+TNrjYXoGcrqBZJpry9zJt8PCQjobwmhMGaDHTASo9N" crossorigin="anonymous">
-                 <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap-utilities.css" />
           <link rel="stylesheet" href="~/Admin/assets/plugins/general/bootstrap-timepicker/css/bootstrap-timepicker.css" />
         <link rel="stylesheet" href="~/assets/css/style-rtl.css" />
     }
     else
     {
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;500;700;800&display=swap" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">     
-        <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap-utilities.css" />
         <link rel="stylesheet" href="~/Admin/assets/plugins/general/bootstrap-timepicker/css/bootstrap-timepicker.css" />
       
         <link rel="stylesheet" href="~/assets/css/style.css" />
@@ -82,28 +79,7 @@
                     <div class="nav-center">
                         <div class="collapse navbar-collapse top-menu justify-content-center" id="navbarNavAltMarkup">
                             <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
-                                <li class="nav-item dropdown" style="display:none">
-                                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">  Treeview menu  </a>
-                                    <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#"> Dropdown item 1 </a></li>
-                                    <li><a class="dropdown-item" href="#"> Dropdown item 2 &raquo; </a>
-                                        <ul class="submenu dropdown-menu">
-                                            <li><a class="dropdown-item" href="#">Submenu item 1</a></li>
-                                            <li><a class="dropdown-item" href="#">Submenu item 2</a></li>
-                                            <li><a class="dropdown-item" href="#">Submenu item 3 &raquo; </a>
-                                                <ul class="submenu dropdown-menu">
-                                                    <li><a class="dropdown-item" href="#">Multi level 1</a></li>
-                                                    <li><a class="dropdown-item" href="#">Multi level 2</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a class="dropdown-item" href="#">Submenu item 4</a></li>
-                                            <li><a class="dropdown-item" href="#">Submenu item 5</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a class="dropdown-item" href="#"> Dropdown item 3 </a></li>
-                                    <li><a class="dropdown-item" href="#"> Dropdown item 4 </a>
-                                    </ul>
-                                </li>
+                             
                                 <li class="nav-item">
                                     <a href="~/@culture/Home/Index"   class="nav_link @(current_action=="Index"&&current_controller=="Home"?"active":"")">@localizer["home"]</a>
                                 </li>
@@ -114,15 +90,19 @@
                                 <li class="nav-item dropdown">
 		<a class="nav-link dropdown-toggle @(current_controller=="Services"?"active":"")" href="#" data-toggle="dropdown">   @localizer["Services"]  </a>
 	    <ul class="dropdown-menu">
+           <li><a class="dropdown-item" href="/@culture/services/"> @localizer["AllServices"] </a></li>
           @foreach(var itm in Services)
                                     {
 		  
-		  <li><a class="dropdown-item dropdown-toggle" href="/@culture/services/Details/@itm.Id">@(isRTL?itm.ArabicTitle:itm.EnglishTitle) </a>
+		  <li class="dropdown "><a class="dropdown-item dropdown-toggle" href="#">@(isRTL?itm.ArabicTitle:itm.EnglishTitle) </a>
 		  	 <ul class="submenu dropdown-menu">
+                 <li><a class="dropdown-item " href="/@culture/services/Details/@itm.Id">@(isRTL?itm.ArabicTitle:itm.EnglishTitle) </a></li>
                             @foreach(var d in ServicesItems)
                                     {
+
                                         if(d.ServiceId==itm.Id)
                                         {
+
 			    <li><a class="dropdown-item" href="/@culture/services/@(d.Type==1?"Profile":"PersonProfile")/@d.Id">@(isRTL?d.ArabicTitle:d.EnglishTitle)</a></li>
                                     }
                                     }
@@ -134,34 +114,6 @@
 		  
 	    </ul>
 	</li>
-                                <li class="nav-item dropdown" style="display:none">
-                                    <a class="nav-link dropdown-toggle" href="@Url.Action("Index","Services")" data-bs-toggle="dropdown"
-                                        @(current_controller=="Services"&&current_action=="Index"?"active":"")
-                                        data-bs-auto-close="outside">Services</a>
-                                    <ul class="dropdown-menu shadow">
-
-                                    @foreach(var itm in Services)
-                                    {
-                                        <li class="nav-item dropdown">
-                                            <a class="dropdown-item" href="~/@culture/Services/details/@itm.Id">
-                                               @(isRTL?itm.ArabicTitle:itm.EnglishTitle)
-                                            </a>
-                                            <ul class="dropdown-menu shadow">
-                                             @foreach(var d in ServicesItems)
-                                    {
-                                        <li class="nav-item dropdown">
-                                            <a class="dropdown-item" href="~/@culture/Services/profile/@d.Id">
-                                               @(isRTL?d.ArabicTitle:d.EnglishTitle)
-                                            </a>
-                                            </li>
-                                    }
-                                         </ul>
-                                        </li>
-                                       
-                                    }
-                                       
-                                    </ul>
-                                </li>
                                
                                 <li class="nav-item">
                                     <a  href="~/@culture/Projects/Index"  class="nav_link @(current_controller=="Projects"?"active":"")">@localizer["Projects"]</a>
@@ -173,14 +125,14 @@
                         </div>
                     </div>
                     <div class="search_btn_container nav_action d-flex align-items-center">
-                        <a href="javascript:;" onClick="openSearch()" class="search_btn d-block">
+                        <!--<a href="javascript:;" onClick="openSearch()" class="search_btn d-block">
                             <svg width="17" height="15" viewBox="0 0 17 15" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M16.0544 13.4824L12.9381 10.5995C13.8825 9.45576 14.4005 8.06846 14.4007 6.60455C14.4007 4.84039 13.658 3.18171 12.3093 1.93427C10.9608 0.686842 9.16799 -0.000244141 7.26069 -0.000244141C5.35362 -0.000244141 3.56057 0.686842 2.21209 1.93427C-0.571674 4.50965 -0.571674 8.69988 2.21209 11.2748C3.56057 12.5225 5.35362 13.2096 7.26069 13.2096C8.84318 13.2094 10.3429 12.7302 11.5793 11.8565L14.6956 14.7393C14.8831 14.9129 15.1292 14.9998 15.375 14.9998C15.6209 14.9998 15.867 14.9129 16.0544 14.7393C16.4298 14.3923 16.4298 13.8294 16.0544 13.4824ZM3.5709 10.0178C1.53644 8.13584 1.53668 5.07347 3.5709 3.19125C4.55645 2.27977 5.86693 1.77759 7.26069 1.77759C8.65468 1.77759 9.96492 2.27977 10.9505 3.19125C11.936 4.10296 12.4789 5.31523 12.4789 6.60455C12.4789 7.89408 11.936 9.10614 10.9505 10.0178C9.96492 10.9295 8.65468 11.4317 7.26069 11.4317C5.86693 11.4317 4.55645 10.9295 3.5709 10.0178Z"
                                     fill="white" />
                             </svg>
-                        </a>
+                        </a>-->
                         <div class="position-relative overflow-hidden">
                             <partial name="_SelectLanguage" />
                         </div>
@@ -210,9 +162,10 @@
 	    <ul class="dropdown-menu">
           @foreach(var itm in Services)
                                     {
-		  
-		  <li><a class="dropdown-item dropdown-toggle" href="/@culture/services/Details/@itm.Id">@(isRTL?itm.ArabicTitle:itm.EnglishTitle) </a>
+		   <li><a class="dropdown-item" href="/@culture/services/"> @localizer["AllServices"] </a></li>
+		  <li><a class="dropdown-item dropdown-toggle" href="#">@(isRTL?itm.ArabicTitle:itm.EnglishTitle) </a>
 		  	 <ul class="submenu dropdown-menu">
+                 <li><a class="dropdown-item dropdown-toggle" href="/@culture/services/Details/@itm.Id">@(isRTL?itm.ArabicTitle:itm.EnglishTitle) </a></li>
                             @foreach(var d in ServicesItems)
                                     {
                                         if(d.ServiceId==itm.Id)
@@ -264,30 +217,41 @@
                         <img src="~/assets/images/chat-bubble.svg" alt="">
                     </div>
                     <h3>
-                        We will be Happy to Reach us and Listen to you
+                        @Html.Raw(isRTL?siteSetting.ContactArabicTitle:siteSetting.ContactEnglishTitle)
                     </h3>
                     <div class="info-item">
                         <label for="">
-                            Address
+                            @localizer["Address"]
                         </label>
                         <p>
-                            Kingdome of Saudi Arabia Short Address RHOA7835
+                       
+                                @{
+                                    var addressitem = ContactItems.Where(x => x.Order == 1).FirstOrDefault();
+                                }
+                                @(isRTL?addressitem.ArabicValue:addressitem.EnglishValue) 
                         </p>
                     </div>
                     <div class="info-item">
                         <label for="">
-                            Email
+                            @localizer["Email"]  
                         </label>
                         <p>
-                            <a href="mailto:info@arttopgroup.com">info@arttopgroup.com</a>
+                                @{
+                                    var Emailitem = ContactItems.Where(x => x.Order == 2).FirstOrDefault();
+                                }
+                               
+                            <a href="mailto:@(Emailitem.EnglishValue)">@Emailitem.EnglishValue</a>
                         </p>
                     </div>
                     <div class="info-item">
                         <label for="">
-                            Phone
+                            @localizer["Phone"]  
                         </label>
                         <p>
-                            <a href="tel:+960 3309110">+960 3309110</a>
+                        @{
+                                    var phneitem = ContactItems.Where(x => x.Order == 2).FirstOrDefault();
+                                }
+                            <a href="tel:@(phneitem.EnglishValue)">@(phneitem.EnglishValue)</a>
                         </p>
                     </div>                    
                     <div class="social-links ">
@@ -305,10 +269,10 @@
                     </div>
                     <div class="info-item">
                         <p >
-                            Have any Question?
+                            @localizer["HaveanyQuestion"]
                         </p>
-                        <a href="#" class="btn btn-green">
-                            Send us
+                        <a href="~/@culture/Home/Contact" class="btn btn-green">
+                            @localizer["Sendus"]  
                         </a>
                     </div>                  
                 </div>
@@ -557,7 +521,7 @@
                              @localizer["ContactUs"]     
                             </h3>
                             <div>
-                            @foreach(var item in ContactItems)
+                            @foreach(var item in ContactItems.Where(x=>x.ShowInHome==true))
                                 {
                                     <div class="d-flex contact-info-item">
                                     <div class="icon">

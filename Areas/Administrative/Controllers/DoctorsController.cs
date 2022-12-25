@@ -53,8 +53,11 @@ namespace ArtTop.Areas.Administrative.Controllers
             var items = _context.Offices.ToList();
             items.Insert(0, new Office() { EnglishTitle="None"});
             ViewData["OfficeId"] = new SelectList(items, "Id", "EnglishTitle");
-            ViewData["ServiceId"] = new SelectList(_context.Services, "Id", "EnglishTitle");
-            ViewData["SubServicesIds"] = new SelectList(_context.SubServices, "Id", "EnglishTitle");
+            var list = new SelectList(_context.Services, "Id", "EnglishTitle");
+            int id = 0;
+            int.TryParse(list.FirstOrDefault().Value, out id);
+            ViewData["ServiceId"] = list;
+            ViewData["SubServicesIds"] = new SelectList(_context.SubServices.Where(x => x.ServiceId == id), "Id", "EnglishTitle");
             return View(new Doctor());
         }
 
@@ -95,10 +98,10 @@ namespace ArtTop.Areas.Administrative.Controllers
             }
             var items = _context.Offices.ToList();
             items.Insert(0, new Office() { EnglishTitle = "None" });
-           
+            ViewBag.SubServicesSelected= string.Join(',', SubServicesIds);
             ViewData["OfficeId"] = new SelectList(items, "Id", "EnglishTitle", doctor.OfficeId);
             ViewData["ServiceId"] = new SelectList(_context.Services, "Id", "EnglishTitle", doctor.ServiceId);
-            ViewData["SubServicesIds"] = new SelectList(_context.SubServices, "Id", "EnglishTitle", SubServicesIds);
+            ViewData["SubServicesIds"] = new SelectList(_context.SubServices.Where(x => x.ServiceId == doctor.ServiceId), "Id", "EnglishTitle", SubServicesIds);
             return View(doctor);
         }
 
@@ -121,7 +124,9 @@ namespace ArtTop.Areas.Administrative.Controllers
             ViewData["OfficeId"] = new SelectList(items, "Id", "EnglishTitle", doctor.OfficeId);
             ViewData["ServiceId"] = new SelectList(_context.Services, "Id", "EnglishTitle", doctor.ServiceId);
            var listItems = _context.DoctorSubServices.Where(x => x.DoctorId == doctor.Id).ToList();
-            ViewData["SubServicesIds"] = new SelectList(_context.SubServices, "Id", "EnglishTitle", listItems.Select(x => x.SubSeviceId));
+            ViewData["SubServicesIds"] = new SelectList(_context.SubServices.Where(x=>x.ServiceId== doctor.ServiceId), "Id", "EnglishTitle", listItems.Select(x => x.SubSeviceId));
+
+            ViewBag.SubServicesSelected = string.Join(',',doctor.SubServices.Select(x => x.SubSeviceId));
             return View("Create",doctor);
         }
 
@@ -166,19 +171,23 @@ namespace ArtTop.Areas.Administrative.Controllers
        
         [ActionName("Delete")]
         
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(int id)
         {
             if (_context.Doctors == null)
             {
                 return Problem("Entity set 'ArtTopContext.Doctors'  is null.");
             }
-            var doctor = await _context.Doctors.FindAsync(id);
+            var doctor =  _context.Doctors.Find(id);
             if (doctor != null)
             {
+               
+                _context.DoctorSubServices.RemoveRange(_context.DoctorSubServices.Where(d => d.DoctorId == doctor.Id)); _context.SaveChanges();
+                _context.OfficeSliders.RemoveRange(_context.OfficeSliders.Where(x=>x.Type==2&&x.OfficeId==doctor.Id)); _context.SaveChanges();
+                _context.OfficeSocialMedias.RemoveRange(_context.OfficeSocialMedias.Where(x => x.Type == 2 && x.OfficeId == doctor.Id)); _context.SaveChanges();
+                _context.Bookings.RemoveRange(_context.Bookings.Where(x => x.Type == 2 && x.DoctorId == doctor.Id)); _context.SaveChanges();
                 _context.Doctors.Remove(doctor);
+             _context.SaveChanges();
             }
-            
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 

@@ -4,6 +4,7 @@
     ViewData["Title"] = "Office";
     ViewData["ActionTitle"]= Model==null||Model.Id==0? "Create":"Edit";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
+        var SubServicesSelected = ViewBag.SubServicesSelected;
 }
 
 <div class="row">
@@ -20,6 +21,7 @@
         <form asp-action="Create" enctype="multipart/form-data" method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
+                 <input type="hidden" id="hdnSubServicesSelected" value="@SubServicesSelected" />
             <div class="form-group">
                 <label asp-for="ServiceId" class="control-label"></label>
                 <select asp-for="ServiceId" class ="form-control" asp-items="ViewBag.ServiceId"></select>
@@ -30,7 +32,7 @@
 
 @*                  @Html.DropDownListFor(x => x.members, Model.memberList, new { @id="Members", @class= "select2 form-select",  multiple = 
                                 "multiple", tabindex="3" });*@ 
-                <select name="SubServicesIds" id="SubServicesIds" class ="form-control" asp-items="ViewBag.SubServicesIds" multiple="multiple"></select>
+                <select name="SubServicesIds" id="SubServicesIds" class ="form-control select2" asp-items="ViewBag.SubServicesIds" multiple="multiple"></select>
             </div>
             <div class="form-group">
                 <label asp-for="ArabicTitle" class="control-label"></label>
@@ -227,13 +229,13 @@
 </div>
 </div>
 @section Scripts {
-   
+      <script type="text/javascript" src="~/Admin/assets/plugins/general/select2/dist/js/select2.full.js"></script>
     <script>
-        CreateEditor('#ArabicDetails');
+        $(document).ready(function(){   CreateEditor('#ArabicDetails');
         CreateEditor('#EnglishDetails');
- 
+ $('.select2').select2();
 
-      
+ });
    function CreateEditor(el)
    {
 CKEDITOR.disableAutoInline = true;
@@ -243,6 +245,40 @@ CKEDITOR.disableAutoInline = true;
       removePlugins: 'sourcearea',
       removeButtons: 'PasteFromWord'
     });
+   }
+
+   $(document).on('change','#ServiceId',function(){
+   
+     var id=$(this).val();
+     console.log(id);
+     $.ajax({
+                type: "GET",
+                url: "/Administrative/SubServices/GetSubServices/"+id,
+                success: function (data) {
+                 
+                    $("#SubServicesIds").empty();
+                    $.each(data, function (index) {
+                           $("#SubServicesIds").append("<option value='" + data[index]["id"] + "'>" + data[index]["englishTitle"] + "</option>");
+                        })
+                         $('.select2').select2();
+               }
+});
+   });
+
+   if($("#hdnSubServicesSelected").val()!=null&&$("#hdnSubServicesSelected").val()!=undefined)
+   {
+       var selectedaary=$("#hdnSubServicesSelected").val().split(',');
+       console.log(selectedaary);
+      $.each(selectedaary, function (index) {
+      $("#SubServicesIds > option").each(function() {
+     if(this.value==selectedaary[index])
+     {
+        console.log(this);
+         $(this).attr("selected","selected");
+     }
+});
+      });
+       $('.select2').select2();
    }
     </script>
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

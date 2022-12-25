@@ -26,27 +26,30 @@
 <input type="hidden" id="TypeHdn" value=""/>
 <input type="hidden" id="ServiceHdn" value="@Model.Id"/>
 <input type="hidden" id="DoctorIdHdn" value=""/>
-<section class="service-slider">
-    <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            @foreach (var item in ServiceSliders)
-            {
-                <div class="carousel-item @(ServiceSliders.IndexOf(item)==0?"active":"")" data-bs-interval="10000">
-                    <img src="~/assets/images/@(isRTL ? item.CoverImageAr:item.CoverImage)" alt="@(isRTL ? Model.ArabicTitle: Model.EnglishTitle)">
-                </div>
-            }
+@if (ServiceSliders != null && ServiceSliders.Count() > 0)
+{
+    <section class="service-slider">
+        <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                @foreach (var item in ServiceSliders)
+                {
+                    <div class="carousel-item @(ServiceSliders.IndexOf(item)==0?"active":"")" data-bs-interval="10000">
+                        <img src="~/assets/images/@(isRTL ? item.CoverImageAr:item.CoverImage)" alt="@(isRTL ? Model.ArabicTitle: Model.EnglishTitle)">
+                    </div>
+                }
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-</section>
-<section class="what-we-do" style="background-image: url('/assets/images/@(isRTL?Model.DetailsImageArabic:Model.DetailsImage)');background-size: cover;">
+    </section>
+}
+<section class="what-we-do" style="background-image: url('/assets/images/@(isRTL?Model.DetailsImageArabic:Model.DetailsImage)');background-size: cover;" data-aos="fade-up" data-aos-duration="2000">
     <div class="container">
         <div class="row">
             <div class="col-md-5 text">
@@ -69,7 +72,7 @@
     </div>
 </section>
 
-<section class="sub-services-header">
+<section class="sub-services-header" data-aos="fade-up" data-aos-duration="2000">
     <div class="container">
         <div class="row">
             <h5 class="text-center">
@@ -81,7 +84,7 @@
         </div>
     </div>
 </section>
-<section class="sub-services-items">
+<section class="sub-services-items" data-aos="fade-up" data-aos-duration="2000">
     <div class="container">
         <div class="row">
             <div
@@ -119,7 +122,7 @@
     </div>
 </section>
 
-<section class="our-clinics">
+<section class="our-clinics" data-aos="fade-up" data-aos-duration="2000">
     <div class="container">
         <div class="row">
             <h5 class="text-center">
