@@ -77,7 +77,47 @@ namespace ArtTop.Controllers
             ViewBag.ServicesItems = _context.Offices.Select(x => new { x.Id, x.ArabicTitle, x.EnglishTitle, Type = 1, x.ServiceId }).ToList().Union(_context.Doctors.Select(x => new { x.Id, ArabicTitle = x.ArabicName, EnglishTitle = x.EnglisName, Type = 2, x.ServiceId }).ToList());
             return View();
         }
-      
+
+        public IActionResult Pages(string page)
+        {
+            if(string.IsNullOrEmpty(page))
+                return NotFound();
+
+            var p=_context.StaticPages.FirstOrDefault(x => x.EnglishTitle==page);
+            if(p==null)
+                return NotFound();
+
+            ViewBag.current_controller = "Home";
+            ViewBag.current_action = "Pages";
+         
+
+            ViewBag.SiteSetting = _context.SiteSettings.FirstOrDefault();
+            ViewBag.Services = _context.Services.OrderBy(x => x.Order).ToList();
+            ViewBag.ContactItems = _context.ContactItem.ToList();
+
+            ViewBag.SocialMedia = _context.SocialMedia.ToList();
+            ViewBag.ServicesItems = _context.Offices.Select(x => new { x.Id, x.ArabicTitle, x.EnglishTitle, Type = 1, x.ServiceId }).ToList().Union(_context.Doctors.Select(x => new { x.Id, ArabicTitle = x.ArabicName, EnglishTitle = x.EnglisName, Type = 2, x.ServiceId }).ToList());
+
+            return View(p);
+        }
+        public IActionResult FAQs()
+        {
+            
+
+            ViewBag.current_controller = "Home";
+            ViewBag.current_action = "FAQs";
+
+
+            ViewBag.SiteSetting = _context.SiteSettings.FirstOrDefault();
+            ViewBag.Services = _context.Services.OrderBy(x => x.Order).ToList();
+            ViewBag.ContactItems = _context.ContactItem.ToList();
+
+            ViewBag.SocialMedia = _context.SocialMedia.ToList();
+            ViewBag.ServicesItems = _context.Offices.Select(x => new { x.Id, x.ArabicTitle, x.EnglishTitle, Type = 1, x.ServiceId }).ToList().Union(_context.Doctors.Select(x => new { x.Id, ArabicTitle = x.ArabicName, EnglishTitle = x.EnglisName, Type = 2, x.ServiceId }).ToList());
+
+            return View(_context.FAQs);
+        }
+
         [HttpPost]
         public IActionResult SetLanguage(string culture, string returnUrl)
         {

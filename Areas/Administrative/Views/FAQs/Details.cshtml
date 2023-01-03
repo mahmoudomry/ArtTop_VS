@@ -1,0 +1,58 @@
+﻿@model ArtTop.Models.FAQ
+
+@{
+    ViewData["Title"] = "FAQ  Details - " + Model.EnglishTitle;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12 ">
+        	<div class="kt-portlet">
+										<div class="kt-portlet__head">
+											<div class="kt-portlet__head-label">
+												<h3 class="kt-portlet__head-title pull-left">
+													  ViewData["Title"]
+												</h3>
+                                             
+											</div>
+
+                                             
+                                                
+										</div>
+                                        <div class="kt-portlet__body">
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ArabicTitle)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ArabicTitle)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EnglishTitle)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.EnglishTitle)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ArabicDetails)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.Raw(Model.ArabicDetails)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.EnglishDetails)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.Raw(Model.EnglishDetails)
+        </dd>
+      
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+</div>
+</div>
+</div>
+

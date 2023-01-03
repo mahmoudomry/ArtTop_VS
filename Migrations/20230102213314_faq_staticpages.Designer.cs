@@ -3,6 +3,7 @@ using System;
 using ArtTop.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ArtTop.Migrations
 {
     [DbContext(typeof(ArtTopContext))]
-    partial class ArtTopContextModelSnapshot : ModelSnapshot
+    [Migration("20230102213314_faq_staticpages")]
+    partial class faq_staticpages
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -992,9 +994,6 @@ namespace ArtTop.Migrations
                     b.Property<string>("Location")
                         .HasColumnType("longtext");
 
-                    b.Property<string>("MaaroofLink")
-                        .HasColumnType("longtext");
-
                     b.Property<string>("Maarooflogo")
                         .HasColumnType("longtext");
 
@@ -1041,9 +1040,6 @@ namespace ArtTop.Migrations
                         .HasColumnType("longtext");
 
                     b.Property<string>("VATlogo")
-                        .HasColumnType("longtext");
-
-                    b.Property<string>("VatLink")
                         .HasColumnType("longtext");
 
                     b.HasKey("Id");

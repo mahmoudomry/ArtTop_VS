@@ -73,9 +73,13 @@ namespace ArtTop.Models
 
         [Display(Name = "Maaroof logo ")]
         public string? Maarooflogo { get; set; } = "";
+        [Display(Name = "Maaroof Link ")]
+        public string? MaaroofLink { get; set; } = "";
 
         [Display(Name = "vat logo ")]
         public string? VATlogo { get; set; } = "";
+        [Display(Name = "vat Link ")]
+        public string? VatLink { get; set; } = "";
 
 
         [Required, Display(Name = "CopyRight")]

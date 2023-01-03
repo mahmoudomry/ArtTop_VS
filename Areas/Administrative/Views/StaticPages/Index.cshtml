@@ -1,0 +1,68 @@
+﻿@model IEnumerable<ArtTop.Models.StaticPage>
+@{
+      ViewData["ActionTitle"]="List";
+    ViewData["Title"] = "Static Pages";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+   
+
+<div class="row">
+    <div class="col-md-12 ">
+        	<div class="kt-portlet">
+										<div class="kt-portlet__head">
+											<div class="kt-portlet__head-label">
+												<h3 class="kt-portlet__head-title pull-left">
+													@ViewData["ActionTitle"]
+												</h3>
+                                             
+											</div>
+
+                                               
+                                                
+										</div>
+                                        <div class="kt-portlet__body">
+<table class="table">
+    <thead>
+        <tr>
+          
+            <th>
+                @Html.DisplayNameFor(model => model.ArabicTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EnglishTitle)
+            </th>
+           
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+           
+            <td>
+                @Html.DisplayFor(modelItem => item.ArabicTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnglishTitle)
+            </td>
+           
+           
+           
+          
+            <td>
+
+
+              <a  class="btn btn-outline-success"  href="@Url.Action("Edit","StaticPages",new{area="Administrative",Id=item.Id})" ><i class="fa fa-edit  "></i> Edit </a> 
+                <a  class="btn btn-outline-brand"  href="@Url.Action("Details","StaticPages",new{area="Administrative",Id=item.Id})" ><i class="fa fa-edit  "></i> Details </a> 
+               
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+

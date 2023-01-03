@@ -26,6 +26,16 @@
 							<i class="kt-menu__link-icon flaticon-home"></i>
 							<span class="kt-menu__link-text">Edit</span></a>
 						</li>
+							<li class="kt-menu__item @(current_controller=="StaticPages"?" kt-menu__item--active":"")" aria-haspopup="true">
+						<a asp-area="Administrative" asp-controller="StaticPages" asp-action="Index"  class="kt-menu__link  @(current_controller=="StaticPages" ?" kt-menu__item--active":"")">
+							<i class="kt-menu__link-icon flaticon-home"></i>
+							<span class="kt-menu__link-text">StaticPages</span></a>
+						</li>
+							<li class="kt-menu__item @(current_controller=="FAQs"?" kt-menu__item--active":"")" aria-haspopup="true">
+						<a asp-area="Administrative" asp-controller="FAQs" asp-action="Index"  class="kt-menu__link  @(current_controller=="FAQs" ?" kt-menu__item--active":"")">
+							<i class="kt-menu__link-icon flaticon-home"></i>
+							<span class="kt-menu__link-text">FAQs</span></a>
+						</li>
 								
 								<li class="kt-menu__section ">
 									<h4 class="kt-menu__section-text">Content</h4>

@@ -1,0 +1,78 @@
+﻿@model ArtTop.Models.FAQ
+
+@{
+    ViewData["Title"] = "FAQ";
+    ViewData["ActionTitle"]= Model==null||Model.Id==0? "Create":"Edit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-8 offset-2">
+        	<div class="kt-portlet">
+										<div class="kt-portlet__head">
+											<div class="kt-portlet__head-label">
+												<h3 class="kt-portlet__head-title">
+													@ViewData["ActionTitle"]
+												</h3>
+											</div>
+										</div>
+
+        <form asp-action="Create" enctype="multipart/form-data" method="post">
+                <div class="kt-portlet__body">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+              <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="ArabicTitle" class="control-label"></label>
+                <input asp-for="ArabicTitle" class="form-control" />
+                <span asp-validation-for="ArabicTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EnglishTitle" class="control-label"></label>
+                <input asp-for="EnglishTitle" class="form-control" />
+                <span asp-validation-for="EnglishTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ArabicDetails" class="control-label"></label>
+                <textarea asp-for="ArabicDetails" class="form-control ckeditor"></textarea>
+                <span asp-validation-for="ArabicDetails" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EnglishDetails" class="control-label"></label>
+                <textarea asp-for="EnglishDetails" class="form-control ckeditor" > </textarea>
+                <span asp-validation-for="EnglishDetails" class="text-danger"></span>
+            </div>
+          
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+            </div>
+        </form>
+        <div>
+    <a asp-action="Index">Back to List</a>
+</div>
+    </div>
+</div>
+</div>
+
+@section Scripts {
+   
+    <script>
+        CreateEditor('#ArabicDetails');
+        CreateEditor('#EnglishDetails');
+ 
+
+      
+   function CreateEditor(el)
+   {
+CKEDITOR.disableAutoInline = true;
+
+    CKEDITOR.replace(el, {
+      extraPlugins: 'sourcedialog',
+      removePlugins: 'sourcearea',
+      removeButtons: 'PasteFromWord'
+    });
+   }
+    </script>
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+

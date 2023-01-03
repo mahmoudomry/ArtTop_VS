@@ -1571,6 +1571,22 @@ section.statistics .statistics-item h3{
     .menu-wrap .btn-green{
         margin-top: 10px;
     }
+.bootstrap-timepicker-widget.dropdown-menu.open {
+    background-color: white;
+}
+section.about-clinic .service-item .icon img {
+    width: 40px;
+}
+.accordion-button:not(.collapsed) {
+    color: var(--white);
+    background-color: var(--light_green);
+    box-shadow: inset 0 calc(var(--bs-accordion-border-width) * -1) 0 var(--light_green);
+}
+.accordion-button:focus {
+    border-color: var(--light_green);
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem #34b07352;
+}
 @media screen and (max-width: 1399px) {
 }
 @media only screen and (max-width: 1280px) {

@@ -1,0 +1,39 @@
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer localizer
+@model ArtTop.Models.StaticPage
+@{
+   var culture = CultureInfo.CurrentCulture.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var isRTL = CultureInfo.CurrentCulture.Name.StartsWith("ar");
+    ViewData["Title"] = (isRTL?Model.ArabicTitle:Model.EnglishTitle);
+    SiteSetting siteSetting=ViewBag.SiteSetting;
+    List<ContactItem>ContactItems=   ViewBag.ContactItems;
+    List<SocialMedia>SocialMedias=  ViewBag.SocialMedia;
+     List<Service>Services= ViewBag.Services;
+
+}
+@section HeaderTitle{
+<div class="top-title row">
+    <div class="col-md-8 offset-md-2">
+        <h1>
+           @ViewData["Title"]
+        </h1>
+        <ul class="breadcrumb">
+            <li><a href="index.html">@localizer["home"]</a></li>
+            <li>@ViewData["Title"]</li>
+        </ul>
+    </div>
+</div>
+}
+<section class="services" data-aos="fade-up" data-aos-duration="1000">
+    <div class="container">
+       
+     
+        <div class="row">
+      
+      @Html.Raw(isRTL?Model.ArabicDetails:Model.EnglishDetails)
+        </div>
+    </div>
+</section>

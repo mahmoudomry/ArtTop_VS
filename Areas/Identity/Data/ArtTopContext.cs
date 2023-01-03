@@ -42,6 +42,9 @@ public class ArtTopContext : IdentityDbContext<ApplicationUser>
         builder.Entity<DoctorSubServices>().ToTable("DoctorSubServices");
         builder.Entity<ContactMessages>().ToTable("ContactMessages");
         builder.Entity<Booking>().ToTable("Booking");
+        builder.Entity<StaticPage>().ToTable("StaticPage");
+        builder.Entity<FAQ>().ToTable("FAQ");
+
     }
     public DbSet<Client> Clients { get; set; }
     public DbSet<Feature> Features { get; set; }
@@ -67,6 +70,8 @@ public class ArtTopContext : IdentityDbContext<ApplicationUser>
     public DbSet<ContactMessages> ContactMessages { get; set; }
 
     public DbSet<Booking> Bookings { get; set; }
+    public DbSet<StaticPage> StaticPages { get; set; }
+    public DbSet<FAQ> FAQs { get; set; }
 }
 internal class ApplicationUserEntityConfiguration : IEntityTypeConfiguration<ApplicationUser>
 {

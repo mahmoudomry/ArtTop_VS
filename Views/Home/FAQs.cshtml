@@ -1,0 +1,59 @@
+﻿@using System.Globalization
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer localizer
+@model IEnumerable<ArtTop.Models.FAQ>
+@{
+    var culture = CultureInfo.CurrentCulture.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var isRTL = CultureInfo.CurrentCulture.Name.StartsWith("ar");
+    ViewData["Title"] = localizer["FAQ"];
+    SiteSetting siteSetting=ViewBag.SiteSetting;
+    List<ContactItem>ContactItems=   ViewBag.ContactItems;
+    List<SocialMedia>SocialMedias=  ViewBag.SocialMedia;
+    List<Service>Services= ViewBag.Services;
+    var counter= 0;
+}
+@section HeaderTitle{
+<div class="top-title row">
+    <div class="col-md-8 offset-md-2">
+        <h1>
+           @ViewData["Title"]
+        </h1>
+        <ul class="breadcrumb">
+            <li><a href="index.html">@localizer["home"]</a></li>
+            <li>@ViewData["Title"]</li>
+        </ul>
+    </div>
+</div>
+}
+<section class="services" data-aos="fade-up" data-aos-duration="1000">
+    <div class="container">
+        
+     
+        <div class="row">
+      
+     <div class="accordion" id="accordionExample">
+     @foreach(var itm in Model)
+     {
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="@("heading"+itm.Id)">
+      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#@("collapse"+itm.Id)" aria-expanded="@(counter==0?"true":"false")true" aria-controls="@("collapse"+itm.Id)">
+       @(isRTL?itm.ArabicTitle:itm.EnglishTitle)
+      </button>
+    </h2>
+    <div id="@("collapse"+itm.Id)" class="accordion-collapse collapse @(counter==0?"show":"") " aria-labelledby="@("heading"+itm.Id)" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+      @Html.Raw(isRTL?itm.ArabicDetails:itm.EnglishDetails)
+      </div>
+    </div>
+                    </div>
+                    counter++;
+                }
+            </div>
+
+				
+</div>
+        </div>
+  
+</section>

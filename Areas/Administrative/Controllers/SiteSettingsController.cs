@@ -66,7 +66,7 @@ namespace ArtTop.Areas.Administrative.Controllers
             "ServiceTitleEn,ServiceTitleAr,ServiceDescEn,ServiceDescAr,FeatureTitleEn," +
             "FeatureTitleAr,FeatureDescEn,FeatureDescAr,FeatureImg1,FeatureImg2," +
             "ProjectTitleEn,ProjectTitleAr,BookingTitleEn,BookingTitleAr,BookingDescEn,BookingDescAr," +
-            "Maarooflogo,VATlogo,CopyRight,Queryphone,ContactArabicTitle,ContactEnglishTitle,ContactDescArabic,ContactDescEnglish")] SiteSetting siteSetting,IFormFile? setting_HeaderLogo, IFormFile? setting_FeatureImg1, IFormFile? setting_FeatureImg2
+            "Maarooflogo,MaaroofLink,VATlogo,VatLink,CopyRight,Queryphone,ContactArabicTitle,ContactEnglishTitle,ContactDescArabic,ContactDescEnglish")] SiteSetting siteSetting,IFormFile? setting_HeaderLogo, IFormFile? setting_FeatureImg1, IFormFile? setting_FeatureImg2
             , IFormFile? setting_Maarooflogo, IFormFile? setting_VATlogo)
         {
             if (ModelState.IsValid)

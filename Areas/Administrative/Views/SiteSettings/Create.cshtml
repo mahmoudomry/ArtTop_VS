@@ -139,12 +139,22 @@
                 <input type="file" name="setting_Maarooflogo" class="form-control" />
                 <span asp-validation-for="Maarooflogo" class="text-danger"></span>
             </div>
+             <div class="form-group">
+                <label asp-for="MaaroofLink" class="control-label"></label>
+                <input asp-for="MaaroofLink" class="form-control" />
+                <span asp-validation-for="MaaroofLink" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="VATlogo" class="control-label"></label>
                    <img src="~/assets/images/@Model.VATlogo" width="200px"/>
                 <input type="hidden" asp-for="VATlogo" />
                 <input type="file" name="setting_VATlogo" class="form-control" />
                 <span asp-validation-for="VATlogo" class="text-danger"></span>
+            </div>
+                 <div class="form-group">
+                <label asp-for="VatLink" class="control-label"></label>
+                <input asp-for="VatLink" class="form-control" />
+                <span asp-validation-for="VatLink" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="CopyRight" class="control-label"></label>
